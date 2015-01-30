@@ -41,7 +41,8 @@ class ContainerBuilder {
   private $globPaths = array();
 
   /**
-   *
+   * The builder used to actually build the container
+   * 
    * @var \DI\ContainerBuilder
    */
   private $containerBuilder = null;
@@ -68,19 +69,40 @@ class ContainerBuilder {
     return $this;
   }
 
+  /**
+   * Adds a new glob to the glob path array
+   *
+   * @param string $globPath
+   * @return self
+   */
   public function addGlobPath($globPath) {
     $this->globPaths[] = (string) $globPath;
+    return $this;
   }
 
+  /**
+   *
+   * @return \DI\ContainerBuilder
+   */
   public function getContainerBuilder() {
     return $this->containerBuilder;
   }
 
+  /**
+   *
+   * @param \DI\ContainerBuilder $containerBuilder
+   * @return self
+   */
   public function setContainerBuilder(\DI\ContainerBuilder $containerBuilder) {
     $this->containerBuilder = $containerBuilder;
     return $this;
   }
 
+  /**
+   * Builds the container by adding all files discovered by the glob paths to the container builder and returns the result of the containers build method
+   *
+   * @return \de\codenamephp\platform\di\iContainer
+   */
   public function build() {
     $containerBuilder = $this->getContainerBuilder();
 
