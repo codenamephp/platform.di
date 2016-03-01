@@ -60,18 +60,18 @@ class ContainerBuilderTest extends TestCase {
 
   public function testbuild_canSetCustomContainerClassName() {
     $this->sut = new ContainerBuilder();
-    self::assertSame(Container::class, $this->reflect($this->sut->getContainerBuilder())->containerClass);
+    self::assertAttributeEquals(Container::class, 'containerClass', $this->sut->getContainerBuilder());
   }
 
   public function testbuild_CannAddEachFileFromGlob_ToContainerBuilder() {
     $fileSystem = new \Symfony\Component\Filesystem\Filesystem();
     $fileSystem->mkdir(__DIR__ . '/tmp/definitions', 0777);
     $fileSystem->touch(array(
-        __DIR__ . '/tmp/definitions/global.php',
-        __DIR__ . '/tmp/definitions/def.global.php',
-        __DIR__ . '/tmp/definitions/local.php',
-        __DIR__ . '/tmp/definitions/test.local.php',
-        __DIR__ . '/tmp/definitions/dev.local.php'
+      __DIR__ . '/tmp/definitions/global.php',
+      __DIR__ . '/tmp/definitions/def.global.php',
+      __DIR__ . '/tmp/definitions/local.php',
+      __DIR__ . '/tmp/definitions/test.local.php',
+      __DIR__ . '/tmp/definitions/dev.local.php'
     ));
 
     $containerBuilder = $this->getMockBuilder(\DI\ContainerBuilder::class)->disableOriginalConstructor()->getMock();
