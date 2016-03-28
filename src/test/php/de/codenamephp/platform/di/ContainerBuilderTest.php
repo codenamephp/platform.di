@@ -35,12 +35,7 @@ class ContainerBuilderTest extends TestCase {
   protected function setUp() {
     parent::setUp();
 
-    \org\bovigo\vfs\vfsStream::setup();
-
-    $containerBuilder = $this->getMockBuilder(\DI\ContainerBuilder::class)->disableOriginalConstructor()->getMock();
-
     $this->sut = new ContainerBuilder();
-    $this->sut->setContainerBuilder($containerBuilder);
   }
 
   protected function tearDown() {
@@ -51,16 +46,13 @@ class ContainerBuilderTest extends TestCase {
   }
 
   public function testbuild_CanCallbuildOnContainerBulder_AndReturnItsResult() {
-    $containerBuilder = $this->getMockBuilder(\DI\ContainerBuilder::class)->disableOriginalConstructor()->getMock();
-    $containerBuilder->expects(self::once())->method('build')->willReturn('some result');
-    $this->sut->setContainerBuilder($containerBuilder);
-
-    self::assertEquals('some result', $this->sut->build());
+    self::assertInstanceOf(iContainer::class, $this->sut->build());
   }
 
   public function testbuild_canSetCustomContainerClassName() {
     $this->sut = new ContainerBuilder();
-    self::assertAttributeEquals(Container::class, 'containerClass', $this->sut->getContainerBuilder());
+
+    self::assertAttributeEquals(Container::class, 'containerClass', $this->sut);
   }
 
   public function testbuild_CannAddEachFileFromGlob_ToContainerBuilder() {
@@ -74,13 +66,13 @@ class ContainerBuilderTest extends TestCase {
       __DIR__ . '/tmp/definitions/dev.local.php'
     ));
 
-    $containerBuilder = $this->getMockBuilder(\DI\ContainerBuilder::class)->disableOriginalConstructor()->getMock();
+    $containerBuilder = $this->getMockBuilder(ContainerBuilder::class)->setMethods(['addDefinitions'])->getMock();
     $containerBuilder->expects(self::at(0))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/global.php');
     $containerBuilder->expects(self::at(1))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/def.global.php');
     $containerBuilder->expects(self::at(2))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/local.php');
     $containerBuilder->expects(self::at(3))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/dev.local.php');
     $containerBuilder->expects(self::at(4))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/test.local.php');
-    $this->sut->setContainerBuilder($containerBuilder);
+    $this->sut = $containerBuilder;
 
     $this->sut->addGlobPath(__DIR__ . '/tmp/definitions/{{,*.}global,{,*.}local}.php');
 

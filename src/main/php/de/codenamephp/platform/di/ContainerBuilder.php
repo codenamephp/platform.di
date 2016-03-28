@@ -24,7 +24,7 @@ namespace de\codenamephp\platform\di;
  *
  * @author Bastian Schwarz <bastian@codename-php.de>
  */
-class ContainerBuilder {
+class ContainerBuilder extends \DI\ContainerBuilder {
 
   /**
    * The glob pattern to load the definitions
@@ -40,15 +40,8 @@ class ContainerBuilder {
    */
   private $globPaths = array();
 
-  /**
-   * The builder used to actually build the container
-   * 
-   * @var \DI\ContainerBuilder
-   */
-  private $containerBuilder = null;
-
-  public function __construct() {
-    $this->setContainerBuilder(new \DI\ContainerBuilder(Container::class));
+  public function __construct($containerClass = Container::class) {
+    parent::__construct($containerClass);
   }
 
   /**
@@ -81,37 +74,17 @@ class ContainerBuilder {
   }
 
   /**
-   *
-   * @return \DI\ContainerBuilder
-   */
-  public function getContainerBuilder() {
-    return $this->containerBuilder;
-  }
-
-  /**
-   *
-   * @param \DI\ContainerBuilder $containerBuilder
-   * @return self
-   */
-  public function setContainerBuilder(\DI\ContainerBuilder $containerBuilder) {
-    $this->containerBuilder = $containerBuilder;
-    return $this;
-  }
-
-  /**
    * Builds the container by adding all files discovered by the glob paths to the container builder and returns the result of the containers build method
    *
    * @return \de\codenamephp\platform\di\iContainer
    */
   public function build() {
-    $containerBuilder = $this->getContainerBuilder();
-
     foreach($this->getGlobPaths() as $globPath) {
       foreach(glob($globPath, GLOB_BRACE) as $definitionFile) {
-        $containerBuilder->addDefinitions($definitionFile);
+        $this->addDefinitions($definitionFile);
       }
     }
 
-    return $containerBuilder->build();
+    return parent::build();
   }
 }
