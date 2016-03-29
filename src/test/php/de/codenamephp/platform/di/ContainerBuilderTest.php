@@ -78,4 +78,59 @@ class ContainerBuilderTest extends TestCase {
 
     $this->sut->build();
   }
+
+  public function testaddDefinitionsByProvider_canAddFiles_WhenFileProviderWasGiven() {
+    $containerBuilder = $this->getMockBuilder(ContainerBuilder::class)->setMethods(['addDefinitions'])->getMock();
+    $containerBuilder->expects(self::at(0))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/global.php');
+    $containerBuilder->expects(self::at(1))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/def.global.php');
+    $containerBuilder->expects(self::at(2))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/local.php');
+    $containerBuilder->expects(self::at(3))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/dev.local.php');
+    $containerBuilder->expects(self::at(4))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/test.local.php');
+    $this->sut = $containerBuilder;
+
+    $this->sut->addDefinitionsByProvider(new class() implements definitionsProvider\iFiles {
+    public
+
+    function getFiles() {
+      return [
+        __DIR__ . '/tmp/definitions/global.php',
+        __DIR__ . '/tmp/definitions/def.global.php',
+        __DIR__ . '/tmp/definitions/local.php',
+        __DIR__ . '/tmp/definitions/dev.local.php',
+        __DIR__ . '/tmp/definitions/test.local.php'
+      ];
+    }
+    });
+  }
+
+  public function testaddDefinitionsByProvider_canAddDefintionsArray_WhenArrayProviderWasGiven() {
+    $containerBuilder = $this->getMockBuilder(ContainerBuilder::class)->setMethods(['addDefinitions'])->getMock();
+    $containerBuilder->expects(self::at(0))->method('addDefinitions')->with(['some', 'definitions']);
+    $this->sut = $containerBuilder;
+
+    $this->sut->addDefinitionsByProvider(new class() implements definitionsProvider\iArray {
+    public
+
+    function getDefinitions() {
+      return ['some', 'definitions'];
+    }
+    });
+  }
+
+  public function testaddDefinitionsByProvider_canAddGlobPaths_WhenGlobPathProviderWasGiven() {
+    $containerBuilder = $this->getMockBuilder(ContainerBuilder::class)->setMethods(['addGlobPath'])->getMock();
+    $containerBuilder->expects(self::at(0))->method('addGlobPath')->with('glob1');
+    $containerBuilder->expects(self::at(1))->method('addGlobPath')->with('glob2');
+    $containerBuilder->expects(self::at(2))->method('addGlobPath')->with('glob3');
+    $containerBuilder->expects(self::at(3))->method('addGlobPath')->with('glob4');
+    $this->sut = $containerBuilder;
+
+    $this->sut->addDefinitionsByProvider(new class() implements definitionsProvider\iGlobPaths {
+    public
+
+    function getGlobPaths() {
+      return ['glob1', 'glob2', 'glob3', 'glob4'];
+    }
+    });
+  }
 }

@@ -74,6 +74,32 @@ class ContainerBuilder extends \DI\ContainerBuilder {
   }
 
   /**
+   * Adds definitions by a provider class. The provider must implement one of the definitionsProvider\* interfaces and the configuration will be added accordingly to the
+   * container builder.
+   * 
+   * @param \de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider $provider
+   * @return self
+   */
+  public function addDefinitionsByProvider(definitionsProvider\iDefintionsProvider $provider) {
+    if($provider instanceof definitionsProvider\iFiles) {
+      foreach($provider->getFiles() as $file) {
+        $this->addDefinitions($file);
+      }
+    }
+
+    if($provider instanceof definitionsProvider\iArray) {
+      $this->addDefinitions($provider->getDefinitions());
+    }
+
+    if($provider instanceof definitionsProvider\iGlobPaths) {
+      foreach($provider->getGlobPaths() as $globPath) {
+        $this->addGlobPath($globPath);
+      }
+    }
+    return $this;
+  }
+
+  /**
    * Builds the container by adding all files discovered by the glob paths to the container builder and returns the result of the containers build method
    *
    * @return \de\codenamephp\platform\di\iContainer
