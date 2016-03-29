@@ -24,7 +24,7 @@ namespace de\codenamephp\platform\di;
  *
  * @author Bastian Schwarz <bastian@codename-php.de>
  */
-class ContainerBuilder {
+class ContainerBuilder extends \DI\ContainerBuilder {
 
   /**
    * The glob pattern to load the definitions
@@ -40,15 +40,8 @@ class ContainerBuilder {
    */
   private $globPaths = array();
 
-  /**
-   * The builder used to actually build the container
-   * 
-   * @var \DI\ContainerBuilder
-   */
-  private $containerBuilder = null;
-
-  public function __construct() {
-    $this->setContainerBuilder(new \DI\ContainerBuilder(Container::class));
+  public function __construct($containerClass = Container::class) {
+    parent::__construct($containerClass);
   }
 
   /**
@@ -81,20 +74,28 @@ class ContainerBuilder {
   }
 
   /**
-   *
-   * @return \DI\ContainerBuilder
-   */
-  public function getContainerBuilder() {
-    return $this->containerBuilder;
-  }
-
-  /**
-   *
-   * @param \DI\ContainerBuilder $containerBuilder
+   * Adds definitions by a provider class. The provider must implement one of the definitionsProvider\* interfaces and the configuration will be added accordingly to the
+   * container builder.
+   * 
+   * @param \de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider $provider
    * @return self
    */
-  public function setContainerBuilder(\DI\ContainerBuilder $containerBuilder) {
-    $this->containerBuilder = $containerBuilder;
+  public function addDefinitionsByProvider(definitionsProvider\iDefintionsProvider $provider) {
+    if($provider instanceof definitionsProvider\iFiles) {
+      foreach($provider->getFiles() as $file) {
+        $this->addDefinitions($file);
+      }
+    }
+
+    if($provider instanceof definitionsProvider\iArray) {
+      $this->addDefinitions($provider->getDefinitions());
+    }
+
+    if($provider instanceof definitionsProvider\iGlobPaths) {
+      foreach($provider->getGlobPaths() as $globPath) {
+        $this->addGlobPath($globPath);
+      }
+    }
     return $this;
   }
 
@@ -104,14 +105,12 @@ class ContainerBuilder {
    * @return \de\codenamephp\platform\di\iContainer
    */
   public function build() {
-    $containerBuilder = $this->getContainerBuilder();
-
     foreach($this->getGlobPaths() as $globPath) {
       foreach(glob($globPath, GLOB_BRACE) as $definitionFile) {
-        $containerBuilder->addDefinitions($definitionFile);
+        $this->addDefinitions($definitionFile);
       }
     }
 
-    return $containerBuilder->build();
+    return parent::build();
   }
 }
