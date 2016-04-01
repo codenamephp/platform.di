@@ -37,7 +37,7 @@ $container->get('...');
 Probably the most performant provider since the definitions are defined within the method and don't require any additional file lookups:
 
 ```php
-class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\iFiles {
+class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\iArray {
 
   public function getDefinitions() {
     return ['some class' => 'some defintion'];
@@ -49,7 +49,7 @@ class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvid
 The file provider provides absolute file paths to definition files:
 
 ```php
-class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\iArray {
+class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\iFiles {
 
   public function getFiles() {
     return [__DIR__ . '/path/to/file'];
