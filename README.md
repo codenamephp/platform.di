@@ -63,7 +63,7 @@ The globPaths provider provides glob patterns that find definition files. These 
 ```php
 class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\iGlobPaths {
 
-  public function getFiles() {
+  public function getGlobPaths() {
     return [__DIR__ . '/path/to/definitions/{{,*.}global,{,*.}local}.php'];
   }
 }
