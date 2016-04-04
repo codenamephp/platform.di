@@ -45,17 +45,13 @@ class ContainerBuilderTest extends TestCase {
     $fileSystem->remove(__DIR__ . '/tmp');
   }
 
-  public function testbuild_CanCallbuildOnContainerBulder_AndReturnItsResult() {
-    self::assertInstanceOf(iContainer::class, $this->sut->build());
-  }
-
-  public function testbuild_canSetCustomContainerClassName() {
+  public function testconstruct_canSetCustomContainerClassName() {
     $this->sut = new ContainerBuilder();
 
     self::assertAttributeEquals(Container::class, 'containerClass', $this->sut);
   }
 
-  public function testbuild_CannAddEachFileFromGlob_ToContainerBuilder() {
+  public function testaddGlobPath_CannAddEachFileFromGlob_ToContainerBuilder() {
     $fileSystem = new \Symfony\Component\Filesystem\Filesystem();
     $fileSystem->mkdir(__DIR__ . '/tmp/definitions', 0777);
     $fileSystem->touch(array(
@@ -75,8 +71,6 @@ class ContainerBuilderTest extends TestCase {
     $this->sut = $containerBuilder;
 
     $this->sut->addGlobPath(__DIR__ . '/tmp/definitions/{{,*.}global,{,*.}local}.php');
-
-    $this->sut->build();
   }
 
   public function testaddDefinitionsByProvider_canAddFiles_WhenFileProviderWasGiven() {
