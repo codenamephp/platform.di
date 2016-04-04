@@ -26,57 +26,27 @@ namespace de\codenamephp\platform\di;
  */
 class ContainerBuilder extends \DI\ContainerBuilder {
 
-  /**
-   * The glob pattern to load the definitions
-   *
-   * By default, the following order is used:
-   *
-   * - global.php
-   * - *.global.php
-   * - local.php
-   * - *.local.php
-   *
-   * @var string
-   */
-  private $globPaths = array();
-
   public function __construct($containerClass = Container::class) {
     parent::__construct($containerClass);
   }
 
   /**
-   *
-   * @return array
-   */
-  public function getGlobPaths() {
-    return $this->globPaths;
-  }
-
-  /**
-   *
-   * @param array $globPaths
-   * @return self
-   */
-  public function setGlobPaths(array $globPaths) {
-    $this->globPaths = $globPaths;
-    return $this;
-  }
-
-  /**
-   * Adds a new glob to the glob path array
+   * Discovers all files found from glob and adds them to the existing definitions by calling self::addDefinitions for each found file
    *
    * @param string $globPath
    * @return self
    */
   public function addGlobPath($globPath) {
-    $this->globPaths[] = (string) $globPath;
+    foreach(glob($globPath, GLOB_BRACE) as $definitionFile) {
+      $this->addDefinitions($definitionFile);
+    }
     return $this;
   }
 
   /**
    * Adds definitions by a provider class. The provider must implement one of the definitionsProvider\* interfaces and the configuration will be added accordingly to the
    * container builder.
-   * 
+   *
    * @param \de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider $provider
    * @return self
    */
@@ -97,20 +67,5 @@ class ContainerBuilder extends \DI\ContainerBuilder {
       }
     }
     return $this;
-  }
-
-  /**
-   * Builds the container by adding all files discovered by the glob paths to the container builder and returns the result of the containers build method
-   *
-   * @return \de\codenamephp\platform\di\iContainer
-   */
-  public function build() {
-    foreach($this->getGlobPaths() as $globPath) {
-      foreach(glob($globPath, GLOB_BRACE) as $definitionFile) {
-        $this->addDefinitions($definitionFile);
-      }
-    }
-
-    return parent::build();
   }
 }
