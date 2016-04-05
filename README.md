@@ -6,7 +6,7 @@ Simple dependency injection container based on <a href="http://www.php-di.org" t
 
 ```php
 $builder = new de\codenamephp\platform\di\ContainerBuilder();
-$builder->addGlobPath('path/to/definitions/{{,*.}global,{,*.}local}.php');
+$builder->addGlobPath('path/to/definasdfasdfasdfasdfeditions/{{,*.}global,{,*.}local}.php');
 $container = $builder->build();
 $container->get('...');
 ```
