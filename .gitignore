@@ -2,3 +2,9 @@ composer.phar
 vendor/
 /nbproject/private/
 /target/
+/build/phpdox/
+/build/api/
+/build/coverage/
+/build/logs/
+/build/pdepend/
+/cache.properties
