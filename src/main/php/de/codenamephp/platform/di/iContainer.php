@@ -17,9 +17,9 @@
 
 /**
  * @namespace
- */
+ */asdf
 namespace de\codenamephp\platform\di;
-
+asdfasdf
 /**
  * Interface that extends the default interop container interface with factory interface from DI and a set method to set values to the container
  * 
