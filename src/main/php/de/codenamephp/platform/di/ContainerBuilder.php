@@ -53,7 +53,7 @@ class ContainerBuilder extends \DI\ContainerBuilder {
   public function addDefinitionsByProvider(definitionsProvider\iDefintionsProvider $provider) {
     if($provider instanceof definitionsProvider\iFiles) {
       foreach($provider->getFiles() as $file) {
-        $this->addDefinitions($file);
+        $this->addDefinitions($file);asdf
       }
     }
 
