@@ -63,7 +63,7 @@ class ContainerBuilder extends \DI\ContainerBuilder {
 
     if($provider instanceof definitionsProvider\iGlobPaths) {
       foreach($provider->getGlobPaths() as $globPath) {
-        $this->addGlobPath($globPath);
+        //$this->addGlobPath($globPath);
       }
     }
     return $this;
