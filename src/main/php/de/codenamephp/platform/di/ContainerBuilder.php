@@ -53,7 +53,7 @@ class ContainerBuilder extends \DI\ContainerBuilder {
   public function addDefinitionsByProvider(definitionsProvider\iDefintionsProvider $provider) {
     if($provider instanceof definitionsProvider\iFiles) {
       foreach($provider->getFiles() as $file) {
-        $this->addDefinitions($file);
+        //$this->addDefinitions($file);
       }
     }
 
@@ -63,7 +63,7 @@ class ContainerBuilder extends \DI\ContainerBuilder {
 
     if($provider instanceof definitionsProvider\iGlobPaths) {
       foreach($provider->getGlobPaths() as $globPath) {
-        $this->addGlobPath($globPath);
+        //$this->addGlobPath($globPath);
       }
     }
     return $this;
