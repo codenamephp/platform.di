@@ -11,7 +11,7 @@ node {
   
   stage "Publish results"
   step(
-    [$class: 'XUnitBuilder', testTimeMargin: '3000', thresholdMode: 1, thresholds: [
+    [$class: 'XUnitPublisher', testTimeMargin: '3000', thresholdMode: 1, thresholds: [
         [$class: 'FailedThreshold', failureNewThreshold: '0', failureThreshold: '0', unstableNewThreshold: '0', unstableThreshold: '0'], 
         [$class: 'SkippedThreshold', failureNewThreshold: '0', failureThreshold: '0', unstableNewThreshold: '0', unstableThreshold: '0']
       ], 
