@@ -1,4 +1,4 @@
-node {
+
   // Mark the code checkout 'stage'....
   stage 'Checkout'
 
@@ -13,4 +13,3 @@ node {
         antInstallation('1.9')
       }
     }
-}
