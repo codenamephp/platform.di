@@ -6,8 +6,7 @@ node {
   sh 'composer install'
   
   stage 'Build'
-  def antHome = tool name: '1.9', type: 'hudson.tasks.Ant$AntInstallation'
-  sh "${antHome}/bin/ant"
+  ant
   
   stage "Publish results"
   step([$class: 'WarningsPublisher', canComputeNew: false, canResolveRelativePaths: false, consoleParsers: [
@@ -28,5 +27,9 @@ node {
       ]
     ]
   )
-  publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'build/api', reportFiles: 'index.html', reportName: 'API Documentation'])
+  publishHTML(target:[allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'build/api', reportFiles: 'index.html', reportName: 'API Documentation'])
+}
+
+def ant(args) {
+    sh "${tool name: '1.9', type: 'hudson.tasks.Ant$AntInstallation'}/bin/ant ${args}"
 }
