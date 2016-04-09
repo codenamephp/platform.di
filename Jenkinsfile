@@ -6,7 +6,7 @@ node {
   sh 'composer install'
   
   stage 'Build'
-  ant
+  ant ''
   
   stage "Publish results"
   step([$class: 'WarningsPublisher', canComputeNew: false, canResolveRelativePaths: false, consoleParsers: [
