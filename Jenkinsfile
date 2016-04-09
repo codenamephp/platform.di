@@ -27,6 +27,7 @@ node {
       ]
     ]
   )
+  step($class: 'ViolationsPublisher')
   publishHTML(target:[allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'build/api', reportFiles: 'index.html', reportName: 'API Documentation'])
 }
 
