@@ -1,4 +1,7 @@
 node {
+  stage 'Init'
+  step([$class: 'GitHubSetCommitStatusBuilder'])
+  
   stage 'Checkout'
   checkout scm
   
@@ -29,6 +32,7 @@ node {
   )
   step([$class: 'AnalysisPublisher', canComputeNew: false, defaultEncoding: '', healthy: '', unHealthy: ''])
   publishHTML(target:[allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'build/api', reportFiles: 'index.html', reportName: 'API Documentation'])
+  step([$class: 'GitHubCommitNotifier', resultOnFailure: 'FAILURE'])
 }
 
 def ant(args) {
