@@ -1,6 +1,7 @@
 node {
   stage 'Init'
   step([$class: 'GitHubSetCommitStatusBuilder'])
+  currentBuild.description = "<img type="image/svg+xml" height="300" src="ws/build/pdepend/overview-pyramid.svg" width="500"></img><img type="image/svg+xml" height="300" src="ws/build/pdepend/dependencies.svg" width="500"></img>"
 
   stage 'Checkout'
   checkout scm
