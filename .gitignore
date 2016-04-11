@@ -8,3 +8,4 @@ vendor/
 /build/logs/
 /build/pdepend/
 /cache.properties
+/build/xml/
