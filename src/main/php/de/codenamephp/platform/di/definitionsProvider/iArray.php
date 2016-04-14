@@ -29,7 +29,7 @@ interface iArray extends iDefintionsProvider {
 
   /**
    * Returns an array of definitions
-   * 
+   *
    * @return array
    */
   public function getDefinitions();

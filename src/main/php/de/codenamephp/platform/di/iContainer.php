@@ -22,7 +22,7 @@ namespace de\codenamephp\platform\di;
 
 /**
  * Interface that extends the default interop container interface with factory interface from DI and a set method to set values to the container
- * 
+ *
  * @author Bastian Schwarz <bastian@codename-php.de>
  */
 interface iContainer extends \Interop\Container\ContainerInterface, \DI\FactoryInterface {

@@ -4,6 +4,7 @@
   <property name="pdepend" value="${basedir}/vendor/bin/pdepend"/>
   <property name="phpcpd"  value="${basedir}/vendor/bin/phpcpd"/>
   <property name="phpcs"   value="${basedir}/vendor/bin/phpcs"/>
+  <property name="phpcbf"   value="${basedir}/vendor/bin/phpcbf"/>
   <property name="phpdox"  value="${basedir}/vendor/bin/phpdox"/>
   <property name="phploc"  value="${basedir}/vendor/bin/phploc"/>
   <property name="phpmd"   value="${basedir}/vendor/bin/phpmd"/>
@@ -157,6 +158,19 @@
           unless="phpcs.done"
           description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
     <exec executable="${phpcs}" taskname="phpcs">
+      <arg value="--standard=${basedir}/build/phpcs.xml" />
+      <arg value="--extensions=php" />
+      <arg value="--ignore=autoload.php" />
+      <arg path="${basedir}/src/main/php" />
+    </exec>
+
+    <property name="phpcs.done" value="true"/>
+  </target>
+
+  <target name="phpcbf"
+          unless="phpcbf.done"
+          description="Find coding standard violations using PHP_CodeSniffer and fix them. Intended for usage on the command line before committing.">
+    <exec executable="${phpcbf}" taskname="phpcbf">
       <arg value="--standard=${basedir}/build/phpcs.xml" />
       <arg value="--extensions=php" />
       <arg value="--ignore=autoload.php" />
