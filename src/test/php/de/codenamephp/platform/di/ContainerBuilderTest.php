@@ -24,7 +24,7 @@ namespace de\codenamephp\platform\di;
  *
  * @author Bastian Schwarz <bastian@codename-php.de>
  */
-class ContainerBuilderTest extends TestCase {
+class ContainerBuilderTest extends \de\codenamephp\platform\test\TestCase {
 
   /**
    *

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014 Bastian Schwarz <bastian@codename-php.de>.
+ * Copyright 2016 Bastian Schwarz <bastian@codename-php.de>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @namespace
  */
-
 namespace de\codenamephp\platform\di;
 
 /**
  *
+ *
  * @author Bastian Schwarz <bastian@codename-php.de>
  */
-class TestCase extends \de\codenamephp\platform\test\TestCase {
-//put your code here
+class ContainerTest extends \de\codenamephp\platform\test\TestCase {
+
+  /**
+   *
+   * @var Container
+   */
+  private $sut = null;
+
+  protected function setUp() {
+    parent::setUp();
+
+    $proxyFactory = $this->getMockBuilder(\DI\Proxy\ProxyFactory::class)->disableOriginalConstructor()->getMock();
+
+    $this->sut = new Container($this->getMock(\DI\Definition\Source\DefinitionSource::class), $proxyFactory);
+  }
+
+  public function testset_canReturnSelf_ToImplementFluentInterface() {
+    self::assertSame($this->sut, $this->sut->set('test', 'test'));
+  }
 }

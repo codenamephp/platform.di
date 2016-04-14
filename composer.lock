@@ -637,12 +637,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phploc.git",
-                "reference": "8d6fe26ac06eb003e1aa0be0f67d63825e4ff0f0"
+                "reference": "1c925e68b9fbbd8ff063e68c662bc9f98a6a6a0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phploc/zipball/8d6fe26ac06eb003e1aa0be0f67d63825e4ff0f0",
-                "reference": "8d6fe26ac06eb003e1aa0be0f67d63825e4ff0f0",
+                "url": "https://api.github.com/repos/sebastianbergmann/phploc/zipball/1c925e68b9fbbd8ff063e68c662bc9f98a6a6a0a",
+                "reference": "1c925e68b9fbbd8ff063e68c662bc9f98a6a6a0a",
                 "shasum": ""
             },
             "require": {
@@ -682,7 +682,7 @@
             ],
             "description": "A tool for quickly measuring the size of a PHP project.",
             "homepage": "https://github.com/sebastianbergmann/phploc",
-            "time": "2016-02-17 07:58:00"
+            "time": "2016-03-06 10:04:39"
         },
         {
             "name": "phpmd/phpmd",
@@ -1759,12 +1759,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "b3d797dbd247f1df51cd7883d23e2a737217b402"
+                "reference": "ac170f1f44134e69eaae2cde738ae3862d22aefa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/b3d797dbd247f1df51cd7883d23e2a737217b402",
-                "reference": "b3d797dbd247f1df51cd7883d23e2a737217b402",
+                "url": "https://api.github.com/repos/symfony/console/zipball/ac170f1f44134e69eaae2cde738ae3862d22aefa",
+                "reference": "ac170f1f44134e69eaae2cde738ae3862d22aefa",
                 "shasum": ""
             },
             "require": {
@@ -1811,7 +1811,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2016-04-05 16:36:54"
+            "time": "2016-04-14 15:22:22"
         },
         {
             "name": "symfony/dependency-injection",
@@ -1819,12 +1819,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "22e93498c1f27320a0ff340810ffe25fe74f8a2f"
+                "reference": "c05c38fe0afddfe90edc655b61d617b84ca38d9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/22e93498c1f27320a0ff340810ffe25fe74f8a2f",
-                "reference": "22e93498c1f27320a0ff340810ffe25fe74f8a2f",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/c05c38fe0afddfe90edc655b61d617b84ca38d9a",
+                "reference": "c05c38fe0afddfe90edc655b61d617b84ca38d9a",
                 "shasum": ""
             },
             "require": {
@@ -1870,7 +1870,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2016-04-04 09:35:16"
+            "time": "2016-04-14 11:54:39"
         },
         {
             "name": "symfony/filesystem",
@@ -1878,12 +1878,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "3402bb927c2ae25caca38d6faf901f25fc42a926"
+                "reference": "5751e80d6f94b7c018f338a4a7be0b700d6f3058"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/3402bb927c2ae25caca38d6faf901f25fc42a926",
-                "reference": "3402bb927c2ae25caca38d6faf901f25fc42a926",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/5751e80d6f94b7c018f338a4a7be0b700d6f3058",
+                "reference": "5751e80d6f94b7c018f338a4a7be0b700d6f3058",
                 "shasum": ""
             },
             "require": {
@@ -1919,7 +1919,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-27 16:15:51"
+            "time": "2016-04-12 18:27:47"
         },
         {
             "name": "symfony/finder",
