@@ -83,17 +83,17 @@ class ContainerBuilderTest extends \de\codenamephp\platform\test\TestCase {
     $this->sut = $containerBuilder;
 
     $this->sut->addDefinitionsByProvider(new class() implements definitionsProvider\iFiles {
-    public
 
-    function getFiles() {
-      return [
-        __DIR__ . '/tmp/definitions/global.php',
-        __DIR__ . '/tmp/definitions/def.global.php',
-        __DIR__ . '/tmp/definitions/local.php',
-        __DIR__ . '/tmp/definitions/dev.local.php',
-        __DIR__ . '/tmp/definitions/test.local.php'
-      ];
-    }
+      public
+          function getFiles() {
+        return [
+          __DIR__ . '/tmp/definitions/global.php',
+          __DIR__ . '/tmp/definitions/def.global.php',
+          __DIR__ . '/tmp/definitions/local.php',
+          __DIR__ . '/tmp/definitions/dev.local.php',
+          __DIR__ . '/tmp/definitions/test.local.php'
+        ];
+      }
     });
   }
 
@@ -103,11 +103,11 @@ class ContainerBuilderTest extends \de\codenamephp\platform\test\TestCase {
     $this->sut = $containerBuilder;
 
     $this->sut->addDefinitionsByProvider(new class() implements definitionsProvider\iArray {
-    public
 
-    function getDefinitions() {
-      return ['some', 'definitions'];
-    }
+      public
+          function getDefinitions() {
+        return ['some', 'definitions'];
+      }
     });
   }
 
@@ -120,11 +120,11 @@ class ContainerBuilderTest extends \de\codenamephp\platform\test\TestCase {
     $this->sut = $containerBuilder;
 
     $this->sut->addDefinitionsByProvider(new class() implements definitionsProvider\iGlobPaths {
-    public
 
-    function getGlobPaths() {
-      return ['glob1', 'glob2', 'glob3', 'glob4'];
-    }
+      public
+          function getGlobPaths() {
+        return ['glob1', 'glob2', 'glob3', 'glob4'];
+      }
     });
   }
 }

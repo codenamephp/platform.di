@@ -44,4 +44,9 @@ class ContainerTest extends \de\codenamephp\platform\test\TestCase {
   public function testset_canReturnSelf_ToImplementFluentInterface() {
     self::assertSame($this->sut, $this->sut->set('test', 'test'));
   }
+
+  public function testconstruct_canAddDefinitionsForContainer_andInterface() {
+    self::assertInstanceOf(Container::class, $this->sut->get(Container::class));
+    self::assertInstanceOf(Container::class, $this->sut->get(iContainer::class));
+  }
 }

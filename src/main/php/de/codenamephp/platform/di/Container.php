@@ -26,6 +26,13 @@ namespace de\codenamephp\platform\di;
  */
 class Container extends \DI\Container implements iContainer {
 
+  public function __construct(\DI\Definition\Source\DefinitionSource $definitionSource, \DI\Proxy\ProxyFactory $proxyFactory, \Interop\Container\ContainerInterface $wrapperContainer = null) {
+    parent::__construct($definitionSource, $proxyFactory, $wrapperContainer);
+
+    $this->set(static::class, $this);
+    $this->set(iContainer::class, $this);
+  }
+
   /**
    * {@inheritdoc}
    */
