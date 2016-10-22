@@ -2,6 +2,16 @@
 
 Simple dependency injection container based on <a href="http://www.php-di.org" target="_blank">www.php-di.org</a>
 
+## Installation
+
+Easiest way is via composer:
+
+```json
+  "require": {
+    "codenamephp/platform.di": "*"
+  }
+```
+
 ##Usage
 
 ```php

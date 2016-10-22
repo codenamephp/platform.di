@@ -38,7 +38,7 @@ class ContainerTest extends \de\codenamephp\platform\test\TestCase {
 
     $proxyFactory = $this->getMockBuilder(\DI\Proxy\ProxyFactory::class)->disableOriginalConstructor()->getMock();
 
-    $this->sut = new Container($this->getMock(\DI\Definition\Source\DefinitionSource::class), $proxyFactory);
+    $this->sut = new Container($this->createMock(\DI\Definition\Source\DefinitionSource::class), $proxyFactory);
   }
 
   public function testset_canReturnSelf_ToImplementFluentInterface() {
