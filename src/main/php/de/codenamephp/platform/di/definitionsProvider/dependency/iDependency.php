@@ -22,7 +22,7 @@ namespace de\codenamephp\platform\di\definitionsProvider\dependency;
 
 /**
  * Base interface for providers that have dependencies. This interface is just extended by the other dependencies in the package so they have a common interface
- * 
+ *
  * @author Bastian Schwarz <bastian@codename-php.de>
  */
 interface iDependency {
