@@ -26,8 +26,40 @@ namespace de\codenamephp\platform\di;
  */
 class ContainerBuilder extends \DI\ContainerBuilder {
 
+  /**
+   * Handles the dependencies of providers
+   *
+   * @var definitionsProvider\dependency\handler\iHandler
+   */
+  private $dependencyHandler = null;
+
+  /**
+   * Calls the parent constructor with the given class name and sets a new instance of definitionsProvider\dependency\handler\DontHandle as dependencyHandler so this new feature
+   * is disabled by default.
+   *
+   * @param string $containerClass The class name of the container that will be created
+   */
   public function __construct($containerClass = Container::class) {
     parent::__construct($containerClass);
+    $this->setDependencyHandler(new definitionsProvider\dependency\handler\DontHandle());
+  }
+
+  /**
+   *
+   * @return definitionsProvider\dependency\handler\iHandler
+   */
+  public function getDependencyHandler() {
+    return $this->dependencyHandler;
+  }
+
+  /**
+   *
+   * @param \de\codenamephp\platform\di\definitionsProvider\dependency\handler\iHandler $dependencyHandler
+   * @return $this
+   */
+  public function setDependencyHandler(definitionsProvider\dependency\handler\iHandler $dependencyHandler) {
+    $this->dependencyHandler = $dependencyHandler;
+    return $this;
   }
 
   /**
@@ -47,10 +79,15 @@ class ContainerBuilder extends \DI\ContainerBuilder {
    * Adds definitions by a provider class. The provider must implement one of the definitionsProvider\* interfaces and the configuration will be added accordingly to the
    * container builder.
    *
-   * @param \de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider $provider
+   * @param \de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider $provider The provider whose definitions will be added, depending on the implemented interfaces
    * @return self
+   * @throws \de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException if a dependency that the given provider relies on is missing (from dependencyHandler)
    */
   public function addDefinitionsByProvider(definitionsProvider\iDefintionsProvider $provider) {
+    if($provider instanceof definitionsProvider\dependency\iDependency) {
+      $this->getDependencyHandler()->handle($provider);
+    }
+
     if($provider instanceof definitionsProvider\iFiles) {
       foreach($provider->getFiles() as $file) {
         $this->addDefinitions($file);
