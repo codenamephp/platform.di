@@ -138,6 +138,12 @@ class ContainerBuilderTest extends \de\codenamephp\platform\test\TestCase {
     $this->sut->addDefinitionsByProvider($provider);
   }
 
+  public function testaddDefinitionsByProvider_canCallDependencyHandler_withoutSettingOneManually() {
+    $provider = \Mockery::mock(implode(', ', [definitionsProvider\iDefintionsProvider::class, definitionsProvider\dependency\iDependency::class]))->shouldIgnoreMissing();
+
+    $this->sut->addDefinitionsByProvider($provider);
+  }
+
   public function testaddDefinitionsByProvider_wontCallDependencyHandler_whenProviderDoesntImplementiDependencyInterface() {
     $provider = \Mockery::mock(definitionsProvider\iDefintionsProvider::class)->shouldIgnoreMissing();
 
