@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "358739b0b6f4abb77c39fd2955ecfdb7",
-    "content-hash": "d98df12804b775ff3530a4766a0942b6",
+    "hash": "98f4b8a8229d9897de9d72ab9ffcf24d",
+    "content-hash": "76c913e80b2b839514bbcb7d2c4c788f",
     "packages": [
         {
             "name": "codenamephp/platform.core",
@@ -1671,6 +1671,58 @@
             "time": "2015-06-21 13:59:46"
         },
         {
+            "name": "simplyadmire/composer-plugins",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SimplyAdmire/ComposerPlugins.git",
+                "reference": "d8380f670694c1c2330b22591ca74adc82cffe19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SimplyAdmire/ComposerPlugins/zipball/d8380f670694c1c2330b22591ca74adc82cffe19",
+                "reference": "d8380f670694c1c2330b22591ca74adc82cffe19",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "squizlabs/php_codesniffer": "*"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": [
+                    "SimplyAdmire\\ComposerPlugins\\PhpCodesnifferStandardInstallerPlugin"
+                ]
+            },
+            "autoload": {
+                "psr-0": {
+                    "SimplyAdmire\\ComposerPlugins": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Rens Admiraal",
+                    "email": "rens@simplyadmire.com",
+                    "role": "lead"
+                }
+            ],
+            "description": "Composer plugin for installing PHP_CodeSniffer standards",
+            "keywords": [
+                "PHP_CodeSniffer",
+                "TYPO3 CMS",
+                "TYPO3 Flow",
+                "TYPO3 Neos",
+                "phpcs",
+                "standards",
+                "typo3"
+            ],
+            "time": "2016-05-12 11:58:38"
+        },
+        {
             "name": "squizlabs/php_codesniffer",
             "version": "2.7.0",
             "source": {
@@ -2362,11 +2414,60 @@
             ],
             "description": "A fast Documentation generator for PHP Code using standard technology (SRC, DOCBLOCK, XML and XSLT) with event based processing",
             "time": "2015-07-09 18:46:38"
+        },
+        {
+            "name": "wimg/php-compatibility",
+            "version": "7.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wimg/PHPCompatibility.git",
+                "reference": "ce2ac5df6d1be7f93dbeed3581b18260ce6303b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wimg/PHPCompatibility/zipball/ce2ac5df6d1be7f93dbeed3581b18260ce6303b6",
+                "reference": "ce2ac5df6d1be7f93dbeed3581b18260ce6303b6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "php": ">=5.1.2",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "require-dev": {
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "phpcodesniffer-standard",
+            "autoload": {
+                "psr-4": {
+                    "PHPCompatibility\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Wim Godden",
+                    "role": "lead"
+                }
+            ],
+            "description": "This is a set of sniffs for PHP_CodeSniffer that checks for PHP version compatibility.",
+            "homepage": "http://techblog.wimgodden.be/tag/codesniffer/",
+            "keywords": [
+                "compatibility",
+                "phpcs",
+                "standards"
+            ],
+            "time": "2016-10-20 13:31:11"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "simplyadmire/composer-plugins": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

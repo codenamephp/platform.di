@@ -1,0 +1,10 @@
+<ruleset name="infomax">
+  <ini name="date.timezone" value="Europe/Berlin"/>
+  <config name="testVersion" value="5.6"/>
+  <rule ref="PHPCompatibility" />
+  <rule ref="PHPCompatibility.PHP.RemovedExtensions">
+    <properties>
+      <property name="functionWhitelist" type="array" value="mysql_real_escape_string" />
+    </properties>
+  </rule>
+</ruleset>

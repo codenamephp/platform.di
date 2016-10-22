@@ -127,4 +127,30 @@ class ContainerBuilderTest extends \de\codenamephp\platform\test\TestCase {
       }
     });
   }
+
+  public function testaddDefinitionsByProvider_canCallDependencyHandler_whenProviderImplementsiDependencyInterface() {
+    $provider = \Mockery::mock(implode(', ', [definitionsProvider\iDefintionsProvider::class, definitionsProvider\dependency\iDependency::class]))->shouldIgnoreMissing();
+
+    $dependencyHandler = $this->getMockBuilder(definitionsProvider\dependency\handler\iHandler::class)->getMock();
+    $dependencyHandler->expects(self::once())->method('handle')->with($provider);
+    $this->sut->setDependencyHandler($dependencyHandler);
+
+    $this->sut->addDefinitionsByProvider($provider);
+  }
+
+  public function testaddDefinitionsByProvider_canCallDependencyHandler_withoutSettingOneManually() {
+    $provider = \Mockery::mock(implode(', ', [definitionsProvider\iDefintionsProvider::class, definitionsProvider\dependency\iDependency::class]))->shouldIgnoreMissing();
+
+    $this->sut->addDefinitionsByProvider($provider);
+  }
+
+  public function testaddDefinitionsByProvider_wontCallDependencyHandler_whenProviderDoesntImplementiDependencyInterface() {
+    $provider = \Mockery::mock(definitionsProvider\iDefintionsProvider::class)->shouldIgnoreMissing();
+
+    $dependencyHandler = $this->getMockBuilder(definitionsProvider\dependency\handler\iHandler::class)->getMock();
+    $dependencyHandler->expects(self::never())->method('handle');
+    $this->sut->setDependencyHandler($dependencyHandler);
+
+    $this->sut->addDefinitionsByProvider($provider);
+  }
 }

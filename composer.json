@@ -21,7 +21,9 @@
     "phploc/phploc": "^3",
     "phpmd/phpmd": "^2",
     "sebastian/phpcpd": "^2",
-    "theseer/phpdox": "^0.8"
+    "theseer/phpdox": "^0.8",
+    "wimg/php-compatibility": "*",
+    "simplyadmire/composer-plugins": "@dev"
   },
   "autoload": {
     "classmap": ["src/main/php"]
@@ -32,7 +34,8 @@
       "": "vendor/pdepend/pdepend/src/main/php"
     }
   },
-  "archive": {
-    "exclude": ["/src/test"]
+  "scripts": {
+    "post-update-cmd": "rm -rf ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility; cp -rpd ./vendor/wimg/php-compatibility ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility",
+    "post-install-cmd": "rm -rf ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility; cp -rpd ./vendor/wimg/php-compatibility ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility"
   }
 }
