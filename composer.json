@@ -23,20 +23,15 @@
     "phpmd/phpmd": "^2",
     "sebastian/phpcpd": "^2",
     "theseer/phpdox": "^0.8",
-    "wimg/php-compatibility": "*",
-    "simplyadmire/composer-plugins": "@dev"
+    "dealerdirect/phpcodesniffer-composer-installer": "*",
+    "frenck/php-compatibility": "*"
   },
   "autoload": {
     "classmap": ["src/main/php"]
   },
   "autoload-dev": {
     "psr-0": {
-      "de\\codenamephp\\": ["src/main/php", "src/test/php"],
-      "": "vendor/pdepend/pdepend/src/main/php"
+      "de\\codenamephp\\": ["src/main/php", "src/test/php"]
     }
-  },
-  "scripts": {
-    "post-update-cmd": "rm -rf ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility; cp -rpd ./vendor/wimg/php-compatibility ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility",
-    "post-install-cmd": "rm -rf ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility; cp -rpd ./vendor/wimg/php-compatibility ./vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility"
   }
 }
