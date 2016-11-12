@@ -119,7 +119,7 @@ class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvid
 #### Dependency Handlers
 
 The ContainerBuilder has a DependencyHandler that handles the depdency checks and keeps track of already added dependencies and must implement the
-e/codenamephp/platform/di/definitionsProvider/dependency/handler/iHandler. By default, a [de/codenamephp/platform/di/definitionsProvider/dependency/handler/DontHandle](#DontHandle)
+e/codenamephp/platform/di/definitionsProvider/dependency/handler/iHandler. By default, a [de/codenamephp/platform/di/definitionsProvider/dependency/handler/DontHandle](#donthandle)
 instance is set so there is no dependency handling active by default (so BC is kept). This will change in future releases.
 
 #### DontHandle
@@ -128,5 +128,5 @@ This handler actually doesn't do anything and is the default handler set in the 
 
 #### ClassNamesInArray
 
-This handler collects the class names of depdencies in an array and checks the dependencies against them. If the [iDependsOn](#iDependsOn) interface is not added to the provider, the class
+This handler collects the class names of depdencies in an array and checks the dependencies against them. If the [iDependsOn](#idependson) interface is not added to the provider, the class
 name of the provider is added automaticly, so if your provider only covers it's own depdendency, you don't need to implement the interface.
