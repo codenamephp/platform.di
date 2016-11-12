@@ -94,10 +94,27 @@ de\codenamephp\platform\di\definitionsProvider\dependency\* interfaces.
 This interface declares that a provider depends on other providers and must implement the getDependencies() method which returns all the class names of providers that have to
 be added to the container before this provider can be added.
 
+```php
+class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\dependency\iDependsOn {
+
+  public function getDependencies() {
+    return [\other\provider\that\must\be\added\before\Me::class];
+  }
+}
+```
 ##### iCoversDependency
 
 This interface declares that a provider covers one or multiple dependencies, e.g. if you built a custom provider that covers multiple other packages. You must implement the
 getCoveredDependencies() method that returns all class names of providers that this provider covers (including its own).
+
+```php
+class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\dependency\iCoversDependencies {
+
+  public function getCoveredDependencies() {
+    return [\ohter\dependency\that\now\need\not\to\Added::class];
+  }
+}
+```
 
 #### Dependency Handlers
 
@@ -107,7 +124,7 @@ instance is set so there is no dependency handling active by default (so BC is k
 
 #### DontHandle
 
-This handler actually doesn't do anything is the default handler set in the ContainerBuilder. This handler is used to deactivate the feature.
+This handler actually doesn't do anything and is the default handler set in the ContainerBuilder. This handler is used to deactivate the feature.
 
 #### ClassNamesInArray
 
