@@ -12,7 +12,7 @@ Easiest way is via composer:
   }
 ```
 
-##Usage
+## Usage
 
 ```php
 $builder = new de\codenamephp\platform\di\ContainerBuilder();
@@ -30,7 +30,7 @@ This creates a builder that will add all definition files in the path/to/definit
 which allows you define your overall global config in the global files and override them on a system/environment basis
 where you should add the *local files to the ignore list of your VCS.
 
-###Using providers
+### Using providers
 
 The best way to have configurations within modules and libraries is via providers. This way, the provider class will be used to add the files, glob paths or definitions. Every time
 the provider class is updated, the configuration will be upgraded as well
@@ -44,7 +44,7 @@ $container = $builder->build();
 $container->get('...');
 ```
 
-####Array
+#### Array
 
 Probably the most performant provider since the definitions are defined within the method and don't require any additional file lookups:
 
@@ -57,7 +57,7 @@ class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvid
 }
 ```
 
-####File
+#### File
 
 The file provider provides absolute file paths to definition files:
 
@@ -70,7 +70,7 @@ class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvid
 }
 ```
 
-####GlobPaths
+#### GlobPaths
 
 The globPaths provider provides glob patterns that find definition files. These glob paths will be added just like the manual glob path adding:
 
