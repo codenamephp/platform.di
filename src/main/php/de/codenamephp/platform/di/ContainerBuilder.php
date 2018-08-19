@@ -1,23 +1,21 @@
 <?php
-/*
- * Copyright 2015 Bastian Schwarz <bastian@codename-php.de>.
+/**
+ * Copyright 2018 Bastian Schwarz <bastian@codename-php.de>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
-/**
- * @namespace
- */
 namespace de\codenamephp\platform\di;
 
 /**
@@ -66,7 +64,9 @@ class ContainerBuilder extends \DI\ContainerBuilder {
    * Discovers all files found from glob and adds them to the existing definitions by calling self::addDefinitions for each found file
    *
    * @param string $globPath
+   *
    * @return self
+   * @throws \InvalidArgumentException
    */
   public function addGlobPath($globPath) {
     foreach(glob($globPath, GLOB_BRACE) as $definitionFile) {
@@ -76,12 +76,16 @@ class ContainerBuilder extends \DI\ContainerBuilder {
   }
 
   /**
-   * Adds definitions by a provider class. The provider must implement one of the definitionsProvider\* interfaces and the configuration will be added accordingly to the
-   * container builder.
+   * Adds definitions by a provider class. The provider must implement one of the definitionsProvider\* interfaces and the configuration will be added
+   * accordingly to the container builder.
    *
-   * @param \de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider $provider The provider whose definitions will be added, depending on the implemented interfaces
+   * @param \de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider $provider The provider whose definitions will be added, depending on the
+   *   implemented interfaces
+   *
    * @return self
-   * @throws \de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException if a dependency that the given provider relies on is missing (from dependencyHandler)
+   * @throws \de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException if a dependency that the given provider relies on is missing
+   *   (from dependencyHandler)
+   * @throws \InvalidArgumentException
    */
   public function addDefinitionsByProvider(definitionsProvider\iDefintionsProvider $provider) {
     if($provider instanceof definitionsProvider\dependency\iDependency) {
