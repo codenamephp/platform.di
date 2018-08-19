@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [2.2.0] - 2018-08-19 
 ### Added
 - Added trait for the container @bastianschwarz
-
+- Added `\de\codenamephp\platform\di\definitionsProvider\dependency\Wrapper` and enabled dependency check for classes that do not implement
+  the `\de\codenamephp\platform\di\definitionsProvider\dependency\iDependency` interface @bastianschwarz
+  
 ## [2.1.0] - 2016-10-22 - Provider dependencies
 ### Added
 - Dependecy feature @bastianschwarz

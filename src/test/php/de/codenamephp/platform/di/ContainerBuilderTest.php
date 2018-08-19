@@ -1,22 +1,26 @@
 <?php
-/*
- * Copyright 2015 Bastian Schwarz <bastian@codename-php.de>.
+/**
+ * Copyright 2018 Bastian Schwarz <bastian@codename-php.de>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
 namespace de\codenamephp\platform\di;
 
+use de\codenamephp\platform\di\definitionsProvider\dependency\handler\iHandler;
+use de\codenamephp\platform\di\definitionsProvider\dependency\Wrapper;
+use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHPUnit\Framework\TestCase;
 
@@ -39,6 +43,11 @@ class ContainerBuilderTest extends TestCase {
     $this->sut = new ContainerBuilder();
   }
 
+  /**
+   *
+   *
+   * @throws \Symfony\Component\Filesystem\Exception\IOException
+   */
   protected function tearDown() {
     parent::tearDown();
 
@@ -46,6 +55,13 @@ class ContainerBuilderTest extends TestCase {
     $fileSystem->remove(__DIR__ . '/tmp');
   }
 
+  /**
+   *
+   *
+   * @throws \InvalidArgumentException
+   * @throws \PHPUnit\Framework\MockObject\RuntimeException
+   * @throws definitionsProvider\dependency\MissingDependencyException
+   */
   public function testaddDefinitionsByProvider_canAddDefintionsArray_WhenArrayProviderWasGiven() {
     $containerBuilder = $this->getMockBuilder(ContainerBuilder::class)->setMethods(['addDefinitions'])->getMock();
     $containerBuilder->expects(self::at(0))->method('addDefinitions')->with(['some', 'definitions']);
@@ -60,6 +76,13 @@ class ContainerBuilderTest extends TestCase {
     });
   }
 
+  /**
+   *
+   *
+   * @throws \InvalidArgumentException
+   * @throws \PHPUnit\Framework\MockObject\RuntimeException
+   * @throws definitionsProvider\dependency\MissingDependencyException
+   */
   public function testaddDefinitionsByProvider_canAddFiles_WhenFileProviderWasGiven() {
     $containerBuilder = $this->getMockBuilder(ContainerBuilder::class)->setMethods(['addDefinitions'])->getMock();
     $containerBuilder->expects(self::at(0))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/global.php');
@@ -84,6 +107,13 @@ class ContainerBuilderTest extends TestCase {
     });
   }
 
+  /**
+   *
+   *
+   * @throws \InvalidArgumentException
+   * @throws \PHPUnit\Framework\MockObject\RuntimeException
+   * @throws definitionsProvider\dependency\MissingDependencyException
+   */
   public function testaddDefinitionsByProvider_canAddGlobPaths_WhenGlobPathProviderWasGiven() {
     $containerBuilder = $this->getMockBuilder(ContainerBuilder::class)->setMethods(['addGlobPath'])->getMock();
     $containerBuilder->expects(self::at(0))->method('addGlobPath')->with('glob1');
@@ -101,26 +131,51 @@ class ContainerBuilderTest extends TestCase {
     });
   }
 
-  public function testaddDefinitionsByProvider_canCallDependencyHandler_whenProviderImplementsiDependencyInterface() {
+  /**
+   *
+   *
+   * @throws \InvalidArgumentException
+   * @throws \PHPUnit\Framework\MockObject\RuntimeException
+   * @throws definitionsProvider\dependency\MissingDependencyException
+   */
+  public function testaddDefinitionsByProvider_canCallDependencyHandler_withProvider_whenProviderImplementsiDependencyInterface() {
     $provider = \Mockery::mock(implode(', ', [definitionsProvider\iDefintionsProvider::class, definitionsProvider\dependency\iDependency::class]))->shouldIgnoreMissing();
 
     $dependencyHandler = $this->getMockBuilder(definitionsProvider\dependency\handler\iHandler::class)->getMock();
     $dependencyHandler->expects(self::once())->method('handle')->with($provider);
     $this->sut->setDependencyHandler($dependencyHandler);
 
+    /** @noinspection PhpParamsInspection */
     $this->sut->addDefinitionsByProvider($provider);
   }
 
-  public function testaddDefinitionsByProvider_wontCallDependencyHandler_whenProviderDoesntImplementiDependencyInterface() {
-    $provider = \Mockery::mock(definitionsProvider\iDefintionsProvider::class)->shouldIgnoreMissing();
+  /**
+   *
+   *
+   * @throws \InvalidArgumentException
+   * @throws \PHPUnit\Framework\Exception
+   * @throws \PHPUnit\Framework\MockObject\RuntimeException
+   * @throws definitionsProvider\dependency\MissingDependencyException
+   */
+  public function testaddDefinitionsByProvider_canCallDependencyHandler_withWrapper_whenProviderImplementsiDependencyInterface() {
+    $provider = $this->createMock(iDefintionsProvider::class);
 
-    $dependencyHandler = $this->getMockBuilder(definitionsProvider\dependency\handler\iHandler::class)->getMock();
-    $dependencyHandler->expects(self::never())->method('handle');
+    $dependencyHandler = $this->createMock(iHandler::class);
+    $dependencyHandler->expects(self::once())->method('handle')->with(self::callback(function($dependency) use ($provider) {
+      return $dependency instanceof Wrapper && $dependency->getDependency() === $provider;
+    }));
     $this->sut->setDependencyHandler($dependencyHandler);
 
     $this->sut->addDefinitionsByProvider($provider);
   }
 
+  /**
+   *
+   *
+   * @throws \InvalidArgumentException
+   * @throws \PHPUnit\Framework\MockObject\RuntimeException
+   * @throws \Symfony\Component\Filesystem\Exception\IOException
+   */
   public function testaddGlobPath_CannAddEachFileFromGlob_ToContainerBuilder() {
     $fileSystem = new \Symfony\Component\Filesystem\Filesystem();
     $fileSystem->mkdir(__DIR__ . '/tmp/definitions', 0777);
@@ -143,6 +198,12 @@ class ContainerBuilderTest extends TestCase {
     $this->sut->addGlobPath(__DIR__ . '/tmp/definitions/{{,*.}global,{,*.}local}.php');
   }
 
+  /**
+   *
+   *
+   * @throws \PHPUnit\Framework\ExpectationFailedException
+   * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+   */
   public function testconstruct_canSetCustomContainerClassName() {
     $this->sut = new ContainerBuilder();
 

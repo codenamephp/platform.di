@@ -18,6 +18,8 @@
 
 namespace de\codenamephp\platform\di;
 
+use de\codenamephp\platform\di\definitionsProvider\dependency\Wrapper;
+
 /**
  *
  * @author Bastian Schwarz <bastian@codename-php.de>
@@ -32,8 +34,8 @@ class ContainerBuilder extends \DI\ContainerBuilder {
   private $dependencyHandler = null;
 
   /**
-   * Calls the parent constructor with the given class name and sets a new instance of definitionsProvider\dependency\handler\DontHandle as dependencyHandler so this new feature
-   * is disabled by default.
+   * Calls the parent constructor with the given class name and sets a new instance of definitionsProvider\dependency\handler\DontHandle as dependencyHandler
+   * so this new feature is disabled by default.
    *
    * @param string $containerClass The class name of the container that will be created
    */
@@ -53,6 +55,7 @@ class ContainerBuilder extends \DI\ContainerBuilder {
   /**
    *
    * @param \de\codenamephp\platform\di\definitionsProvider\dependency\handler\iHandler $dependencyHandler
+   *
    * @return $this
    */
   public function setDependencyHandler(definitionsProvider\dependency\handler\iHandler $dependencyHandler) {
@@ -61,23 +64,11 @@ class ContainerBuilder extends \DI\ContainerBuilder {
   }
 
   /**
-   * Discovers all files found from glob and adds them to the existing definitions by calling self::addDefinitions for each found file
-   *
-   * @param string $globPath
-   *
-   * @return self
-   * @throws \InvalidArgumentException
-   */
-  public function addGlobPath($globPath) {
-    foreach(glob($globPath, GLOB_BRACE) as $definitionFile) {
-      $this->addDefinitions($definitionFile);
-    }
-    return $this;
-  }
-
-  /**
    * Adds definitions by a provider class. The provider must implement one of the definitionsProvider\* interfaces and the configuration will be added
    * accordingly to the container builder.
+   *
+   * Also the dependencies are checked here using the iHandler. If the provider implements the iDependency interface, it is used directly for the dependency
+   * check. If not, it is wrapper in the Wrapper dependency which is then used.
    *
    * @param \de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider $provider The provider whose definitions will be added, depending on the
    *   implemented interfaces
@@ -89,8 +80,11 @@ class ContainerBuilder extends \DI\ContainerBuilder {
    */
   public function addDefinitionsByProvider(definitionsProvider\iDefintionsProvider $provider) {
     if($provider instanceof definitionsProvider\dependency\iDependency) {
-      $this->getDependencyHandler()->handle($provider);
+      $dependency = $provider;
+    }else {
+      $dependency = new Wrapper($provider);
     }
+    $this->getDependencyHandler()->handle($dependency);
 
     if($provider instanceof definitionsProvider\iFiles) {
       foreach($provider->getFiles() as $file) {
@@ -106,6 +100,21 @@ class ContainerBuilder extends \DI\ContainerBuilder {
       foreach($provider->getGlobPaths() as $globPath) {
         $this->addGlobPath($globPath);
       }
+    }
+    return $this;
+  }
+
+  /**
+   * Discovers all files found from glob and adds them to the existing definitions by calling self::addDefinitions for each found file
+   *
+   * @param string $globPath
+   *
+   * @return self
+   * @throws \InvalidArgumentException
+   */
+  public function addGlobPath($globPath) {
+    foreach(glob($globPath, GLOB_BRACE) as $definitionFile) {
+      $this->addDefinitions($definitionFile);
     }
     return $this;
   }
