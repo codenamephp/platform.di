@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.0] - 2018-08-19 Update to php-di 6
+### Changed
+- Dependency to php-di is now ^6 which requires PHP7 @bastianschwarz
+- Replaced `Interop\Container\ContainerInterface` with `\Psr\Container\ContainerInterface` in `\de\codenamephp\platform\di\iContainer` @bastianschwarz
+- Changed constructor of `\de\codenamephp\platform\di\Container` to expect an instance of `\DI\Definition\Source\MutableDefinitionSource` and 
+  `\Psr\Container\ContainerInterface` as the parent constructor was changed @bastianschwarz
+- All parameters of `\de\codenamephp\platform\di\Container::__construct` are now optional same as the parent constructor @bastianschwarz
+- The type of the first parameter $name of `\de\codenamephp\platform\di\Container::set` is now enforced via type hint @bastianschwarz
+  
 ## [2.2.0] - 2018-08-19 
 ### Added
 - Added trait for the container @bastianschwarz

@@ -10,9 +10,9 @@
     }
   ],
   "require": {
-    "php": ">=5.6",
+    "php": "^7",
     "codenamephp/platform.core": "^1",
-    "php-di/php-di": "^5"
+    "php-di/php-di": "^6"
   },
   "require-dev": {
     "ext-xdebug": "*",
@@ -22,10 +22,9 @@
     "pdepend/pdepend": "^2",
     "phploc/phploc": "^4.0",
     "phpmd/phpmd": "^2",
-    "phpunit/phpunit": "^7.3",
+    "phpunit/phpunit": "^7",
     "sebastian/phpcpd": "^4.0",
     "squizlabs/php_codesniffer": "^3.3",
-    "theseer/phpdox": "^0.8",
     "wimg/php-compatibility": "^8.2"
   },
   "autoload": {
