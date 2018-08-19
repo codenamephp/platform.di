@@ -31,7 +31,7 @@ interface iCoversDependencies extends iDependency {
   /**
    * Returns an array of provider class names that this provider covers
    *
-   * @return string Array of provider class names that are covered by this provider
+   * @return string[] Array of provider class names that are covered by this provider
    */
   public function getCoveredDependencies();
 }

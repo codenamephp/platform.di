@@ -73,7 +73,7 @@ class ClassNamesInArray implements \de\codenamephp\platform\di\definitionsProvid
    * against the collectedDependencies array. If they are not found, a \de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException is thrown.
    * The check is not stopped on first failure, so the Exception can contain all missing dependencies, which makes debugging and adding missing dependencies more comfortable.
    *
-   * If the dependencies check out, the provider is testet for the \de\codenamephp\platform\di\definitionsProvider\dependency\iCoversDependencies interface. If the provider
+   * If the dependencies check out, the provider is tested for the \de\codenamephp\platform\di\definitionsProvider\dependency\iCoversDependencies interface. If the provider
    * implements this interface, the class from getCoveredDependencies() (and only those) are added to the collectedDependencies array.
    * If the provider does not implement the interface, just the class name of the provider is added. This way, providers that only cover their own dependency (which probably
    * are most of them) don't need to implement an additional interface (and therefore an additional method).
