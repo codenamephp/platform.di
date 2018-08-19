@@ -4,13 +4,7 @@ Simple dependency injection container based on <a href="http://www.php-di.org" t
 
 ## Installation
 
-Easiest way is via composer:
-
-```json
-  "require": {
-    "codenamephp/platform.di": "*"
-  }
-```
+Easiest way is via composer. Just run `composer require codenamephp/platform.di` in your cli which should install the latest version for you.
 
 ## Usage
 
@@ -119,7 +113,7 @@ class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvid
 #### Dependency Handlers
 
 The ContainerBuilder has a DependencyHandler that handles the depdency checks and keeps track of already added dependencies and must implement the
-e/codenamephp/platform/di/definitionsProvider/dependency/handler/iHandler. By default, a [de/codenamephp/platform/di/definitionsProvider/dependency/handler/DontHandle](#donthandle)
+`de/codenamephp/platform/di/definitionsProvider/dependency/handler/iHandler`. By default, a [de/codenamephp/platform/di/definitionsProvider/dependency/handler/DontHandle](#donthandle)
 instance is set so there is no dependency handling active by default (so BC is kept). This will change in future releases.
 
 #### DontHandle
