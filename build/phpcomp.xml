@@ -16,7 +16,6 @@
   -->
 
 <ruleset name="codenamephp">
-  <ini name="date.timezone" value="Europe/Berlin"/>
   <config name="testVersion" value="7.0-"/>
   <rule ref="PHPCompatibility" />
 </ruleset>
