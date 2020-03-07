@@ -1,9 +1,24 @@
 language: php
 php:
-- '7.4'
+ - '7.4'
+cache:
+ directories:
+  - $HOME/.composer
 
-before_script:
- - composer update
+stages:
+ - test
 
-script:
- - composer ci-all
+jobs:
+ include:
+  - stage: test
+    name: "Test latest"
+    before_script:
+     - composer update --prefer-dist --no-ansi --no-interaction --no-progress
+    script:
+     - composer ci-all
+  - stage: test
+    name: "Test lowest"
+    before_script:
+     - composer update --prefer-dist --no-ansi --no-interaction --no-progress --prefer-lowest
+    script:
+     - composer ci-all
