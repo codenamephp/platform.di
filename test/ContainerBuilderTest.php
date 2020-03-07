@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Copyright 2020 Bastian Schwarz <bastian@codename-php.de>.
  *
@@ -39,7 +39,7 @@ final class ContainerBuilderTest extends TestCase {
 
   /**
    *
-   * @var ContainerBuilder
+   * @var iContainerBuilder
    */
   private ContainerBuilder $sut;
 
