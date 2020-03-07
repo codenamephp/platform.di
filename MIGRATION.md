@@ -1,5 +1,18 @@
 # Migraiton
 
+## 4.x
+
+### Type hints
+
+All methods recieved type hints for parameters and return types. Check your implementations and update your code. The types
+were enforced internally before so there shouldn't be any changes in the usage
+
+### ContainerBuilder
+
+The container builder expected an optional class name before. Now the builder expects an instance of the actual container builder
+which can have the class name. If you didn't pass a class name before you don't have to change anything since the default container builder
+is created automatically.
+
 ## 3.x
 
 ### PHP-DI
