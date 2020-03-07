@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [4.1.0] - 2020-03-08 Added MetaProvider interface
+### Added
+- Added new `\de\codenamephp\platform\di\definitionsProvider\iMetaProvider` interface to add multiple providers with a single class
+
 ## [4.0.0] - 2020-03-07 Strict typing, composition and QA
 ### Added
 - Added psalm as QA tool
