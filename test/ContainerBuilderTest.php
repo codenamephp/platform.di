@@ -19,11 +19,10 @@
 namespace de\codenamephp\platform\di;
 
 use de\codenamephp\platform\di\definitionsProvider\dependency\handler\iHandler;
+use de\codenamephp\platform\di\definitionsProvider\dependency\iDependency;
 use de\codenamephp\platform\di\definitionsProvider\dependency\Wrapper;
 use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
 use InvalidArgumentException;
-use Mockery;
-use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHPUnit\Framework\MockObject\RuntimeException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Exception\IOException;
@@ -34,8 +33,6 @@ use Symfony\Component\Filesystem\Filesystem;
  * @author Bastian Schwarz <bastian@codename-php.de>
  */
 final class ContainerBuilderTest extends TestCase {
-
-  use MockeryPHPUnitIntegration;
 
   /**
    *
@@ -70,7 +67,7 @@ final class ContainerBuilderTest extends TestCase {
    * @throws RuntimeException
    * @throws definitionsProvider\dependency\MissingDependencyException
    */
-  public function testaddDefinitionsByProvider_canAddDefintionsArray_WhenArrayProviderWasGiven() {
+  public function testaddDefinitionsByProvider_canAddDefintionsArray_WhenArrayProviderWasGiven() : void {
     $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
     $containerBuilder->expects(self::at(0))->method('addDefinitions')->with(['some', 'definitions']);
     $this->sut->setContainerBuilder($containerBuilder);
@@ -90,7 +87,7 @@ final class ContainerBuilderTest extends TestCase {
    * @throws RuntimeException
    * @throws definitionsProvider\dependency\MissingDependencyException
    */
-  public function testaddDefinitionsByProvider_canAddFiles_WhenFileProviderWasGiven() {
+  public function testaddDefinitionsByProvider_canAddFiles_WhenFileProviderWasGiven() : void {
     $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
     $containerBuilder->expects(self::at(0))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/global.php');
     $containerBuilder->expects(self::at(1))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/def.global.php');
@@ -120,7 +117,7 @@ final class ContainerBuilderTest extends TestCase {
    * @throws RuntimeException
    * @throws definitionsProvider\dependency\MissingDependencyException
    */
-  public function testaddDefinitionsByProvider_canAddGlobPaths_WhenGlobPathProviderWasGiven() {
+  public function testaddDefinitionsByProvider_canAddGlobPaths_WhenGlobPathProviderWasGiven() : void {
     $fileSystem = new Filesystem();
     $fileSystem->mkdir(__DIR__ . '/tmp/definitions', 0777);
     $fileSystem->touch([
@@ -156,14 +153,15 @@ final class ContainerBuilderTest extends TestCase {
    * @throws RuntimeException
    * @throws definitionsProvider\dependency\MissingDependencyException
    */
-  public function testaddDefinitionsByProvider_canCallDependencyHandler_withProvider_whenProviderImplementsiDependencyInterface() {
-    $provider = Mockery::mock(implode(', ', [definitionsProvider\iDefintionsProvider::class, definitionsProvider\dependency\iDependency::class]))->shouldIgnoreMissing();
+  public function testaddDefinitionsByProvider_canCallDependencyHandler_withProvider_whenProviderImplementsiDependencyInterface() : void {
+    $provider = new class() implements iDefintionsProvider, iDependency {
+
+    };
 
     $dependencyHandler = $this->createMock(iHandler::class);
     $dependencyHandler->expects(self::once())->method('handle')->with($provider);
     $this->sut->setDependencyHandler($dependencyHandler);
 
-    /** @noinspection PhpParamsInspection */
     $this->sut->addDefinitionsByProvider($provider);
   }
 
@@ -175,11 +173,11 @@ final class ContainerBuilderTest extends TestCase {
    * @throws RuntimeException
    * @throws definitionsProvider\dependency\MissingDependencyException
    */
-  public function testaddDefinitionsByProvider_canCallDependencyHandler_withWrapper_whenProviderImplementsiDependencyInterface() {
+  public function testaddDefinitionsByProvider_canCallDependencyHandler_withWrapper_whenProviderImplementsiDependencyInterface() : void {
     $provider = $this->createMock(iDefintionsProvider::class);
 
     $dependencyHandler = $this->createMock(iHandler::class);
-    $dependencyHandler->expects(self::once())->method('handle')->with(self::callback(function($dependency) use ($provider) {
+    $dependencyHandler->expects(self::once())->method('handle')->with(self::callback(static function($dependency) use ($provider) {
       return $dependency instanceof Wrapper && $dependency->getDependency() === $provider;
     }));
     $this->sut->setDependencyHandler($dependencyHandler);
@@ -194,7 +192,7 @@ final class ContainerBuilderTest extends TestCase {
    * @throws RuntimeException
    * @throws IOException
    */
-  public function testaddGlobPath_CannAddEachFileFromGlob_ToContainerBuilder() {
+  public function testaddGlobPath_CannAddEachFileFromGlob_ToContainerBuilder() : void {
     $fileSystem = new Filesystem();
     $fileSystem->mkdir(__DIR__ . '/tmp/definitions', 0777);
     $fileSystem->touch([
