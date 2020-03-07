@@ -23,8 +23,9 @@ use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
 use InvalidArgumentException;
 
 /**
+ * Interface to build a di container
  *
- * @author Bastian Schwarz <bastian@codename-php.de>
+ * @since 3.0
  */
 interface iContainerBuilder {
 
@@ -39,6 +40,8 @@ interface iContainerBuilder {
    * @return iContainerBuilder
    * @throws MissingDependencyException if a dependency that the given provider relies on is missing (from dependencyHandler)
    * @throws InvalidArgumentException
+   *
+   * @since 3.0
    */
   public function addDefinitionsByProvider(definitionsProvider\iDefintionsProvider $provider) : iContainerBuilder;
 
@@ -48,6 +51,8 @@ interface iContainerBuilder {
    * @param string $globPath A glob path that will be used to discover definition files
    * @return iContainerBuilder
    * @throws InvalidArgumentException
+   *
+   * @since 3.0
    */
   public function addGlobPath($globPath) : iContainerBuilder;
 }

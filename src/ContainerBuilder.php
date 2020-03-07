@@ -22,6 +22,7 @@ use de\codenamephp\platform\di\definitionsProvider\dependency\handler\iHandler;
 use de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException;
 use de\codenamephp\platform\di\definitionsProvider\dependency\Wrapper;
 use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+use de\codenamephp\platform\di\definitionsProvider\iMetaProvider;
 use InvalidArgumentException;
 
 /**
@@ -103,12 +104,7 @@ final class ContainerBuilder implements iContainerBuilder {
    * @throws InvalidArgumentException
    */
   public function addDefinitionsByProvider(definitionsProvider\iDefintionsProvider $provider) : iContainerBuilder {
-    if($provider instanceof definitionsProvider\dependency\iDependency) {
-      $dependency = $provider;
-    }else {
-      $dependency = new Wrapper($provider);
-    }
-    $this->getDependencyHandler()->handle($dependency);
+    $this->getDependencyHandler()->handle($provider instanceof definitionsProvider\dependency\iDependency ? $provider : new Wrapper($provider));
 
     if($provider instanceof definitionsProvider\iFiles) {
       foreach($provider->getFiles() as $file) {
@@ -123,6 +119,12 @@ final class ContainerBuilder implements iContainerBuilder {
     if($provider instanceof definitionsProvider\iGlobPaths) {
       foreach($provider->getGlobPaths() as $globPath) {
         $this->addGlobPath($globPath);
+      }
+    }
+
+    if($provider instanceof iMetaProvider) {
+      foreach($provider->getProviders() as $metaProvider) {
+        $this->addDefinitionsByProvider($metaProvider);
       }
     }
     return $this;

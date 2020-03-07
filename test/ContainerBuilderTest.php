@@ -21,11 +21,11 @@ namespace de\codenamephp\platform\di;
 use de\codenamephp\platform\di\definitionsProvider\dependency\handler\iHandler;
 use de\codenamephp\platform\di\definitionsProvider\dependency\iDependency;
 use de\codenamephp\platform\di\definitionsProvider\dependency\Wrapper;
+use de\codenamephp\platform\di\definitionsProvider\iArray;
 use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
-use InvalidArgumentException;
-use PHPUnit\Framework\MockObject\RuntimeException;
+use de\codenamephp\platform\di\definitionsProvider\iFiles;
+use de\codenamephp\platform\di\definitionsProvider\iMetaProvider;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
@@ -48,11 +48,6 @@ final class ContainerBuilderTest extends TestCase {
     $this->sut = new ContainerBuilder($containerBuilder);
   }
 
-  /**
-   *
-   *
-   * @throws IOException
-   */
   protected function tearDown() : void {
     parent::tearDown();
 
@@ -60,13 +55,6 @@ final class ContainerBuilderTest extends TestCase {
     $fileSystem->remove(__DIR__ . '/tmp');
   }
 
-  /**
-   *
-   *
-   * @throws InvalidArgumentException
-   * @throws RuntimeException
-   * @throws definitionsProvider\dependency\MissingDependencyException
-   */
   public function testaddDefinitionsByProvider_canAddDefintionsArray_WhenArrayProviderWasGiven() : void {
     $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
     $containerBuilder->expects(self::at(0))->method('addDefinitions')->with(['some', 'definitions']);
@@ -80,13 +68,6 @@ final class ContainerBuilderTest extends TestCase {
     });
   }
 
-  /**
-   *
-   *
-   * @throws InvalidArgumentException
-   * @throws RuntimeException
-   * @throws definitionsProvider\dependency\MissingDependencyException
-   */
   public function testaddDefinitionsByProvider_canAddFiles_WhenFileProviderWasGiven() : void {
     $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
     $containerBuilder->expects(self::at(0))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/global.php');
@@ -110,13 +91,6 @@ final class ContainerBuilderTest extends TestCase {
     });
   }
 
-  /**
-   *
-   *
-   * @throws InvalidArgumentException
-   * @throws RuntimeException
-   * @throws definitionsProvider\dependency\MissingDependencyException
-   */
   public function testaddDefinitionsByProvider_canAddGlobPaths_WhenGlobPathProviderWasGiven() : void {
     $fileSystem = new Filesystem();
     $fileSystem->mkdir(__DIR__ . '/tmp/definitions', 0777);
@@ -146,13 +120,6 @@ final class ContainerBuilderTest extends TestCase {
     $this->sut->addGlobPath(__DIR__ . '/tmp/definitions/{{,*.}global,{,*.}local}.php');
   }
 
-  /**
-   *
-   *
-   * @throws InvalidArgumentException
-   * @throws RuntimeException
-   * @throws definitionsProvider\dependency\MissingDependencyException
-   */
   public function testaddDefinitionsByProvider_canCallDependencyHandler_withProvider_whenProviderImplementsiDependencyInterface() : void {
     $provider = new class() implements iDefintionsProvider, iDependency {
 
@@ -165,14 +132,6 @@ final class ContainerBuilderTest extends TestCase {
     $this->sut->addDefinitionsByProvider($provider);
   }
 
-  /**
-   *
-   *
-   * @throws InvalidArgumentException
-   * @throws \PHPUnit\Framework\Exception
-   * @throws RuntimeException
-   * @throws definitionsProvider\dependency\MissingDependencyException
-   */
   public function testaddDefinitionsByProvider_canCallDependencyHandler_withWrapper_whenProviderImplementsiDependencyInterface() : void {
     $provider = $this->createMock(iDefintionsProvider::class);
 
@@ -185,13 +144,6 @@ final class ContainerBuilderTest extends TestCase {
     $this->sut->addDefinitionsByProvider($provider);
   }
 
-  /**
-   *
-   *
-   * @throws InvalidArgumentException
-   * @throws RuntimeException
-   * @throws IOException
-   */
   public function testaddGlobPath_CannAddEachFileFromGlob_ToContainerBuilder() : void {
     $fileSystem = new Filesystem();
     $fileSystem->mkdir(__DIR__ . '/tmp/definitions', 0777);
@@ -212,5 +164,27 @@ final class ContainerBuilderTest extends TestCase {
     $this->sut->setContainerBuilder($containerBuilder);
 
     $this->sut->addGlobPath(__DIR__ . '/tmp/definitions/{{,*.}global,{,*.}local}.php');
+  }
+
+  public function testaddMetaProvider_canRecurseAndAddProviders() : void {
+    $arrayProvider = $this->createMock(iArray::class);
+    $arrayProvider->expects(self::once())->method('getDefinitions')->willReturn(['array definitions']);
+
+    $nestedFileProvider = $this->createMock(iFiles::class);
+    $nestedFileProvider->expects(self::once())->method('getFiles')->willReturn(['some', 'files']);
+
+    $nestedMetaprovider = $this->createMock(iMetaProvider::class);
+    $nestedMetaprovider->expects(self::once())->method('getProviders')->willReturn([$nestedFileProvider]);
+
+    $metaProvider = $this->createMock(iMetaProvider::class);
+    $metaProvider->expects(self::once())->method('getProviders')->willReturn([$arrayProvider, $nestedMetaprovider]);
+
+    $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
+    $containerBuilder->expects(self::at(0))->method('addDefinitions')->with(['array definitions']);
+    $containerBuilder->expects(self::at(1))->method('addDefinitions')->with('some');
+    $containerBuilder->expects(self::at(2))->method('addDefinitions')->with('files');
+    $this->sut->setContainerBuilder($containerBuilder);
+
+    $this->sut->addDefinitionsByProvider($metaProvider);
   }
 }

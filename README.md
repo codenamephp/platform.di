@@ -73,6 +73,50 @@ class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvid
   }
 }
 ```
+
+#### MetaProvider
+
+Sometimes you want to split dependencies into multiple providers so they don't get too long and/or to group them into logical units. But you don't want to add 
+multiple providers to the actual project that uses the provider. This is what the ´\de\codenamephp\platform\di\definitionsProvider\iMetaProvider` interface is
+for. It basically creates multiple providers and returns them as array which are then added by the container builder like any other provider including 
+dependency checks and nesting other meta providers.
+
+```php
+use de\codenamephp\platform\di\definitionsProvider\iArray;
+use de\codenamephp\platform\di\definitionsProvider\iFiles;
+use de\codenamephp\platform\di\definitionsProvider\iMetaProvider;
+
+class MyArrayProvider implements iArray{
+    public function getDefinitions() : array {
+     return [];
+    }
+}
+class MyFileProvider implements iFiles {
+    public function getFiles() : array {
+      return []; 
+    }
+}
+class MyNestedMetaProvider implements iMetaProvider {
+    public function getProviders() : array{
+      return [new MyFileProvider()]; 
+    }
+}
+class MyMetaProvider implements iMetaProvider {
+  public function getProviders() : array {
+    return [
+        new MyArrayProvider(),
+        new MyNestedMetaProvider()
+    ];
+  }
+}
+```
+
+But even in this example it becomes clearly visible that we are dealing with an Uncle Ben situation here: With great recursion comes bad headache!
+Dependencies are still checked so the providers need to be in the correct order which can become a real pain real fast if you go crazy with nesting providers.
+
+I recommend not to use more than one level of nesting and if possible avoid it all together. After all, it's just a side effect of the implementation rather than
+a planned feature. ;)
+
 ### Provider Dependencies
 
 Providers can depend on other providers, e.g. to override their definitions. If that is the case, providers can implement on of the
