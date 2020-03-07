@@ -1,9 +1,13 @@
 language: php
 php:
  - '7.4'
+
+sudo: false
+
 cache:
  directories:
-  - $HOME/.composer
+  - $HOME/.composer/cache
+  - .cache
 
 stages:
  - test
