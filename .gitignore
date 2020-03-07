@@ -1,13 +1,4 @@
-/nbproject/private/
-/target/
-/build/phpdox/
-/build/api/
-/build/coverage/
-/build/logs/
-/build/pdepend/
-/cache.properties
-/build/xml/
-
+/.cache/*
 
 # Created by https://www.gitignore.io/api/phpstorm,composer
 
