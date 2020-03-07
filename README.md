@@ -10,19 +10,14 @@ Easiest way is via composer. Just run `composer require codenamephp/platform.di`
 
 ```php
 $builder = new de\codenamephp\platform\di\ContainerBuilder();
-$builder->addGlobPath('path/to/definitions/{{,*.}global,{,*.}local}.php');
 $container = $builder->build();
 $container->get('...');
 ```
 
-This creates a builder that will add all definition files in the path/to/definitions folder in the order
->* global.php
->* *.global.php
->* local.php
->* *.local.php
+This creates a builder that without definitions. To add definitions I recommend using on of the provider options below, especially
+the `de\codenamephp\platform\di\definitionsProvider\iArray` provider.
 
-which allows you define your overall global config in the global files and override them on a system/environment basis
-where you should add the *local files to the ignore list of your VCS.
+From there you just get your dependencies from the container.
 
 ### Using providers
 
@@ -32,8 +27,10 @@ the provider class is updated, the configuration will be upgraded as well
 All providers need to implement one of the de\codenamephp\platform\di\definitionsProvider\* interfaces
 
 ```php
+use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+
 $builder = new de\codenamephp\platform\di\ContainerBuilder();
-$builder->addDefinitionsByProvider(new DefinitionsProvider());
+$builder->addDefinitionsByProvider(new class() implements iDefintionsProvider{});
 $container = $builder->build();
 $container->get('...');
 ```
@@ -45,7 +42,7 @@ Probably the most performant provider since the definitions are defined within t
 ```php
 class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\iArray {
 
-  public function getDefinitions() {
+  public function getDefinitions() : array {
     return ['some class' => 'some defintion'];
   }
 }
@@ -58,7 +55,7 @@ The file provider provides absolute file paths to definition files:
 ```php
 class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\iFiles {
 
-  public function getFiles() {
+  public function getFiles() : array {
     return [__DIR__ . '/path/to/file'];
   }
 }
@@ -71,7 +68,7 @@ The globPaths provider provides glob patterns that find definition files. These 
 ```php
 class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\iGlobPaths {
 
-  public function getGlobPaths() {
+  public function getGlobPaths() : array {
     return [__DIR__ . '/path/to/definitions/{{,*.}global,{,*.}local}.php'];
   }
 }
@@ -89,10 +86,14 @@ This interface declares that a provider depends on other providers and must impl
 be added to the container before this provider can be added.
 
 ```php
+use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+
+class MustBeAddedBeforeMe implements iDefintionsProvider {}
+
 class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\dependency\iDependsOn {
 
-  public function getDependencies() {
-    return [\other\provider\that\must\be\added\before\Me::class];
+  public function getDependencies() : array {
+    return [MustBeAddedBeforeMe::class ];
   }
 }
 ```
@@ -102,10 +103,14 @@ This interface declares that a provider covers one or multiple dependencies, e.g
 getCoveredDependencies() method that returns all class names of providers that this provider covers (including its own).
 
 ```php
+use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+
+class OtherDependencyThatIsNowCovered implements iDefintionsProvider{}
+
 class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\dependency\iCoversDependencies {
 
-  public function getCoveredDependencies() {
-    return [\ohter\dependency\that\now\need\not\to\Added::class];
+  public function getCoveredDependencies() : array {
+    return [OtherDependencyThatIsNowCovered::class];
   }
 }
 ```
