@@ -28,7 +28,14 @@ use InvalidArgumentException;
  *
  * @author Bastian Schwarz <bastian@codename-php.de>
  */
-class ContainerBuilder extends \DI\ContainerBuilder {
+final class ContainerBuilder implements iContainerBuilder {
+
+  /**
+   * The actual container builder that will be used to create the container and where the definitions are added to
+   *
+   * @var \DI\ContainerBuilder
+   */
+  private \DI\ContainerBuilder $containerBuilder;
 
   /**
    * Handles the dependencies of providers
@@ -38,15 +45,30 @@ class ContainerBuilder extends \DI\ContainerBuilder {
   private iHandler $dependencyHandler;
 
   /**
-   * Calls the parent constructor with the given class name and sets a new instance of definitionsProvider\dependency\handler\DontHandle as dependencyHandler
-   * so this new feature is disabled by default.
+   * Sets the container builder or creates one if null was given. Also sets an instance of
+   * \de\codenamephp\platform\di\definitionsProvider\dependency\handler\DontHandle as default dependency handler
    *
-   * @param string $containerClass The class name of the container that will be created
+   * @param \DI\ContainerBuilder|null $containerBuilder The actual container builder that will be used to create the container and where the definitions are added to
    */
-  public function __construct($containerClass = Container::class) {
-    parent::__construct($containerClass);
-    $this->sourceCacheNamespace = '';
+  public function __construct(\DI\ContainerBuilder $containerBuilder = null) {
+    $this->setContainerBuilder($containerBuilder ?? new \DI\ContainerBuilder(ContainerBuilder::class));
     $this->setDependencyHandler(new definitionsProvider\dependency\handler\DontHandle());
+  }
+
+  /**
+   * @return \DI\ContainerBuilder
+   */
+  public function getContainerBuilder() : \DI\ContainerBuilder {
+    return $this->containerBuilder;
+  }
+
+  /**
+   * @param \DI\ContainerBuilder $containerBuilder
+   * @return iContainerBuilder
+   */
+  public function setContainerBuilder(\DI\ContainerBuilder $containerBuilder) : iContainerBuilder {
+    $this->containerBuilder = $containerBuilder;
+    return $this;
   }
 
   /**
@@ -61,9 +83,9 @@ class ContainerBuilder extends \DI\ContainerBuilder {
    *
    * @param iHandler $dependencyHandler
    *
-   * @return $this
+   * @return iContainerBuilder
    */
-  public function setDependencyHandler(definitionsProvider\dependency\handler\iHandler $dependencyHandler) : self {
+  public function setDependencyHandler(definitionsProvider\dependency\handler\iHandler $dependencyHandler) : iContainerBuilder {
     $this->dependencyHandler = $dependencyHandler;
     return $this;
   }
@@ -76,11 +98,11 @@ class ContainerBuilder extends \DI\ContainerBuilder {
    * check. If not, it is wrapper in the Wrapper dependency which is then used.
    *
    * @param iDefintionsProvider $provider The provider whose definitions will be added, depending on the implemented interfaces
-   * @return self
+   * @return iContainerBuilder
    * @throws MissingDependencyException if a dependency that the given provider relies on is missing (from dependencyHandler)
    * @throws InvalidArgumentException
    */
-  public function addDefinitionsByProvider(definitionsProvider\iDefintionsProvider $provider) : self {
+  public function addDefinitionsByProvider(definitionsProvider\iDefintionsProvider $provider) : iContainerBuilder {
     if($provider instanceof definitionsProvider\dependency\iDependency) {
       $dependency = $provider;
     }else {
@@ -90,12 +112,12 @@ class ContainerBuilder extends \DI\ContainerBuilder {
 
     if($provider instanceof definitionsProvider\iFiles) {
       foreach($provider->getFiles() as $file) {
-        $this->addDefinitions($file);
+        $this->getContainerBuilder()->addDefinitions($file);
       }
     }
 
     if($provider instanceof definitionsProvider\iArray) {
-      $this->addDefinitions($provider->getDefinitions());
+      $this->getContainerBuilder()->addDefinitions($provider->getDefinitions());
     }
 
     if($provider instanceof definitionsProvider\iGlobPaths) {
@@ -107,17 +129,29 @@ class ContainerBuilder extends \DI\ContainerBuilder {
   }
 
   /**
-   * Discovers all files found from glob and adds them to the existing definitions by calling self::addDefinitions for each found file
+   * Discovers all files found from glob and adds them to the wrapped container builder
    *
-   * @param string $globPath
-   *
-   * @return self
+   * @param string $globPath A glob path that will be used to discover definition files
+   * @return iContainerBuilder
    * @throws InvalidArgumentException
    */
-  public function addGlobPath($globPath) : self {
+  public function addGlobPath($globPath) : iContainerBuilder {
     foreach(glob($globPath, GLOB_BRACE) as $definitionFile) {
-      $this->addDefinitions($definitionFile);
+      $this->getContainerBuilder()->addDefinitions($definitionFile);
     }
     return $this;
+  }
+
+  /**
+   * Uses the wrapped container builder to build the container (duh!) and checks the type for the iContainer interface. If the built container
+   * is not of type iContainer an exception is thrown.
+   *
+   * @return iContainer
+   * @throws \Exception if the build container was not of type iContainer
+   */
+  public function build() : iContainer {
+    $container = $this->getContainerBuilder()->build();
+    if(!$container instanceof iContainer) throw new Exception(sprintf('Built container is not of type %s', iContainer::class));
+    return $container;
   }
 }

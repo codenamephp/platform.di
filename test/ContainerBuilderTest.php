@@ -46,7 +46,9 @@ final class ContainerBuilderTest extends TestCase {
   protected function setUp() : void {
     parent::setUp();
 
-    $this->sut = new ContainerBuilder();
+    $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
+
+    $this->sut = new ContainerBuilder($containerBuilder);
   }
 
   /**
@@ -69,9 +71,9 @@ final class ContainerBuilderTest extends TestCase {
    * @throws definitionsProvider\dependency\MissingDependencyException
    */
   public function testaddDefinitionsByProvider_canAddDefintionsArray_WhenArrayProviderWasGiven() {
-    $containerBuilder = $this->getMockBuilder(ContainerBuilder::class)->setMethods(['addDefinitions'])->getMock();
+    $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
     $containerBuilder->expects(self::at(0))->method('addDefinitions')->with(['some', 'definitions']);
-    $this->sut = $containerBuilder;
+    $this->sut->setContainerBuilder($containerBuilder);
 
     $this->sut->addDefinitionsByProvider(new class() implements definitionsProvider\iArray {
 
@@ -89,13 +91,13 @@ final class ContainerBuilderTest extends TestCase {
    * @throws definitionsProvider\dependency\MissingDependencyException
    */
   public function testaddDefinitionsByProvider_canAddFiles_WhenFileProviderWasGiven() {
-    $containerBuilder = $this->getMockBuilder(ContainerBuilder::class)->setMethods(['addDefinitions'])->getMock();
+    $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
     $containerBuilder->expects(self::at(0))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/global.php');
     $containerBuilder->expects(self::at(1))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/def.global.php');
     $containerBuilder->expects(self::at(2))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/local.php');
     $containerBuilder->expects(self::at(3))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/dev.local.php');
     $containerBuilder->expects(self::at(4))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/test.local.php');
-    $this->sut = $containerBuilder;
+    $this->sut->setContainerBuilder($containerBuilder);
 
     $this->sut->addDefinitionsByProvider(new class() implements definitionsProvider\iFiles {
 
@@ -119,19 +121,32 @@ final class ContainerBuilderTest extends TestCase {
    * @throws definitionsProvider\dependency\MissingDependencyException
    */
   public function testaddDefinitionsByProvider_canAddGlobPaths_WhenGlobPathProviderWasGiven() {
-    $containerBuilder = $this->getMockBuilder(ContainerBuilder::class)->setMethods(['addGlobPath'])->getMock();
-    $containerBuilder->expects(self::at(0))->method('addGlobPath')->with('glob1');
-    $containerBuilder->expects(self::at(1))->method('addGlobPath')->with('glob2');
-    $containerBuilder->expects(self::at(2))->method('addGlobPath')->with('glob3');
-    $containerBuilder->expects(self::at(3))->method('addGlobPath')->with('glob4');
-    $this->sut = $containerBuilder;
+    $fileSystem = new Filesystem();
+    $fileSystem->mkdir(__DIR__ . '/tmp/definitions', 0777);
+    $fileSystem->touch([
+        __DIR__ . '/tmp/definitions/global.php',
+        __DIR__ . '/tmp/definitions/def.global.php',
+        __DIR__ . '/tmp/definitions/local.php',
+        __DIR__ . '/tmp/definitions/test.local.php',
+        __DIR__ . '/tmp/definitions/dev.local.php',
+    ]);
+
+    $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
+    $containerBuilder->expects(self::at(0))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/global.php');
+    $containerBuilder->expects(self::at(1))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/def.global.php');
+    $containerBuilder->expects(self::at(2))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/local.php');
+    $containerBuilder->expects(self::at(3))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/dev.local.php');
+    $containerBuilder->expects(self::at(4))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/test.local.php');
+    $this->sut->setContainerBuilder($containerBuilder);
 
     $this->sut->addDefinitionsByProvider(new class() implements definitionsProvider\iGlobPaths {
 
       public function getGlobPaths() : array {
-        return ['glob1', 'glob2', 'glob3', 'glob4'];
+        return [__DIR__ . '/tmp/definitions/{,*.}global.php', __DIR__ . '/tmp/definitions/{,*.}local.php'];
       }
     });
+
+    $this->sut->addGlobPath(__DIR__ . '/tmp/definitions/{{,*.}global,{,*.}local}.php');
   }
 
   /**
@@ -144,7 +159,7 @@ final class ContainerBuilderTest extends TestCase {
   public function testaddDefinitionsByProvider_canCallDependencyHandler_withProvider_whenProviderImplementsiDependencyInterface() {
     $provider = Mockery::mock(implode(', ', [definitionsProvider\iDefintionsProvider::class, definitionsProvider\dependency\iDependency::class]))->shouldIgnoreMissing();
 
-    $dependencyHandler = $this->getMockBuilder(definitionsProvider\dependency\handler\iHandler::class)->getMock();
+    $dependencyHandler = $this->createMock(iHandler::class);
     $dependencyHandler->expects(self::once())->method('handle')->with($provider);
     $this->sut->setDependencyHandler($dependencyHandler);
 
@@ -190,13 +205,13 @@ final class ContainerBuilderTest extends TestCase {
         __DIR__ . '/tmp/definitions/dev.local.php',
     ]);
 
-    $containerBuilder = $this->getMockBuilder(ContainerBuilder::class)->setMethods(['addDefinitions'])->getMock();
+    $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
     $containerBuilder->expects(self::at(0))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/global.php');
     $containerBuilder->expects(self::at(1))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/def.global.php');
     $containerBuilder->expects(self::at(2))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/local.php');
     $containerBuilder->expects(self::at(3))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/dev.local.php');
     $containerBuilder->expects(self::at(4))->method('addDefinitions')->with(__DIR__ . '/tmp/definitions/test.local.php');
-    $this->sut = $containerBuilder;
+    $this->sut->setContainerBuilder($containerBuilder);
 
     $this->sut->addGlobPath(__DIR__ . '/tmp/definitions/{{,*.}global,{,*.}local}.php');
   }
