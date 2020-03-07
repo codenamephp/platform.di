@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [4.0.0] - 2020-03-07 Strict typing, composition and QA
+### Added
+- Added psalm as QA tool
+- Added phive to install QA tools
+- Added `\de\codenamephp\platform\di\iContainerBuilder` interface
+
+### Changed
+- Switched from Jenkins (which wasn't operational in a few years) to travis
+- Updated PHPComp
+- Added strict type declaration to all files
+- Added type hints and return type hints to all methods
+- ContainerBuilder was changed from inheritance to composition
+- Made classes final
+
 ## [3.0.0] - 2018-08-19 Update to php-di 6
 ### Changed
 - Dependency to php-di is now ^6 which requires PHP7 @bastianschwarz
