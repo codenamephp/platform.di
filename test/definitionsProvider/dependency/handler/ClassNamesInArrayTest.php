@@ -36,24 +36,26 @@ class ClassNamesInArrayTest extends TestCase {
   /**
    * @var ClassNamesInArray
    */
-  private $sut = null;
+  private ClassNamesInArray $sut;
 
   protected function setUp() : void {
     $this->sut = new ClassNamesInArray();
   }
 
-  public function testhandle_canThrowException_whenProviderImplementsiDependsOnInterface_andDependenciesAreMissing() {
-    $this->expectException(MissingDependencyException::class);
-
+  public function testhandle_canThrowException_whenProviderImplementsiDependsOnInterface_andDependenciesAreMissing() : void {
     $this->sut->setCollectedDependencies(['dep 2']);
 
     $provider = $this->createMock(iDependsOn::class);
     $provider->expects(self::exactly(2))->method('getDependencies')->willReturn(['dep 1', 'dep 2', 'dep 3']);
 
+    $this->expectException(MissingDependencyException::class);
+    $this->expectExceptionMessage(sprintf('The provider "%s" is missing dependencies. Plaese add them to the container before adding this provider. Missing dependencies: '
+        . "[\n\t\t%s\n\t]", get_class($provider), implode("\n\t\t", ['dep 1', 'dep 3'])));
+
     $this->sut->handle($provider);
   }
 
-  public function testhandle_canDetectDependencies() {
+  public function testhandle_canDetectDependencies() : void {
     $this->sut->setCollectedDependencies(['dep 1', 'dep 2', 'dep 3']);
 
     $provider = $this->getMockBuilder(iDependsOn::class)->getMock();
@@ -62,7 +64,7 @@ class ClassNamesInArrayTest extends TestCase {
     $this->sut->handle($provider);
   }
 
-  public function testhandle_canAddUniqueDependencies_fromgetCoveredDependencies_ifProviderImplementsiCoversDependenciesInterface() {
+  public function testhandle_canAddUniqueDependencies_fromgetCoveredDependencies_ifProviderImplementsiCoversDependenciesInterface() : void {
     $this->sut->setCollectedDependencies(['dep 1', 'dep 2', 'dep 3']);
 
     $provider = $this->getMockBuilder(iCoversDependencies::class)->getMock();
@@ -73,7 +75,7 @@ class ClassNamesInArrayTest extends TestCase {
     self::assertEquals(['dep 1', 'dep 2', 'dep 3', 'dep 4'], $this->sut->getCollectedDependencies());
   }
 
-  public function testhandle_canAddUniqueDependencies_fromProviderClassName_ifProviderDoesNotImplementiCoversDependenciesInterface() {
+  public function testhandle_canAddUniqueDependencies_fromProviderClassName_ifProviderDoesNotImplementiCoversDependenciesInterface() : void {
     $this->sut->setCollectedDependencies(['dep 1', 'dep 2', 'dep 3']);
 
     $provider = $this->getMockBuilder(iDependency::class)->getMock();
@@ -81,5 +83,13 @@ class ClassNamesInArrayTest extends TestCase {
     $this->sut->handle($provider);
 
     self::assertEquals(['dep 1', 'dep 2', 'dep 3', get_class($provider)], $this->sut->getCollectedDependencies());
+  }
+
+  public function testAddDependencies() : void {
+    $this->sut->setCollectedDependencies(['dep 1', 'dep 2']);
+
+    $this->sut->addDependencies(['dep 2', 'dep 3']);
+
+    self::assertSame(['dep 1', 'dep 2', 'dep 3'], $this->sut->getCollectedDependencies());
   }
 }
