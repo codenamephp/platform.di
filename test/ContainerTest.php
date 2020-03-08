@@ -21,11 +21,7 @@
  */
 namespace de\codenamephp\platform\di;
 
-use DI\DependencyException;
-use DI\NotFoundException;
-use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 /**
  *
@@ -38,7 +34,7 @@ class ContainerTest extends TestCase {
    *
    * @var Container
    */
-  private $sut = null;
+  private Container $sut;
 
   protected function setUp() : void {
     parent::setUp();
@@ -46,26 +42,11 @@ class ContainerTest extends TestCase {
     $this->sut = new Container();
   }
 
-  /**
-   *
-   *
-   * @throws ExpectationFailedException
-   * @throws InvalidArgumentException
-   */
-  public function testset_canReturnSelf_ToImplementFluentInterface() {
+  public function testset_canReturnSelf_ToImplementFluentInterface() : void {
     self::assertSame($this->sut, $this->sut->set('test', 'test'));
   }
 
-  /**
-   *
-   *
-   * @throws DependencyException
-   * @throws NotFoundException
-   * @throws \InvalidArgumentException
-   * @throws ExpectationFailedException
-   * @throws InvalidArgumentException
-   */
-  public function testconstruct_canAddDefinitionsForContainer_andInterface() {
+  public function testconstruct_canAddDefinitionsForContainer_andInterface() : void {
     self::assertInstanceOf(Container::class, $this->sut->get(Container::class));
     self::assertInstanceOf(Container::class, $this->sut->get(iContainer::class));
   }

@@ -41,7 +41,6 @@ final class Container extends \DI\Container implements iContainer {
   public function __construct(MutableDefinitionSource $definitionSource = null, ProxyFactory $proxyFactory = null, ContainerInterface $wrapperContainer = null) {
     parent::__construct($definitionSource, $proxyFactory, $wrapperContainer);
 
-    $this->set(static::class, $this);
     $this->set(iContainer::class, $this);
   }
 
