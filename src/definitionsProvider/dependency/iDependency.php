@@ -13,16 +13,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
 namespace de\codenamephp\platform\di\definitionsProvider\dependency;
 
 /**
- * Base interface for providers that have dependencies. This interface is just extended by the other dependencies in the package so they have a common interface
- *
- * @author Bastian Schwarz <bastian@codename-php.de>
+ * Base interface for providers that have dependencies. This interface is just extended by the other dependencies in the package so they have a common interface.
  */
 interface iDependency {
-//put your code here
+  //put your code here
 }

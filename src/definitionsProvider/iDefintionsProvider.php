@@ -13,19 +13,17 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
 /**
  * @namespace
  */
+
 namespace de\codenamephp\platform\di\definitionsProvider;
 
 /**
- * Base interface for classes that provide DI definitions
- *
- * @author Bastian Schwarz <bastian@codename-php.de>
+ * Base interface for classes that provide DI definitions.
  */
 interface iDefintionsProvider {
-//put your code here
+  //put your code here
 }

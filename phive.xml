@@ -21,4 +21,5 @@
   <phar name="composer-unused" version="^0.7.1" installed="0.7.1" location="./tools/composer-unused" copy="true"/>
   <phar name="composer-require-checker" version="^2.1.0" installed="2.1.0" location="./tools/composer-require-checker" copy="true"/>
   <phar name="infection" version="^0.15.3" installed="0.15.3" location="./tools/infection" copy="true"/>
+  <phar name="php-cs-fixer" version="^2.16.1" installed="2.16.1" location="./tools/php-cs-fixer" copy="true"/>
 </phive>

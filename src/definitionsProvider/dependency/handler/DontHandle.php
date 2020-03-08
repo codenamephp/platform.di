@@ -13,7 +13,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
 namespace de\codenamephp\platform\di\definitionsProvider\dependency\handler;
@@ -22,16 +21,14 @@ use de\codenamephp\platform\di\definitionsProvider\dependency\iDependency;
 use de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException;
 
 /**
- * Simple handler that actually doesn't do any dependency checking and can be used to disable this feature
- *
- * @author Bastian Schwarz <bastian@codename-php.de>
+ * Simple handler that actually doesn't do any dependency checking and can be used to disable this feature.
  */
 final class DontHandle implements iHandler {
-
   /**
    * This method doesn't do anything and just returns so no dependencies are checked and the feature is disabled.
    *
    * @param iDependency $provider THe provider whose dependencies are handled
+   *
    * @throws MissingDependencyException if a dependency that the given provider relies on is missing
    */
   public function handle(iDependency $provider) : void {

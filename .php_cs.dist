@@ -1,0 +1,49 @@
+<?php declare(strict_types=1);
+/**
+ * Copyright 2020 Bastian Schwarz <bastian@codename-php.de>.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+$finder = PhpCsFixer\Finder::create()
+    ->in(__DIR__ . '/src');
+
+return PhpCsFixer\Config::create()
+    ->setRiskyAllowed(true)
+    ->setIndent('  ')
+    ->setRules([
+        '@PSR2' => true,
+        '@PhpCsFixer' => true,
+        'braces' => ['allow_single_line_closure' => true, 'position_after_functions_and_oop_constructs' => 'same'],
+        'function_declaration' => ['closure_function_spacing' => 'none'],
+        'array_syntax' => ['syntax' => 'short'],
+        'blank_line_after_opening_tag' => false,
+        'blank_line_before_statement' => false,
+        'concat_space' => ['spacing' => 'one'],
+        'no_blank_lines_after_class_opening' => false,
+        'phpdoc_align' => ['align' => 'left'],
+        'return_type_declaration' => ['space_before' => 'one'],
+        'yoda_style' => ['always_move_variable' => true, 'equal' => false, 'identical' => false, 'less_and_greater' => false],
+        'strict_param' => true,
+        'dir_constant' => true,
+        'mb_str_functions' => true,
+        'modernize_types_casting' => true,
+        'general_phpdoc_annotation_remove' => ['annotations' => ['author']],
+        'declare_strict_types' => true,
+        'no_php4_constructor' => true,
+        'combine_nested_dirname' => true,
+        'ereg_to_preg' => true,
+    ])
+    ->setFinder($finder)
+    ->setCacheFile(__DIR__ . '/.cache/.php_cs.cache');

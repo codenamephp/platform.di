@@ -13,7 +13,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
 namespace de\codenamephp\platform\di;
@@ -23,12 +22,11 @@ use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
 use InvalidArgumentException;
 
 /**
- * Interface to build a di container
+ * Interface to build a di container.
  *
  * @since 3.0
  */
 interface iContainerBuilder {
-
   /**
    * Adds definitions by a provider class. The provider must implement one of the definitionsProvider\* interfaces and the configuration will be added
    * accordingly to the container builder.
@@ -37,7 +35,7 @@ interface iContainerBuilder {
    * check. If not, it is wrapper in the Wrapper dependency which is then used.
    *
    * @param iDefintionsProvider $provider The provider whose definitions will be added, depending on the implemented interfaces
-   * @return iContainerBuilder
+   *
    * @throws MissingDependencyException if a dependency that the given provider relies on is missing (from dependencyHandler)
    * @throws InvalidArgumentException
    *
@@ -46,10 +44,10 @@ interface iContainerBuilder {
   public function addDefinitionsByProvider(definitionsProvider\iDefintionsProvider $provider) : iContainerBuilder;
 
   /**
-   * Discovers all files found from glob and adds them
+   * Discovers all files found from glob and adds them.
    *
    * @param string $globPath A glob path that will be used to discover definition files
-   * @return iContainerBuilder
+   *
    * @throws InvalidArgumentException
    *
    * @since 3.0

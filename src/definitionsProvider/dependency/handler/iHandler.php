@@ -13,7 +13,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
 namespace de\codenamephp\platform\di\definitionsProvider\dependency\handler;
@@ -22,12 +21,9 @@ use de\codenamephp\platform\di\definitionsProvider\dependency\iDependency;
 use de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException;
 
 /**
- * Interface for handlers that handle the dependencies of definition providers
- *
- * @author Bastian Schwarz <bastian@codename-php.de>
+ * Interface for handlers that handle the dependencies of definition providers.
  */
 interface iHandler {
-
   /**
    * This method should check the definitions the provider relies on against the already collected definitions. If a definition is missing, a
    * \de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException must be thrown.
@@ -37,6 +33,7 @@ interface iHandler {
    * otherwise).
    *
    * @param iDependency $provider THe provider whose dependencies are handled
+   *
    * @throws MissingDependencyException if a dependency that the given provider relies on is missing
    */
   public function handle(iDependency $provider) : void;

@@ -13,7 +13,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
 namespace de\codenamephp\platform\di\definitionsProvider\dependency;
@@ -21,11 +20,8 @@ namespace de\codenamephp\platform\di\definitionsProvider\dependency;
 use de\codenamephp\platform\di\Exception;
 
 /**
- * Exception that can be thrown when a dependency is missing
- *
- * @author Bastian Schwarz <bastian@codename-php.de>
+ * Exception that can be thrown when a dependency is missing.
  */
 class MissingDependencyException extends Exception {
-
-//put your code here
+  //put your code here
 }
