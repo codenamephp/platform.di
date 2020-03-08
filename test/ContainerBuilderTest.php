@@ -55,6 +55,16 @@ final class ContainerBuilderTest extends TestCase {
     $fileSystem->remove(__DIR__ . '/tmp');
   }
 
+  public function test__construct_canCreateDefaultContainer_ifNoContainerIsGiven() : void {
+    self::assertEquals(new \DI\ContainerBuilder(Container::class), (new ContainerBuilder())->getContainerBuilder());
+  }
+
+  public function test__construct_canSetGivenContainerBuilder() : void {
+    $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
+
+    self::assertSame($containerBuilder, (new ContainerBuilder($containerBuilder))->getContainerBuilder());
+  }
+
   public function testaddDefinitionsByProvider_canAddDefintionsArray_WhenArrayProviderWasGiven() : void {
     $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
     $containerBuilder->expects(self::at(0))->method('addDefinitions')->with(['some', 'definitions']);

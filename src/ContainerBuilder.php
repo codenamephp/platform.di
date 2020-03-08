@@ -52,7 +52,7 @@ final class ContainerBuilder implements iContainerBuilder {
    * @param \DI\ContainerBuilder|null $containerBuilder The actual container builder that will be used to create the container and where the definitions are added to
    */
   public function __construct(\DI\ContainerBuilder $containerBuilder = null) {
-    $this->setContainerBuilder($containerBuilder ?? new \DI\ContainerBuilder(ContainerBuilder::class));
+    $this->setContainerBuilder($containerBuilder ?? new \DI\ContainerBuilder(Container::class));
     $this->setDependencyHandler(new definitionsProvider\dependency\handler\DontHandle());
   }
 
