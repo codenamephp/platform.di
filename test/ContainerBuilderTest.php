@@ -27,6 +27,7 @@ use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
 use de\codenamephp\platform\di\definitionsProvider\iFiles;
 use de\codenamephp\platform\di\definitionsProvider\iMetaProvider;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
@@ -199,5 +200,26 @@ final class ContainerBuilderTest extends TestCase {
     $this->sut->setContainerBuilder($containerBuilder);
 
     $this->sut->addDefinitionsByProvider($metaProvider);
+  }
+
+  public function testBuild() : void {
+    $container = $this->createMock(iContainer::class);
+
+    $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
+    $containerBuilder->expects(self::once())->method('build')->willReturn($container);
+    $this->sut->setContainerBuilder($containerBuilder);
+
+    self::assertSame($container, $this->sut->build());
+  }
+
+  public function testBuild_canThrowException_whenBuiltContainerIsNotOfTypeiContainer() : void {
+    $this->expectException(Exception::class);
+    $this->expectExceptionMessage('Built container is not of type de\codenamephp\platform\di\iContainer');
+
+    $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
+    $containerBuilder->expects(self::once())->method('build')->willReturn(new stdClass());
+    $this->sut->setContainerBuilder($containerBuilder);
+
+    $this->sut->build();
   }
 }
