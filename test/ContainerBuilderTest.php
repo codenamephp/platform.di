@@ -18,6 +18,7 @@
 
 namespace de\codenamephp\platform\di;
 
+use de\codenamephp\platform\di\definitionsProvider\dependency\handler\DontHandle;
 use de\codenamephp\platform\di\definitionsProvider\dependency\handler\iHandler;
 use de\codenamephp\platform\di\definitionsProvider\dependency\iDependency;
 use de\codenamephp\platform\di\definitionsProvider\dependency\Wrapper;
@@ -63,6 +64,10 @@ final class ContainerBuilderTest extends TestCase {
     $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
 
     self::assertSame($containerBuilder, (new ContainerBuilder($containerBuilder))->getContainerBuilder());
+  }
+
+  public function test__construct_canSetDefaultDependencyHandler() : void {
+    self::assertEquals(new DontHandle(), $this->sut->getDependencyHandler());
   }
 
   public function testaddDefinitionsByProvider_canAddDefintionsArray_WhenArrayProviderWasGiven() : void {
@@ -126,8 +131,6 @@ final class ContainerBuilderTest extends TestCase {
         return [__DIR__ . '/tmp/definitions/{,*.}global.php', __DIR__ . '/tmp/definitions/{,*.}local.php'];
       }
     });
-
-    $this->sut->addGlobPath(__DIR__ . '/tmp/definitions/{{,*.}global,{,*.}local}.php');
   }
 
   public function testaddDefinitionsByProvider_canCallDependencyHandler_withProvider_whenProviderImplementsiDependencyInterface() : void {

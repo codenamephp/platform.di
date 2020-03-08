@@ -44,7 +44,7 @@
     "phpcomp": "vendor/bin/phpcs --cache=.cache/phpcomp.cache --standard=phpcomp.xml --parallel=10 --extensions=php --ignore=autoload.php src/*",
     "composer-unused": "tools/composer-unused --no-progress --no-interaction --profile",
     "composer-require-checker": "tools/composer-require-checker --no-interaction",
-    "infection": "tools/infection --min-msi=70 --threads=4",
+    "infection": "tools/infection --min-msi=85 --min-covered-msi=85 --threads=4 --no-progress",
     "ci-all": [
       "@phpunit",
       "@phpcomp",
