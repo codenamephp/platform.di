@@ -18,4 +18,5 @@
 <phive xmlns="https://phar.io/phive">
   <phar name="phpunit" version="^9.0.1" installed="9.0.1" location="./tools/phpunit.phar" copy="true"/>
   <phar name="psalm" version="^3.9.3" installed="3.9.3" location="./tools/psalm" copy="true"/>
+  <phar name="composer-unused" version="^0.7.1" installed="0.7.1" location="./tools/composer-unused" copy="true"/>
 </phive>
