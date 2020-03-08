@@ -41,15 +41,18 @@
     "phpunit": "tools/phpunit.phar -c test/phpunit.dist.xml test/",
     "psalm": "tools/psalm --threads=10 --diff --diff-methods --long-progress",
     "phpcomp": "vendor/bin/phpcs --cache=.cache/phpcomp.cache --standard=phpcomp.xml --parallel=10 --extensions=php --ignore=autoload.php src/*",
+    "composer-unused": "tools/composer-unused --no-progress --no-interaction --profile",
     "ci-all": [
       "@phpunit",
       "@phpcomp",
-      "@psalm"
+      "@psalm",
+      "@composer-unused"
     ]
   },
   "scripts-descriptions": {
     "phpunit": "Runs phpunit tests",
     "phpcomp": "Runs php compatibility checks",
-    "psalm": "Runs psalm static analysis"
+    "psalm": "Runs psalm static analysis",
+    "composer-unused": "Checks for unused composer packages"
   }
 }
