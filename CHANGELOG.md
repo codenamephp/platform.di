@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [4.1.2](https://github.com/codenamephp/platform.di/tree/4.1.2) (2020-03-08)
+
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/4.1.1...4.1.2)
+
+**Fixed bugs:**
+
+- ContainerBuilder uses wrong class [\#27](https://github.com/codenamephp/platform.di/issues/27)
+
 ## [4.1.1](https://github.com/codenamephp/platform.di/tree/4.1.1) (2020-03-08)
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/4.1.0...4.1.1)
