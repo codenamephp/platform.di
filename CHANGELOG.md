@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [4.1.1](https://github.com/codenamephp/platform.di/tree/4.1.1) (2020-03-08)
+
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/4.1.0...4.1.1)
+
+**Merged pull requests:**
+
+- Update dealerdirect/phpcodesniffer-composer-installer requirement from ^0.5 to ^0.5 || ^0.6 [\#22](https://github.com/codenamephp/platform.di/pull/22) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+
 ## [4.1.0] - 2020-03-08 Added MetaProvider interface
 ### Added
 - Added new `\de\codenamephp\platform\di\definitionsProvider\iMetaProvider` interface to add multiple providers with a single class
