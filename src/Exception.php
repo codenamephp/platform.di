@@ -13,16 +13,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
 namespace de\codenamephp\platform\di;
 
 /**
- * Base exception for the di package
- *
- * @author Bastian Schwarz <bastian@codename-php.de>
+ * Base exception for the di package.
  */
 class Exception extends \de\codenamephp\platform\core\Exception {
-//put your code here
+  //put your code here
 }

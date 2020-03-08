@@ -13,35 +13,25 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
 namespace de\codenamephp\platform\di;
 
 /**
- * Simple trait for the iContainer interface that contains the member and getter/setter
+ * Simple trait for the iContainer interface that contains the member and getter/setter.
  */
 trait tContainer {
-
   /**
-   * The di container
+   * The di container.
    *
    * @var iContainer
    */
   private iContainer $diContainer;
 
-  /**
-   * @return iContainer
-   */
   public function getDiContainer() : iContainer {
     return $this->diContainer;
   }
 
-  /**
-   * @param iContainer $diContainer
-   *
-   * @return self
-   */
   public function setDiContainer(iContainer $diContainer) : self {
     $this->diContainer = $diContainer;
     return $this;

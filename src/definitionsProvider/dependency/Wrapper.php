@@ -13,40 +13,33 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
 namespace de\codenamephp\platform\di\definitionsProvider\dependency;
 
 /**
- * Dependency wrapper that can be used to handle providers that do net yet implement the iDependency interface
+ * Dependency wrapper that can be used to handle providers that do net yet implement the iDependency interface.
  */
 final class Wrapper implements iCoversDependencies {
-
   /**
-   * The actual dependency that is wrapped
+   * The actual dependency that is wrapped.
    *
    * @var object
    */
   private object $dependency;
 
   /**
-   *
    * @param object $dependency The actual dependency that is wrapped
    */
   public function __construct(object $dependency) {
     $this->setDependency($dependency);
   }
 
-  /**
-   * @return object
-   */
   public function getDependency() : object {
     return $this->dependency;
   }
 
   /**
-   * @param object $dependency
    * @return Wrapper
    */
   public function setDependency(object $dependency) : self {
@@ -55,7 +48,7 @@ final class Wrapper implements iCoversDependencies {
   }
 
   /**
-   * Returns an array of provider class names that this provider covers
+   * Returns an array of provider class names that this provider covers.
    *
    * @return string[] Array of provider class names that are covered by this provider
    */

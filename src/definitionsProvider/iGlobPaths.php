@@ -13,19 +13,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
 namespace de\codenamephp\platform\di\definitionsProvider;
 
-/**
- *
- * @author Bastian Schwarz <bastian@codename-php.de>
- */
 interface iGlobPaths extends iDefintionsProvider {
-
   /**
-   * Returns an array of glob path that find definition files
+   * Returns an array of glob path that find definition files.
    *
    * @return string[] The glob paths as array
    */

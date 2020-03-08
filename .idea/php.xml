@@ -10,6 +10,11 @@
       <fqn value="\Error" />
     </unchecked_exceptions>
   </component>
+  <component name="PhpCSFixer">
+    <phpcsfixer_settings>
+      <PhpCSFixerConfiguration standards="PSR1;PSR2;Symfony;DoctrineAnnotation;PHP70Migration;PHP71Migration" tool_path="$PROJECT_DIR$/tools/php-cs-fixer" />
+    </phpcsfixer_settings>
+  </component>
   <component name="PhpCodeSniffer">
     <phpcs_settings>
       <PhpCSConfiguration tool_path="$PROJECT_DIR$/vendor/bin/phpcs" />

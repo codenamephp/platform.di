@@ -22,17 +22,11 @@ use DI\Definition\Source\MutableDefinitionSource;
 use DI\Proxy\ProxyFactory;
 use Psr\Container\ContainerInterface;
 
-/**
- *
- * @author Bastian Schwarz <bastian@codename-php.de>
- */
 final class Container extends \DI\Container implements iContainer {
-
   /**
-   *
-   * @param MutableDefinitionSource|null $definitionSource
-   * @param ProxyFactory|null $proxyFactory
-   * @param ContainerInterface|null $wrapperContainer
+   * @param null|MutableDefinitionSource $definitionSource The default definitions source
+   * @param null|ProxyFactory $proxyFactory The factory to create the procxies with
+   * @param ContainerInterface $wrapperContainer if the container is wrapped by another container
    *
    * @since 3.0 Type of $definitionSource was changed to \DI\Definition\Source\MutableDefinitionSource and type of $wrapperContainer was changed to
    *   \Psr\Container\ContainerInterface
@@ -45,7 +39,7 @@ final class Container extends \DI\Container implements iContainer {
   }
 
   /**
-   * Define an object or a value in the container
+   * Define an object or a value in the container.
    *
    * @param string $name Entry name
    * @param mixed $value The value to set
