@@ -12,7 +12,8 @@
   "require": {
     "php": "^7.4",
     "codenamephp/platform.core": "^1",
-    "php-di/php-di": "^6"
+    "php-di/php-di": "^6",
+    "psr/container": "^1.0"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.5 || ^0.6",
@@ -29,7 +30,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "de\\codenamephp\\platform\\di\\test\\": [
+      "de\\codenamephp\\platform\\di\\": [
         "test"
       ]
     }
@@ -42,17 +43,22 @@
     "psalm": "tools/psalm --threads=10 --diff --diff-methods --long-progress",
     "phpcomp": "vendor/bin/phpcs --cache=.cache/phpcomp.cache --standard=phpcomp.xml --parallel=10 --extensions=php --ignore=autoload.php src/*",
     "composer-unused": "tools/composer-unused --no-progress --no-interaction --profile",
+    "composer-require-checker": "tools/composer-require-checker --no-interaction",
+    "infection": "tools/infection --min-msi=70 --threads=4",
     "ci-all": [
       "@phpunit",
       "@phpcomp",
       "@psalm",
-      "@composer-unused"
+      "@composer-unused",
+      "@infection"
     ]
   },
   "scripts-descriptions": {
     "phpunit": "Runs phpunit tests",
     "phpcomp": "Runs php compatibility checks",
     "psalm": "Runs psalm static analysis",
-    "composer-unused": "Checks for unused composer packages"
+    "composer-unused": "Checks for unused composer packages",
+    "composer-require-checker": "Checks for missing required composer packages",
+    "infection": "Creates mutation tests to discover missing test coverage"
   }
 }
