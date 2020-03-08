@@ -6,7 +6,7 @@ Simple dependency injection container based on <a href="http://www.php-di.org" t
 
 Easiest way is via composer. Just run `composer require codenamephp/platform.di` in your cli which should install the latest version for you.
 
-## Usage
+## Usageasdfasdfasdfasdf
 
 ```php
 $builder = new de\codenamephp\platform\di\ContainerBuilder();
