@@ -50,6 +50,7 @@
       "@phpcomp",
       "@psalm",
       "@composer-unused",
+      "@composer-require-checker",
       "@infection"
     ]
   },
