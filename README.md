@@ -14,7 +14,7 @@ $container = $builder->build();
 $container->get('...');
 ```
 
-This creates a builder that without definitions. To add definitions I recommend using on of the provider options below, especially
+This creates a builder without definitions. To add definitions I recommend using on of the provider options below, especially
 the `de\codenamephp\platform\di\definitionsProvider\iArray` provider.
 
 From there you just get your dependencies from the container.
