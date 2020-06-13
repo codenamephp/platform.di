@@ -77,7 +77,7 @@ class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvid
 #### MetaProvider
 
 Sometimes you want to split dependencies into multiple providers so they don't get too long and/or to group them into logical units. But you don't want to add 
-multiple providers to the actual project that uses the provider. This is what the ´\de\codenamephp\platform\di\definitionsProvider\iMetaProvider` interface is
+multiple providers to the actual project that uses the provider. This is what the `\de\codenamephp\platform\di\definitionsProvider\iMetaProvider` interface is
 for. It basically creates multiple providers and returns them as array which are then added by the container builder like any other provider including 
 dependency checks and nesting other meta providers.
 
@@ -120,7 +120,7 @@ a planned feature. ;)
 ### Provider Dependencies
 
 Providers can depend on other providers, e.g. to override their definitions. If that is the case, providers can implement on of the
-de\codenamephp\platform\di\definitionsProvider\dependency\* interfaces.
+`de\codenamephp\platform\di\definitionsProvider\dependency\*` interfaces.
 
 #### Dependency Providers
 
