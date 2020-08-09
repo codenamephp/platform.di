@@ -16,18 +16,10 @@
  *
  */
 
-/**
- * @namespace
- */
 namespace de\codenamephp\platform\di;
 
 use PHPUnit\Framework\TestCase;
 
-/**
- *
- *
- * @author Bastian Schwarz <bastian@codename-php.de>
- */
 class ContainerTest extends TestCase {
 
   /**

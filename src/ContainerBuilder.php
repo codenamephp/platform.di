@@ -89,24 +89,24 @@ final class ContainerBuilder implements iContainerBuilder {
   public function addDefinitionsByProvider(definitionsProvider\iDefintionsProvider $provider) : iContainerBuilder {
     $this->getDependencyHandler()->handle($provider instanceof definitionsProvider\dependency\iDependency ? $provider : new Wrapper($provider));
 
-    if ($provider instanceof definitionsProvider\iFiles) {
-      foreach ($provider->getFiles() as $file) {
+    if($provider instanceof definitionsProvider\iFiles) {
+      foreach($provider->getFiles() as $file) {
         $this->getContainerBuilder()->addDefinitions($file);
       }
     }
 
-    if ($provider instanceof definitionsProvider\iArray) {
+    if($provider instanceof definitionsProvider\iArray) {
       $this->getContainerBuilder()->addDefinitions($provider->getDefinitions());
     }
 
-    if ($provider instanceof definitionsProvider\iGlobPaths) {
-      foreach ($provider->getGlobPaths() as $globPath) {
+    if($provider instanceof definitionsProvider\iGlobPaths) {
+      foreach($provider->getGlobPaths() as $globPath) {
         $this->addGlobPath($globPath);
       }
     }
 
-    if ($provider instanceof iMetaProvider) {
-      foreach ($provider->getProviders() as $metaProvider) {
+    if($provider instanceof iMetaProvider) {
+      foreach($provider->getProviders() as $metaProvider) {
         $this->addDefinitionsByProvider($metaProvider);
       }
     }
@@ -121,7 +121,7 @@ final class ContainerBuilder implements iContainerBuilder {
    * @throws InvalidArgumentException
    */
   public function addGlobPath($globPath) : iContainerBuilder {
-    foreach (glob($globPath, GLOB_BRACE) as $definitionFile) {
+    foreach(glob($globPath, GLOB_BRACE) as $definitionFile) {
       $this->getContainerBuilder()->addDefinitions($definitionFile);
     }
     return $this;
@@ -135,7 +135,7 @@ final class ContainerBuilder implements iContainerBuilder {
    */
   public function build() : iContainer {
     $container = $this->getContainerBuilder()->build();
-    if (!$container instanceof iContainer) {
+    if(!$container instanceof iContainer) {
       throw new Exception(sprintf('Built container is not of type %s', iContainer::class));
     }
     return $container;

@@ -77,13 +77,13 @@ final class ClassNamesInArray implements iHandler {
    * @throws MissingDependencyException if a dependency that the given provider relies on is missing
    */
   public function handle(iDependency $provider) : void {
-    if ($provider instanceof iDependsOn && count(array_diff($provider->getDependencies(), $this->getCollectedDependencies())) > 0) {
+    if($provider instanceof iDependsOn && count(array_diff($provider->getDependencies(), $this->getCollectedDependencies())) > 0) {
       throw new MissingDependencyException(sprintf('The provider "%s" is missing dependencies. Plaese add them to the container before adding this provider. Missing dependencies: '
           . "[\n\t\t%s\n\t]", get_class($provider), implode("\n\t\t", array_diff($provider->getDependencies(), $this->getCollectedDependencies()))));
     }
-    if ($provider instanceof iCoversDependencies) {
+    if($provider instanceof iCoversDependencies) {
       $this->addDependencies($provider->getCoveredDependencies());
-    } else {
+    }else {
       $this->addDependencies([get_class($provider)]);
     }
   }

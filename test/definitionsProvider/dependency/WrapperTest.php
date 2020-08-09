@@ -18,8 +18,6 @@
 
 namespace de\codenamephp\platform\di\definitionsProvider\dependency;
 
-use InvalidArgumentException;
-use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -32,34 +30,16 @@ class WrapperTest extends TestCase {
    */
   private Wrapper $sut;
 
-  /**
-   *
-   *
-   * @throws InvalidArgumentException
-   */
   protected function setUp() : void {
     parent::setUp();
 
     $this->sut = new Wrapper(new stdClass());
   }
 
-  /**
-   *
-   *
-   * @throws ExpectationFailedException
-   * @throws InvalidArgumentException
-   */
   public function testGetCoveredDependencies() : void {
     self::assertSame([stdClass::class], $this->sut->getCoveredDependencies());
   }
 
-  /**
-   *
-   *
-   * @throws InvalidArgumentException
-   * @throws ExpectationFailedException
-   * @throws InvalidArgumentException
-   */
   public function test__construct() : void {
     $dependency = new stdClass();
 
@@ -68,7 +48,7 @@ class WrapperTest extends TestCase {
     self::assertSame($dependency, $sut->getDependency());
   }
 
-  public function testSetDependency() {
+  public function testSetDependency() : void {
     $dependency = new stdClass();
 
     $this->sut->setDependency($dependency);

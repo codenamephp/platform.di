@@ -18,9 +18,7 @@
 
 namespace de\codenamephp\platform\di;
 
-use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 class tContainerTest extends TestCase {
 
@@ -29,7 +27,7 @@ class tContainerTest extends TestCase {
    *
    * @var tContainer
    */
-  private $sut = null;
+  private $sut;
 
   protected function setUp() : void {
     parent::setUp();
@@ -37,15 +35,7 @@ class tContainerTest extends TestCase {
     $this->sut = $this->getMockBuilder(tContainer::class)->getMockForTrait();
   }
 
-  /**
-   *
-   *
-   * @throws \InvalidArgumentException
-   * @throws \PHPUnit\Framework\Exception
-   * @throws ExpectationFailedException
-   * @throws InvalidArgumentException
-   */
-  public function testSetContainer() {
+  public function testSetContainer() : void {
     $container = $this->createMock(iContainer::class);
     $this->sut->setDiContainer($container);
 
@@ -54,13 +44,8 @@ class tContainerTest extends TestCase {
 
   /**
    * @depends testSetContainer
-   *
-   * @throws \InvalidArgumentException
-   * @throws \PHPUnit\Framework\Exception
-   * @throws ExpectationFailedException
-   * @throws InvalidArgumentException
    */
-  public function testGetContainer() {
+  public function testGetContainer() : void {
     $container = $this->createMock(iContainer::class);
     $this->sut->setDiContainer($container);
 
