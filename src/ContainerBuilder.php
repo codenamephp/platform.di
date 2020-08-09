@@ -25,6 +25,7 @@ use de\codenamephp\platform\di\definitionsProvider\iMetaProvider;
 use InvalidArgumentException;
 
 final class ContainerBuilder implements iContainerBuilder {
+
   /**
    * The actual container builder that will be used to create the container and where the definitions are added to.
    *
@@ -68,6 +69,7 @@ final class ContainerBuilder implements iContainerBuilder {
 
   /**
    * @param iHandler $dependencyHandler
+   * @return iContainerBuilder
    */
   public function setDependencyHandler(definitionsProvider\dependency\handler\iHandler $dependencyHandler) : iContainerBuilder {
     $this->dependencyHandler = $dependencyHandler;
@@ -82,7 +84,7 @@ final class ContainerBuilder implements iContainerBuilder {
    * check. If not, it is wrapper in the Wrapper dependency which is then used.
    *
    * @param iDefintionsProvider $provider The provider whose definitions will be added, depending on the implemented interfaces
-   *
+   * @return iContainerBuilder
    * @throws MissingDependencyException if a dependency that the given provider relies on is missing (from dependencyHandler)
    * @throws InvalidArgumentException
    */
@@ -118,6 +120,7 @@ final class ContainerBuilder implements iContainerBuilder {
    *
    * @param string $globPath A glob path that will be used to discover definition files
    *
+   * @return iContainerBuilder
    * @throws InvalidArgumentException
    */
   public function addGlobPath($globPath) : iContainerBuilder {

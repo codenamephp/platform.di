@@ -27,6 +27,8 @@ use InvalidArgumentException;
  * @since 3.0
  */
 interface iContainerBuilder {
+
+
   /**
    * Adds definitions by a provider class. The provider must implement one of the definitionsProvider\* interfaces and the configuration will be added
    * accordingly to the container builder.
@@ -36,6 +38,7 @@ interface iContainerBuilder {
    *
    * @param iDefintionsProvider $provider The provider whose definitions will be added, depending on the implemented interfaces
    *
+   * @return iContainerBuilder
    * @throws MissingDependencyException if a dependency that the given provider relies on is missing (from dependencyHandler)
    * @throws InvalidArgumentException
    *
@@ -48,6 +51,7 @@ interface iContainerBuilder {
    *
    * @param string $globPath A glob path that will be used to discover definition files
    *
+   * @return iContainerBuilder
    * @throws InvalidArgumentException
    *
    * @since 3.0

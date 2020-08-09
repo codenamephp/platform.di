@@ -13,6 +13,10 @@ The container builder expected an optional class name before. Now the builder ex
 which can have the class name. If you didn't pass a class name before you don't have to change anything since the default container builder
 is created automatically.
 
+The `addDefinitions` method was part of the original container which is now a dependency. Adding definitions this way is discouraged
+since they tend to pile up. Instead just add them using a DefinitionsProvider class. 
+Of course, I can't stop you from adding them using an anonymous class or adding them to the PHP-Di container directly.
+
 ## 3.x
 
 ### PHP-DI
