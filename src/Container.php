@@ -46,6 +46,7 @@ final class Container extends \DI\Container implements iContainer {
    *
    * @return self fluent interface
    *
+   * @deprecated since 5.0 you should never set services directly
    * @since 3.0 Type string of $name is now enforced
    */
   public function set(string $name, $value) : self {

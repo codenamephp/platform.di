@@ -13,6 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
 namespace de\codenamephp\platform\di;
@@ -34,6 +35,7 @@ interface iContainer extends ContainerInterface, FactoryInterface {
    *
    * @return self fluent interface
    *
+   * @deprecated since 5.0 you should never set services directly
    * @since 3.0 Type string of $name is now enforced
    */
   public function set(string $name, $value);

@@ -1,5 +1,9 @@
 # Migraiton
 
+## 5.x
+### Deprecations
+- `\de\codenamephp\platform\di\iContainer::set` without replacement
+
 ## 4.x
 
 ### Type hints
