@@ -7,7 +7,11 @@
 ### API
 #### Removed
 - `\de\codenamephp\platform\di\ContainerBuilder::getDependencyHandler` and `\de\codenamephp\platform\di\ContainerBuilder::setDependencyHandler` without replacement
-
+- Removed everthing glob path related
+  - `\de\codenamephp\platform\di\definitionsProvider\iGlobPaths`
+  - `\de\codenamephp\platform\di\iContainerBuilder::addGlobPath`
+  - `\de\codenamephp\platform\di\ContainerBuilder::addGlobPath`
+  
 ## 4.x
 
 ### Type hints

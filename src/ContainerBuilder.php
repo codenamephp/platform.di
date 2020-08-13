@@ -24,7 +24,7 @@ use de\codenamephp\platform\di\definitionsProvider\iMetaProvider;
 use InvalidArgumentException;
 
 /**
- * @since 5.0 removed get/setDependencyHandler
+ * @since 5.0 removed get/setDependencyHandler, addGlobPath
  */
 final class ContainerBuilder implements iContainerBuilder {
 
@@ -77,31 +77,10 @@ final class ContainerBuilder implements iContainerBuilder {
       $this->getContainerBuilder()->addDefinitions($provider->getDefinitions());
     }
 
-    if($provider instanceof definitionsProvider\iGlobPaths) {
-      foreach($provider->getGlobPaths() as $globPath) {
-        $this->addGlobPath($globPath);
-      }
-    }
-
     if($provider instanceof iMetaProvider) {
       foreach($provider->getProviders() as $metaProvider) {
         $this->addDefinitionsByProvider($metaProvider);
       }
-    }
-    return $this;
-  }
-
-  /**
-   * Discovers all files found from glob and adds them to the wrapped container builder.
-   *
-   * @param string $globPath A glob path that will be used to discover definition files
-   *
-   * @return iContainerBuilder
-   * @throws InvalidArgumentException
-   */
-  public function addGlobPath($globPath) : iContainerBuilder {
-    foreach(glob($globPath, GLOB_BRACE) as $definitionFile) {
-      $this->getContainerBuilder()->addDefinitions($definitionFile);
     }
     return $this;
   }

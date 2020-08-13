@@ -61,19 +61,6 @@ class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvid
 }
 ```
 
-#### GlobPaths
-
-The globPaths provider provides glob patterns that find definition files. These glob paths will be added just like the manual glob path adding:
-
-```php
-class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\iGlobPaths {
-
-  public function getGlobPaths() : array {
-    return [__DIR__ . '/path/to/definitions/{{,*.}global,{,*.}local}.php'];
-  }
-}
-```
-
 #### MetaProvider
 
 Sometimes you want to split dependencies into multiple providers so they don't get too long and/or to group them into logical units. But you don't want to add 
