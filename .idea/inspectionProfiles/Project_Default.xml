@@ -1,6 +1,7 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
+    <inspection_tool class="CompositionAndInheritanceInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="CssUnknownTarget" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ForgottenDebugOutputInspection" enabled="true" level="ERROR" enabled_by_default="true">
       <option name="configuration">
@@ -81,6 +82,7 @@
       <option name="CUSTOM_RULESET_PATH" value="$PROJECT_DIR$/.php_cs.dist" />
       <option name="ALLOW_RISKY_RULES" value="true" />
     </inspection_tool>
+    <inspection_tool class="PhpDisabledQualityToolComposerInspection" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="PhpUnhandledExceptionInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <scope name="Tests" level="INFORMATION" enabled="true" />
     </inspection_tool>
