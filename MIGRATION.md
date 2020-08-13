@@ -2,10 +2,10 @@
 
 ## 5.x
 ### Deprecations
-- `\de\codenamephp\platform\di\iContainer::set` without replacement
 
 ### API
 #### Removed
+- `\de\codenamephp\platform\di\iContainer::set` without replacement
 - `\de\codenamephp\platform\di\ContainerBuilder::getDependencyHandler` and `\de\codenamephp\platform\di\ContainerBuilder::setDependencyHandler` without replacement
 - Removed everthing glob path related
   - `\de\codenamephp\platform\di\definitionsProvider\iGlobPaths`

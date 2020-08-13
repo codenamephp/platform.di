@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Copyright 2020 Bastian Schwarz <bastian@codename-php.de>.
  *
@@ -16,22 +16,29 @@
  *
  */
 
-namespace de\codenamephp\platform\di;
+namespace de\codenamephp\platform\di\definitionsProvider\collection;
 
+use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
 use PHPUnit\Framework\TestCase;
 
-class ContainerTest extends TestCase {
+class SimpleArrayTest extends TestCase {
 
-  private Container $sut;
+  private SimpleArray $sut;
 
   protected function setUp() : void {
-    parent::setUp();
-
-    $this->sut = new Container();
+    $this->sut = new SimpleArray();
   }
 
-  public function testconstruct_canAddDefinitionsForContainer_andInterface() : void {
-    self::assertInstanceOf(Container::class, $this->sut->get(Container::class));
-    self::assertInstanceOf(Container::class, $this->sut->get(iContainer::class));
+  public function testAddAndGet() : void {
+    $provider1 = $this->createMock(iDefintionsProvider::class);
+    $provider2 = $this->createMock(iDefintionsProvider::class);
+    $provider3 = $this->createMock(iDefintionsProvider::class);
+
+    $this->sut
+        ->add($provider1)
+        ->add($provider2)
+        ->add($provider3);
+
+    self::assertSame([$provider1, $provider2, $provider3], $this->sut->get());
   }
 }

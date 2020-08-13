@@ -13,6 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
 namespace de\codenamephp\platform\di\definitionsProvider\dependency;
@@ -40,6 +41,7 @@ final class Wrapper implements iCoversDependencies {
   }
 
   /**
+   * @param object $dependency The actual dependency (most likely a provider) that is wrapped
    * @return Wrapper
    */
   public function setDependency(object $dependency) : self {
