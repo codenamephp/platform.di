@@ -4,6 +4,10 @@
 ### Deprecations
 - `\de\codenamephp\platform\di\iContainer::set` without replacement
 
+### API
+#### Removed
+- `\de\codenamephp\platform\di\ContainerBuilder::getDependencyHandler` and `\de\codenamephp\platform\di\ContainerBuilder::setDependencyHandler` without replacement
+
 ## 4.x
 
 ### Type hints

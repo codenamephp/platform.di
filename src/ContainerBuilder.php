@@ -13,17 +13,19 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
 namespace de\codenamephp\platform\di;
 
-use de\codenamephp\platform\di\definitionsProvider\dependency\handler\iHandler;
 use de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException;
-use de\codenamephp\platform\di\definitionsProvider\dependency\Wrapper;
 use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
 use de\codenamephp\platform\di\definitionsProvider\iMetaProvider;
 use InvalidArgumentException;
 
+/**
+ * @since 5.0 removed get/setDependencyHandler
+ */
 final class ContainerBuilder implements iContainerBuilder {
 
   /**
@@ -34,13 +36,6 @@ final class ContainerBuilder implements iContainerBuilder {
   private \DI\ContainerBuilder $containerBuilder;
 
   /**
-   * Handles the dependencies of providers.
-   *
-   * @var definitionsProvider\dependency\handler\iHandler
-   */
-  private iHandler $dependencyHandler;
-
-  /**
    * Sets the container builder or creates one if null was given. Also sets an instance of
    * \de\codenamephp\platform\di\definitionsProvider\dependency\handler\DontHandle as default dependency handler.
    *
@@ -48,7 +43,6 @@ final class ContainerBuilder implements iContainerBuilder {
    */
   public function __construct(\DI\ContainerBuilder $containerBuilder = null) {
     $this->setContainerBuilder($containerBuilder ?? new \DI\ContainerBuilder(Container::class));
-    $this->setDependencyHandler(new definitionsProvider\dependency\handler\DontHandle());
   }
 
   public function getContainerBuilder() : \DI\ContainerBuilder {
@@ -57,22 +51,6 @@ final class ContainerBuilder implements iContainerBuilder {
 
   public function setContainerBuilder(\DI\ContainerBuilder $containerBuilder) : iContainerBuilder {
     $this->containerBuilder = $containerBuilder;
-    return $this;
-  }
-
-  /**
-   * @return definitionsProvider\dependency\handler\iHandler
-   */
-  public function getDependencyHandler() : iHandler {
-    return $this->dependencyHandler;
-  }
-
-  /**
-   * @param iHandler $dependencyHandler
-   * @return iContainerBuilder
-   */
-  public function setDependencyHandler(definitionsProvider\dependency\handler\iHandler $dependencyHandler) : iContainerBuilder {
-    $this->dependencyHandler = $dependencyHandler;
     return $this;
   }
 
@@ -89,8 +67,6 @@ final class ContainerBuilder implements iContainerBuilder {
    * @throws InvalidArgumentException
    */
   public function addDefinitionsByProvider(definitionsProvider\iDefintionsProvider $provider) : iContainerBuilder {
-    $this->getDependencyHandler()->handle($provider instanceof definitionsProvider\dependency\iDependency ? $provider : new Wrapper($provider));
-
     if($provider instanceof definitionsProvider\iFiles) {
       foreach($provider->getFiles() as $file) {
         $this->getContainerBuilder()->addDefinitions($file);
