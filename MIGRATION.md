@@ -7,11 +7,14 @@
 #### Removed
 - `\de\codenamephp\platform\di\iContainer::set` without replacement
 - `\de\codenamephp\platform\di\ContainerBuilder::getDependencyHandler` and `\de\codenamephp\platform\di\ContainerBuilder::setDependencyHandler` without replacement
+- `\de\codenamephp\platform\di\definitionsProvider\dependency\handler\iHandler` which is replaced by the collections
 - Removed everthing glob path related
   - `\de\codenamephp\platform\di\definitionsProvider\iGlobPaths`
   - `\de\codenamephp\platform\di\iContainerBuilder::addGlobPath`
   - `\de\codenamephp\platform\di\ContainerBuilder::addGlobPath`
-  
+#### Changed
+- `de\codenamephp\platform\di\definitionsProvider\dependency\handler` is now `\de\codenamephp\platform\di\definitionsProvider\collection\ClassNamesInArray` and 
+    implements the new `\de\codenamephp\platform\di\definitionsProvider\collection\iCollection` interface
 ## 4.x
 
 ### Type hints

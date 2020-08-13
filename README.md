@@ -146,17 +146,38 @@ class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvid
 }
 ```
 
-#### Dependency Handlers
+#### Dependency checks
 
-The ContainerBuilder has a DependencyHandler that handles the depdency checks and keeps track of already added dependencies and must implement the
-`de/codenamephp/platform/di/definitionsProvider/dependency/handler/iHandler`. By default, a [de/codenamephp/platform/di/definitionsProvider/dependency/handler/DontHandle](#donthandle)
-instance is set so there is no dependency handling active by default (so BC is kept). This will change in future releases.
+When you have modules that depend on each other most often the defintions depend on each other as well. This is what the dependency collections are for.
+They collect the providers (duh) and also check the dependencies using the interfaces from above. They implement the 
+`\de\codenamephp\platform\di\definitionsProvider\collection\iCollection` and do different levels of checks and sorting.
 
-#### DontHandle
+#### SimpleArray
 
-This handler actually doesn't do anything and is the default handler set in the ContainerBuilder. This handler is used to deactivate the feature.
+This collection doesn't actually do any dependency checks and just collects the providers and stores them in an array. This is used in most other
+collection as a simple storage.
 
 #### ClassNamesInArray
 
-This handler collects the class names of depdencies in an array and checks the dependencies against them. If the [iDependsOn](#idependson) interface is not added to the provider, the class
-name of the provider is added automaticly, so if your provider only covers it's own depdendency, you don't need to implement the interface.
+This collection collects the class names of depdencies in an array and checks the dependencies against them. If the [iDependsOn](#idependson) interface is 
+not added to the provider, the class name of the provider is added automaticly, so if your provider only covers it's own depdendency, you don't need to 
+implement the interface.
+
+This is a very simple check so it's also easy to debug. The dependencies are checked every time you add a dependency so it will fail early if something is 
+missing. The drawback of this is that you have to add the providers in the correct order.
+
+```php
+use de\codenamephp\platform\di\ContainerBuilder;use de\codenamephp\platform\di\definitionsProvider\collection\ClassNamesInArray;
+use de\codenamephp\platform\di\definitionsProvider\dependency\iDependsOn;
+use de\codenamephp\platform\di\definitionsProvider\dependency\iCoversDependencies;
+
+$collection = new ClassNamesInArray();
+$collection->add(new class() implements iDependsOn {});
+$collection->add(new class() implements iCoversDependencies {});
+//...
+
+$containerBuilder = new ContainerBuilder();
+foreach($collection->get() as $provider) { $containerBuilder->addDefinitionsByProvider($provider); }
+$container = $containerBuilder->build();
+//...
+```

@@ -13,13 +13,18 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
 namespace de\codenamephp\platform\di\definitionsProvider\dependency;
 
+use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+
 /**
  * Base interface for providers that have dependencies. This interface is just extended by the other dependencies in the package so they have a common interface.
+ *
+ * @since 5.0 extends the iDefinitionsProvider interface
  */
-interface iDependency {
+interface iDependency extends iDefintionsProvider {
   //put your code here
 }
