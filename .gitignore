@@ -1,5 +1,6 @@
 /.cache/*
 /.logs/*
+/test/.phpunit.result.cache
 
 # Created by https://www.gitignore.io/api/phpstorm,composer
 

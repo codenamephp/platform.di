@@ -13,14 +13,15 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
 namespace de\codenamephp\platform\di\definitionsProvider;
 
 /**
- * Interface for classes that provide a list of files that contain the defintions. These will be added to the container builder which then loads the definitions.
+ * Interface for classes that provide a list of files that contain the definitions. These will be added to the container builder which then loads the definitions.
  */
-interface iFiles extends iDefintionsProvider {
+interface iFiles extends iDefinitionsProvider {
   /**
    * Return the list of files as string array. The files have to be absolute paths and will be added to the container in the sequence they are in the array.
    *

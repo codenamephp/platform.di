@@ -13,14 +13,18 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
 namespace de\codenamephp\platform\di\definitionsProvider\dependency;
 
+use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
+
 /**
  * Interface that can be added to definitions providers that depend on other definition provider that already have to be added to the container builder.
  */
-interface iDependsOn extends iDependency {
+interface iDependsOn extends iDefinitionsProvider {
+
   /**
    * Gets an array of class names that this provider depends on. These providers need to be added to the container before this provider can be added.
    *

@@ -23,10 +23,11 @@ use DI\Proxy\ProxyFactory;
 use Psr\Container\ContainerInterface;
 
 final class Container extends \DI\Container implements iContainer {
+
   /**
    * @param null|MutableDefinitionSource $definitionSource The default definitions source
    * @param null|ProxyFactory $proxyFactory The factory to create the procxies with
-   * @param ContainerInterface $wrapperContainer if the container is wrapped by another container
+   * @param ContainerInterface|null $wrapperContainer if the container is wrapped by another container
    *
    * @since 3.0 Type of $definitionSource was changed to \DI\Definition\Source\MutableDefinitionSource and type of $wrapperContainer was changed to
    *   \Psr\Container\ContainerInterface
@@ -36,20 +37,5 @@ final class Container extends \DI\Container implements iContainer {
     parent::__construct($definitionSource, $proxyFactory, $wrapperContainer);
 
     $this->set(iContainer::class, $this);
-  }
-
-  /**
-   * Define an object or a value in the container.
-   *
-   * @param string $name Entry name
-   * @param mixed $value The value to set
-   *
-   * @return self fluent interface
-   *
-   * @since 3.0 Type string of $name is now enforced
-   */
-  public function set(string $name, $value) : self {
-    parent::set($name, $value);
-    return $this;
   }
 }

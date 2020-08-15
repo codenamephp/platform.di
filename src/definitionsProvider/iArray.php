@@ -13,6 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
 namespace de\codenamephp\platform\di\definitionsProvider;
@@ -20,7 +21,7 @@ namespace de\codenamephp\platform\di\definitionsProvider;
 /**
  * Interface for providing definitions in an array, just like you would in a definitions file (just without the file ... duh!).
  */
-interface iArray extends iDefintionsProvider {
+interface iArray extends iDefinitionsProvider {
   /**
    * Returns an array of definitions.
    */

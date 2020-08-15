@@ -22,20 +22,12 @@ use PHPUnit\Framework\TestCase;
 
 class ContainerTest extends TestCase {
 
-  /**
-   *
-   * @var Container
-   */
   private Container $sut;
 
   protected function setUp() : void {
     parent::setUp();
 
     $this->sut = new Container();
-  }
-
-  public function testset_canReturnSelf_ToImplementFluentInterface() : void {
-    self::assertSame($this->sut, $this->sut->set('test', 'test'));
   }
 
   public function testconstruct_canAddDefinitionsForContainer_andInterface() : void {

@@ -13,16 +13,12 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
 namespace de\codenamephp\platform\di;
 
-use de\codenamephp\platform\di\definitionsProvider\dependency\handler\DontHandle;
-use de\codenamephp\platform\di\definitionsProvider\dependency\handler\iHandler;
-use de\codenamephp\platform\di\definitionsProvider\dependency\iDependency;
-use de\codenamephp\platform\di\definitionsProvider\dependency\Wrapper;
 use de\codenamephp\platform\di\definitionsProvider\iArray;
-use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
 use de\codenamephp\platform\di\definitionsProvider\iFiles;
 use de\codenamephp\platform\di\definitionsProvider\iMetaProvider;
 use PHPUnit\Framework\TestCase;
@@ -61,11 +57,7 @@ final class ContainerBuilderTest extends TestCase {
     self::assertSame($containerBuilder, (new ContainerBuilder($containerBuilder))->getContainerBuilder());
   }
 
-  public function test__construct_canSetDefaultDependencyHandler() : void {
-    self::assertEquals(new DontHandle(), $this->sut->getDependencyHandler());
-  }
-
-  public function testaddDefinitionsByProvider_canAddDefintionsArray_WhenArrayProviderWasGiven() : void {
+  public function testaddDefinitionsByProvider_canAddDefinitionsArray_WhenArrayProviderWasGiven() : void {
     $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
     $containerBuilder->expects(self::once())->method('addDefinitions')->with(['some', 'definitions']);
     $this->sut->setContainerBuilder($containerBuilder);
@@ -103,88 +95,6 @@ final class ContainerBuilderTest extends TestCase {
         ];
       }
     });
-  }
-
-  public function testaddDefinitionsByProvider_canAddGlobPaths_WhenGlobPathProviderWasGiven() : void {
-    $fileSystem = new Filesystem();
-    $fileSystem->mkdir(__DIR__ . '/tmp/definitions', 0777);
-    $fileSystem->touch([
-      __DIR__ . '/tmp/definitions/global.php',
-      __DIR__ . '/tmp/definitions/def.global.php',
-      __DIR__ . '/tmp/definitions/local.php',
-      __DIR__ . '/tmp/definitions/test.local.php',
-      __DIR__ . '/tmp/definitions/dev.local.php',
-    ]);
-
-    $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
-    $containerBuilder
-      ->expects(self::exactly(5))
-      ->method('addDefinitions')
-      ->withConsecutive(
-        [__DIR__ . '/tmp/definitions/global.php'],
-        [__DIR__ . '/tmp/definitions/def.global.php'],
-        [__DIR__ . '/tmp/definitions/local.php'],
-        [__DIR__ . '/tmp/definitions/dev.local.php'],
-        [__DIR__ . '/tmp/definitions/test.local.php']
-      )
-    ;
-    $this->sut->setContainerBuilder($containerBuilder);
-
-    $this->sut->addDefinitionsByProvider(new class() implements definitionsProvider\iGlobPaths {
-      public function getGlobPaths() : array {
-        return [__DIR__ . '/tmp/definitions/{,*.}global.php', __DIR__ . '/tmp/definitions/{,*.}local.php'];
-      }
-    });
-  }
-
-  public function testaddDefinitionsByProvider_canCallDependencyHandler_withProvider_whenProviderImplementsiDependencyInterface() : void {
-    $provider = new class() implements iDefintionsProvider, iDependency {
-    };
-
-    $dependencyHandler = $this->createMock(iHandler::class);
-    $dependencyHandler->expects(self::once())->method('handle')->with($provider);
-    $this->sut->setDependencyHandler($dependencyHandler);
-
-    $this->sut->addDefinitionsByProvider($provider);
-  }
-
-  public function testaddDefinitionsByProvider_canCallDependencyHandler_withWrapper_whenProviderImplementsiDependencyInterface() : void {
-    $provider = $this->createMock(iDefintionsProvider::class);
-
-    $dependencyHandler = $this->createMock(iHandler::class);
-    $dependencyHandler->expects(self::once())->method('handle')->with(self::callback(static function($dependency) use ($provider) {
-      return $dependency instanceof Wrapper && $provider === $dependency->getDependency();
-    }));
-    $this->sut->setDependencyHandler($dependencyHandler);
-
-    $this->sut->addDefinitionsByProvider($provider);
-  }
-
-  public function testaddGlobPath_CannAddEachFileFromGlob_ToContainerBuilder() : void {
-    $fileSystem = new Filesystem();
-    $fileSystem->mkdir(__DIR__ . '/tmp/definitions', 0777);
-    $fileSystem->touch([
-      __DIR__ . '/tmp/definitions/global.php',
-      __DIR__ . '/tmp/definitions/def.global.php',
-      __DIR__ . '/tmp/definitions/local.php',
-      __DIR__ . '/tmp/definitions/test.local.php',
-      __DIR__ . '/tmp/definitions/dev.local.php',
-    ]);
-
-    $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
-    $containerBuilder
-        ->expects(self::exactly(5))
-        ->method('addDefinitions')
-        ->withConsecutive(
-            [__DIR__ . '/tmp/definitions/global.php'],
-            [__DIR__ . '/tmp/definitions/def.global.php'],
-            [__DIR__ . '/tmp/definitions/local.php'],
-            [__DIR__ . '/tmp/definitions/dev.local.php'],
-            [__DIR__ . '/tmp/definitions/test.local.php']
-        );
-    $this->sut->setContainerBuilder($containerBuilder);
-
-    $this->sut->addGlobPath(__DIR__ . '/tmp/definitions/{{,*.}global,{,*.}local}.php');
   }
 
   public function testaddMetaProvider_canRecurseAndAddProviders() : void {
