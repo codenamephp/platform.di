@@ -20,7 +20,7 @@ namespace de\codenamephp\platform\di\definitionsProvider\collection;
 
 use de\codenamephp\platform\di\definitionsProvider\dependency\iDependsOn;
 use de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException;
-use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 use MJS\TopSort\CircularDependencyException;
 use MJS\TopSort\ElementNotFoundException;
 use MJS\TopSort\Implementations\StringSort;
@@ -51,7 +51,7 @@ class TopoGraphTest extends TestCase {
   }
 
   public function testAdd_withoutDependency() : void {
-    $provider = $this->createMock(iDefintionsProvider::class);
+    $provider = $this->createMock(iDefinitionsProvider::class);
 
     $sort = $this->createMock(TopSortInterface::class);
     $sort->expects(self::once())->method('add')->with(get_class($provider), []);
@@ -63,12 +63,12 @@ class TopoGraphTest extends TestCase {
   }
 
   public function testget() : void {
-    $provider1 = $this->createMock(iDefintionsProvider::class);
-    $provider2 = $this->createMock(iDefintionsProvider::class);
-    $provider3 = $this->createMock(iDefintionsProvider::class);
-    $provider4 = $this->createMock(iDefintionsProvider::class);
-    $provider5 = $this->createMock(iDefintionsProvider::class);
-    $provider6 = $this->createMock(iDefintionsProvider::class);
+    $provider1 = $this->createMock(iDefinitionsProvider::class);
+    $provider2 = $this->createMock(iDefinitionsProvider::class);
+    $provider3 = $this->createMock(iDefinitionsProvider::class);
+    $provider4 = $this->createMock(iDefinitionsProvider::class);
+    $provider5 = $this->createMock(iDefinitionsProvider::class);
+    $provider6 = $this->createMock(iDefinitionsProvider::class);
     $this->sut->setProviders([
         'dep1' => $provider3,
         'dep2' => $provider1,

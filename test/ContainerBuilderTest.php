@@ -57,7 +57,7 @@ final class ContainerBuilderTest extends TestCase {
     self::assertSame($containerBuilder, (new ContainerBuilder($containerBuilder))->getContainerBuilder());
   }
 
-  public function testaddDefinitionsByProvider_canAddDefintionsArray_WhenArrayProviderWasGiven() : void {
+  public function testaddDefinitionsByProvider_canAddDefinitionsArray_WhenArrayProviderWasGiven() : void {
     $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
     $containerBuilder->expects(self::once())->method('addDefinitions')->with(['some', 'definitions']);
     $this->sut->setContainerBuilder($containerBuilder);

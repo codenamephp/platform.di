@@ -18,7 +18,7 @@
 
 namespace de\codenamephp\platform\di\definitionsProvider\collection;
 
-use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 use PHPUnit\Framework\TestCase;
 
 class SimpleArrayTest extends TestCase {
@@ -30,9 +30,9 @@ class SimpleArrayTest extends TestCase {
   }
 
   public function testAddAndGet() : void {
-    $provider1 = $this->createMock(iDefintionsProvider::class);
-    $provider2 = $this->createMock(iDefintionsProvider::class);
-    $provider3 = $this->createMock(iDefintionsProvider::class);
+    $provider1 = $this->createMock(iDefinitionsProvider::class);
+    $provider2 = $this->createMock(iDefinitionsProvider::class);
+    $provider3 = $this->createMock(iDefinitionsProvider::class);
 
     $this->sut
         ->add($provider1)

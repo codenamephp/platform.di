@@ -27,10 +27,10 @@ Every time the provider class is updated, the configuration will be updated as w
 All providers need to implement one of the `de\codenamephp\platform\di\definitionsProvider\*` interfaces
 
 ```php
-use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 
 $builder = new de\codenamephp\platform\di\ContainerBuilder();
-$builder->addDefinitionsByProvider(new class() implements iDefintionsProvider{});
+$builder->addDefinitionsByProvider(new class() implements iDefinitionsProvider{});
 $container = $builder->build();
 $container->get('...');
 ```
@@ -40,7 +40,7 @@ $container->get('...');
 Probably the most performant provider since the definitions are defined within the method and don't require any additional file lookups:
 
 ```php
-class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\iArray {
+class DefinitionsProvider implements de\codenamephp\platform\di\definitionsProvider\iArray {
 
   public function getDefinitions() : array {
     return ['some class' => 'some defintion'];
@@ -53,7 +53,7 @@ class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvid
 The file provider provides absolute file paths to definition files:
 
 ```php
-class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\iFiles {
+class DefinitionsProvider implements de\codenamephp\platform\di\definitionsProvider\iFiles {
 
   public function getFiles() : array {
     return [__DIR__ . '/path/to/file'];
@@ -117,11 +117,11 @@ This interface declares that a provider depends on other providers and must impl
 providers that have to be added to the container before this provider can be added.
 
 ```php
-use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 
-class MustBeAddedBeforeMe implements iDefintionsProvider {}
+class MustBeAddedBeforeMe implements iDefinitionsProvider {}
 
-class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\dependency\iDependsOn {
+class DefinitionsProvider implements de\codenamephp\platform\di\definitionsProvider\dependency\iDependsOn {
 
   public function getDependencies() : array {
     return [MustBeAddedBeforeMe::class ];
@@ -131,7 +131,7 @@ class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvid
 
 ### Dependency checks
 
-When you have modules that depend on each other most often the defintions depend on each other as well. This is what the dependency collections are for.
+When you have modules that depend on each other most often the definitions depend on each other as well. This is what the dependency collections are for.
 They collect the providers (duh) and also check the dependencies using the interfaces from above. They implement the 
 `\de\codenamephp\platform\di\definitionsProvider\collection\iCollection` and do different levels of checks and sorting.
 
@@ -142,8 +142,8 @@ collection as a simple storage.
 
 #### ClassNamesInArray
 
-This collection collects the class names of depdencies in an array and checks the dependencies against them. If the [iDependsOn](#idependson) interface is
-not added to the provider, the class name of the provider is added automaticly, so if your provider only covers it's own depdendency, you don't need to 
+This collection collects the class names of dependencies in an array and checks the dependencies against them. If the [iDependsOn](#idependson) interface is
+not added to the provider, the class name of the provider is added automatically, so if your provider only covers it's own dependency, you don't need to 
 implement the interface.
 
 This is a very simple check so it's also easy to debug. The dependencies are checked every time you add a dependency so it will fail early if something is 
@@ -153,9 +153,9 @@ missing. The drawback of this is that you have to add the providers in the corre
 use de\codenamephp\platform\di\ContainerBuilder;
 use de\codenamephp\platform\di\definitionsProvider\collection\ClassNamesInArray;
 use de\codenamephp\platform\di\definitionsProvider\dependency\iDependsOn;
-use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 
-class Dependency implements iDefintionsProvider {}
+class Dependency implements iDefinitionsProvider {}
 class Dependant implements iDependsOn { public function getDependencies() : array{ return [Dependency::class]; } }
 
 $collection = new ClassNamesInArray();
@@ -174,16 +174,16 @@ $container = $containerBuilder->build();
 This collection sorts the provides by their dependencies. The sort and check is performed once you get the providers. This enables you to add the providers
 in any way you see fit. But it also means that there's a slight performance overhead and debugging might be a bit harder.
 
-It also means that you have no way to influence the sequence other than declaring the dependencies so this is not only recommended but alomst
+It also means that you have no way to influence the sequence other than declaring the dependencies so this is not only recommended but almost
 necessary.
 
 ```php
 use de\codenamephp\platform\di\ContainerBuilder;
 use de\codenamephp\platform\di\definitionsProvider\collection\TopoGraph;
 use de\codenamephp\platform\di\definitionsProvider\dependency\iDependsOn;
-use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 
-class Dependency implements iDefintionsProvider {}
+class Dependency implements iDefinitionsProvider {}
 class Dependant implements iDependsOn { public function getDependencies() : array{ return [Dependency::class]; } }
 
 $collection = new TopoGraph();

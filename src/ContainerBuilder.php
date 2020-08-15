@@ -19,7 +19,7 @@
 namespace de\codenamephp\platform\di;
 
 use de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException;
-use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 use de\codenamephp\platform\di\definitionsProvider\iMetaProvider;
 use InvalidArgumentException;
 
@@ -61,12 +61,12 @@ final class ContainerBuilder implements iContainerBuilder {
    * Also the dependencies are checked here using the iHandler. If the provider implements the iDependency interface, it is used directly for the dependency
    * check. If not, it is wrapper in the Wrapper dependency which is then used.
    *
-   * @param iDefintionsProvider $provider The provider whose definitions will be added, depending on the implemented interfaces
+   * @param iDefinitionsProvider $provider The provider whose definitions will be added, depending on the implemented interfaces
    * @return iContainerBuilder
    * @throws MissingDependencyException if a dependency that the given provider relies on is missing (from dependencyHandler)
    * @throws InvalidArgumentException
    */
-  public function addDefinitionsByProvider(definitionsProvider\iDefintionsProvider $provider) : iContainerBuilder {
+  public function addDefinitionsByProvider(definitionsProvider\iDefinitionsProvider $provider) : iContainerBuilder {
     if($provider instanceof definitionsProvider\iFiles) {
       foreach($provider->getFiles() as $file) {
         $this->getContainerBuilder()->addDefinitions($file);

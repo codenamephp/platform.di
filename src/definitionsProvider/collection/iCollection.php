@@ -20,7 +20,7 @@ namespace de\codenamephp\platform\di\definitionsProvider\collection;
 
 use de\codenamephp\platform\di\definitionsProvider\dependency\CircularDependencyException;
 use de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException;
-use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 
 /**
  * Interface to collect providers. Implementations can choose to e.g. sort, modify or whatever other steps needed for the collection.
@@ -32,8 +32,8 @@ interface iCollection {
   /**
    * Gets the collection of providers
    *
-   * @return iDefintionsProvider[]
-   * @throws MissingDependencyException if one or more depdencies are missing
+   * @return iDefinitionsProvider[]
+   * @throws MissingDependencyException if one or more dependencies are missing
    * @throws CircularDependencyException if a circular dependency was detected
    *
    * @since 5.0
@@ -43,12 +43,12 @@ interface iCollection {
   /**
    * Adds the given provider to the collection
    *
-   * @param iDefintionsProvider $provider The provider to add to the collection
+   * @param iDefinitionsProvider $provider The provider to add to the collection
    * @return $this
-   * @throws MissingDependencyException if one or more depdencies are missing
+   * @throws MissingDependencyException if one or more dependencies are missing
    * @throws CircularDependencyException if a circular dependency was detected
    *
    * @since 5.0
    */
-  public function add(iDefintionsProvider $provider) : self;
+  public function add(iDefinitionsProvider $provider) : self;
 }

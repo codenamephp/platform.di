@@ -18,7 +18,7 @@
 
 namespace de\codenamephp\platform\di\definitionsProvider\collection;
 
-use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 
 /**
  * A collection that stores the providers in an array without any kind of checks, sorting etc.
@@ -30,14 +30,14 @@ final class SimpleArray implements iCollection {
   /**
    * The collection of providers
    *
-   * @var iDefintionsProvider[]
+   * @var iDefinitionsProvider[]
    */
   private array $providers = [];
 
   /**
    * Gets the collection of providers which in this case is just a getter
    *
-   * @return iDefintionsProvider[]
+   * @return iDefinitionsProvider[]
    *
    * @since 5.0
    */
@@ -48,12 +48,12 @@ final class SimpleArray implements iCollection {
   /**
    * Adds the given provider to the array without checking if it already exists
    *
-   * @param iDefintionsProvider $provider The provider to add to the collection
+   * @param iDefinitionsProvider $provider The provider to add to the collection
    * @return $this
    *
    * @since 5.0
    */
-  public function add(iDefintionsProvider $provider) : iCollection {
+  public function add(iDefinitionsProvider $provider) : iCollection {
     $this->providers[] = $provider;
     return $this;
   }

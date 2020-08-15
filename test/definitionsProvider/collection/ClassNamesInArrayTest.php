@@ -20,7 +20,7 @@ namespace de\codenamephp\platform\di\definitionsProvider\collection;
 
 use de\codenamephp\platform\di\definitionsProvider\dependency\iDependsOn;
 use de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException;
-use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 use PHPUnit\Framework\TestCase;
 
 class ClassNamesInArrayTest extends TestCase {
@@ -79,7 +79,7 @@ class ClassNamesInArrayTest extends TestCase {
   public function testadd_canAddUniqueDependencies_fromProviderClassName() : void {
     $this->sut->setCollectedDependencies(['dep 1', 'dep 2', 'dep 3']);
 
-    $provider = $this->getMockBuilder(iDefintionsProvider::class)->getMock();
+    $provider = $this->getMockBuilder(iDefinitionsProvider::class)->getMock();
 
     $this->sut->add($provider);
 

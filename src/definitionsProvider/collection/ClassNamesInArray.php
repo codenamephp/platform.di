@@ -21,7 +21,7 @@ namespace de\codenamephp\platform\di\definitionsProvider\collection;
 use de\codenamephp\platform\di\definitionsProvider\dependency\CircularDependencyException;
 use de\codenamephp\platform\di\definitionsProvider\dependency\iDependsOn;
 use de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException;
-use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 
 /**
  * Collects and compares the class names in an array. No checks are performed for parent classes or circular dependencies, jsut the information returned from the providers is used.
@@ -95,7 +95,7 @@ final class ClassNamesInArray implements iCollection {
   /**
    * Gets the collection of providers
    *
-   * @return iDefintionsProvider[]
+   * @return iDefinitionsProvider[]
    * @throws MissingDependencyException
    * @throws CircularDependencyException
    *
@@ -113,14 +113,14 @@ final class ClassNamesInArray implements iCollection {
    * If the provider does not implement the interface, just the class name of the provider is added. This way, providers that only cover their own dependency (which probably
    * are most of them) don't need to implement an additional interface (and therefore an additional method).
    *
-   * @param iDefintionsProvider $provider The provider to add to the collection
+   * @param iDefinitionsProvider $provider The provider to add to the collection
    * @return $this
    * @throws MissingDependencyException if a dependency that the given provider relies on is missing
    * @throws CircularDependencyException
    *
    * @since 5.0
    */
-  public function add(iDefintionsProvider $provider) : iCollection {
+  public function add(iDefinitionsProvider $provider) : iCollection {
     if($provider instanceof iDependsOn && count(array_diff($provider->getDependencies(), $this->getCollectedDependencies())) > 0) {
       throw new MissingDependencyException(sprintf(
           <<<EXCEPTION

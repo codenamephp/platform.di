@@ -21,7 +21,7 @@ As a general rule:
 - `\de\codenamephp\platform\di\definitionsProvider\dependency\handler\iHandler` which is replaced by the collections
 - `de\codenamephp\platform\di\definitionsProvider\dependency\iCoversDependencies` without replacement
 - `de\codenamephp\platform\di\definitionsProvider\dependency\Wrapper` without replacement
-- Removed everthing glob path related
+- Removed everything glob path related
   - `\de\codenamephp\platform\di\definitionsProvider\iGlobPaths`
   - `\de\codenamephp\platform\di\iContainerBuilder::addGlobPath`
   - `\de\codenamephp\platform\di\ContainerBuilder::addGlobPath`
@@ -51,7 +51,7 @@ Of course, I can't stop you from adding them using an anonymous class or adding 
 ### PHP-DI
 
 The biggist change is the support of php-di 6 and the dropped support of php-di 5. The migration is somwhat huge
-depending on the number of defintions. See http://php-di.org/doc/migration/6.0.html for details
+depending on the number of definitions. See http://php-di.org/doc/migration/6.0.html for details
 
 ### API
 
