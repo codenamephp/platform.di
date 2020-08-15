@@ -18,10 +18,12 @@
 
 namespace de\codenamephp\platform\di\definitionsProvider\dependency;
 
+use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+
 /**
  * Interface that can be added to definitions providers that depend on other definition provider that already have to be added to the container builder.
  */
-interface iDependsOn extends iDependency {
+interface iDependsOn extends iDefintionsProvider {
 
   /**
    * Gets an array of class names that this provider depends on. These providers need to be added to the container before this provider can be added.

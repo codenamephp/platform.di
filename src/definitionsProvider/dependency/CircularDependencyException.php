@@ -18,13 +18,8 @@
 
 namespace de\codenamephp\platform\di\definitionsProvider\dependency;
 
-use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+use de\codenamephp\platform\di\Exception;
 
-/**
- * Base interface for providers that have dependencies. This interface is just extended by the other dependencies in the package so they have a common interface.
- *
- * @since 5.0 extends the iDefinitionsProvider interface
- */
-interface iDependency extends iDefintionsProvider {
-  //put your code here
+class CircularDependencyException extends Exception {
+
 }

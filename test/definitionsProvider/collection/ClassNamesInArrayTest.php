@@ -18,10 +18,9 @@
 
 namespace de\codenamephp\platform\di\definitionsProvider\collection;
 
-use de\codenamephp\platform\di\definitionsProvider\dependency\iCoversDependencies;
-use de\codenamephp\platform\di\definitionsProvider\dependency\iDependency;
 use de\codenamephp\platform\di\definitionsProvider\dependency\iDependsOn;
 use de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException;
+use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
 use PHPUnit\Framework\TestCase;
 
 class ClassNamesInArrayTest extends TestCase {
@@ -77,22 +76,10 @@ class ClassNamesInArrayTest extends TestCase {
     self::assertSame([$provider], $this->sut->get());
   }
 
-  public function testadd_canAddUniqueDependencies_fromgetCoveredDependencies_ifProviderImplementsiCoversDependenciesInterface() : void {
+  public function testadd_canAddUniqueDependencies_fromProviderClassName() : void {
     $this->sut->setCollectedDependencies(['dep 1', 'dep 2', 'dep 3']);
 
-    $provider = $this->getMockBuilder(iCoversDependencies::class)->getMock();
-    $provider->expects(self::once())->method('getCoveredDependencies')->willReturn(['dep 2', 'dep 4']);
-
-    $this->sut->add($provider);
-
-    self::assertEquals(['dep 1', 'dep 2', 'dep 3', 'dep 4'], $this->sut->getCollectedDependencies());
-    self::assertSame([$provider], $this->sut->get());
-  }
-
-  public function testadd_canAddUniqueDependencies_fromProviderClassName_ifProviderDoesNotImplementiCoversDependenciesInterface() : void {
-    $this->sut->setCollectedDependencies(['dep 1', 'dep 2', 'dep 3']);
-
-    $provider = $this->getMockBuilder(iDependency::class)->getMock();
+    $provider = $this->getMockBuilder(iDefintionsProvider::class)->getMock();
 
     $this->sut->add($provider);
 

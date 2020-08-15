@@ -18,11 +18,9 @@
 
 namespace de\codenamephp\platform\di\definitionsProvider\collection;
 
-use de\codenamephp\platform\di\definitionsProvider\dependency\iCoversDependencies;
-use de\codenamephp\platform\di\definitionsProvider\dependency\iDependency;
+use de\codenamephp\platform\di\definitionsProvider\dependency\CircularDependencyException;
 use de\codenamephp\platform\di\definitionsProvider\dependency\iDependsOn;
 use de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException;
-use de\codenamephp\platform\di\definitionsProvider\dependency\Wrapper;
 use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
 
 /**
@@ -98,6 +96,8 @@ final class ClassNamesInArray implements iCollection {
    * Gets the collection of providers
    *
    * @return iDefintionsProvider[]
+   * @throws MissingDependencyException
+   * @throws CircularDependencyException
    *
    * @since 5.0
    */
@@ -110,36 +110,28 @@ final class ClassNamesInArray implements iCollection {
    * against the collectedDependencies array. If they are not found, a \de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException is thrown.
    * The check is not stopped on first failure, so the Exception can contain all missing dependencies, which makes debugging and adding missing dependencies more comfortable.
    *
-   * If the dependencies check out, the provider is tested for the \de\codenamephp\platform\di\definitionsProvider\dependency\iCoversDependencies interface. If the provider
-   * implements this interface, the class from getCoveredDependencies() (and only those) are added to the collectedDependencies array.
    * If the provider does not implement the interface, just the class name of the provider is added. This way, providers that only cover their own dependency (which probably
    * are most of them) don't need to implement an additional interface (and therefore an additional method).
    *
    * @param iDefintionsProvider $provider The provider to add to the collection
    * @return $this
-   *
    * @throws MissingDependencyException if a dependency that the given provider relies on is missing
-   * @since 5.0
+   * @throws CircularDependencyException
    *
+   * @since 5.0
    */
   public function add(iDefintionsProvider $provider) : iCollection {
-    $dependency = $provider instanceof iDependency ? $provider : new Wrapper($provider);
-
-    if($dependency instanceof iDependsOn && count(array_diff($dependency->getDependencies(), $this->getCollectedDependencies())) > 0) {
+    if($provider instanceof iDependsOn && count(array_diff($provider->getDependencies(), $this->getCollectedDependencies())) > 0) {
       throw new MissingDependencyException(sprintf(
           <<<EXCEPTION
           The provider "%s" is missing dependencies. Plaese add them to the container before adding this provider. Missing dependencies:
           [
             %s
           ]
-          EXCEPTION, get_class($provider), implode("\n\t", array_diff($dependency->getDependencies(), $this->getCollectedDependencies()))));
-    }
-    if($dependency instanceof iCoversDependencies) {
-      $this->addDependencies($dependency->getCoveredDependencies());
-    }else {
-      $this->addDependencies([get_class($dependency)]);
+          EXCEPTION, get_class($provider), implode("\n\t", array_diff($provider->getDependencies(), $this->getCollectedDependencies()))));
     }
 
+    $this->addDependencies([get_class($provider)]);
     $this->getCollection()->add($provider);
     return $this;
   }

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Copyright 2020 Bastian Schwarz <bastian@codename-php.de>.
  *
@@ -18,6 +18,8 @@
 
 namespace de\codenamephp\platform\di\definitionsProvider\collection;
 
+use de\codenamephp\platform\di\definitionsProvider\dependency\CircularDependencyException;
+use de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyException;
 use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
 
 /**
@@ -31,6 +33,8 @@ interface iCollection {
    * Gets the collection of providers
    *
    * @return iDefintionsProvider[]
+   * @throws MissingDependencyException if one or more depdencies are missing
+   * @throws CircularDependencyException if a circular dependency was detected
    *
    * @since 5.0
    */
@@ -41,6 +45,8 @@ interface iCollection {
    *
    * @param iDefintionsProvider $provider The provider to add to the collection
    * @return $this
+   * @throws MissingDependencyException if one or more depdencies are missing
+   * @throws CircularDependencyException if a circular dependency was detected
    *
    * @since 5.0
    */

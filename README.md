@@ -14,17 +14,17 @@ $container = $builder->build();
 $container->get('...');
 ```
 
-This creates a builder without definitions. To add definitions I recommend using on of the provider options below, especially
+This creates a builder without definitions. To add definitions I recommend using one of the provider options below, especially
 the `de\codenamephp\platform\di\definitionsProvider\iArray` provider.
 
 From there you just get your dependencies from the container.
 
 ### Using providers
 
-The best way to have configurations within modules and libraries is via providers. This way, the provider class will be used to add the files, glob paths or definitions. Every time
-the provider class is updated, the configuration will be upgraded as well
+The best way to have configurations within modules and libraries is via providers. This way, the provider class will be used to add the files or definitions. 
+Every time the provider class is updated, the configuration will be updated as well.
 
-All providers need to implement one of the de\codenamephp\platform\di\definitionsProvider\* interfaces
+All providers need to implement one of the `de\codenamephp\platform\di\definitionsProvider\*` interfaces
 
 ```php
 use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
@@ -113,8 +113,8 @@ Providers can depend on other providers, e.g. to override their definitions. If 
 
 ##### iDependsOn
 
-This interface declares that a provider depends on other providers and must implement the getDependencies() method which returns all the class names of providers that have to
-be added to the container before this provider can be added.
+This interface declares that a provider depends on other providers and must implement the getDependencies() method which returns all the class names of 
+providers that have to be added to the container before this provider can be added.
 
 ```php
 use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
@@ -128,25 +128,8 @@ class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvid
   }
 }
 ```
-##### iCoversDependency
 
-This interface declares that a provider covers one or multiple dependencies, e.g. if you built a custom provider that covers multiple other packages. You must implement the
-getCoveredDependencies() method that returns all class names of providers that this provider covers (including its own).
-
-```php
-use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
-
-class OtherDependencyThatIsNowCovered implements iDefintionsProvider{}
-
-class DefintionsProvider implements de\codenamephp\platform\di\definitionsProvider\dependency\iCoversDependencies {
-
-  public function getCoveredDependencies() : array {
-    return [OtherDependencyThatIsNowCovered::class];
-  }
-}
-```
-
-#### Dependency checks
+### Dependency checks
 
 When you have modules that depend on each other most often the defintions depend on each other as well. This is what the dependency collections are for.
 They collect the providers (duh) and also check the dependencies using the interfaces from above. They implement the 
@@ -159,7 +142,7 @@ collection as a simple storage.
 
 #### ClassNamesInArray
 
-This collection collects the class names of depdencies in an array and checks the dependencies against them. If the [iDependsOn](#idependson) interface is 
+This collection collects the class names of depdencies in an array and checks the dependencies against them. If the [iDependsOn](#idependson) interface is
 not added to the provider, the class name of the provider is added automaticly, so if your provider only covers it's own depdendency, you don't need to 
 implement the interface.
 
@@ -167,17 +150,49 @@ This is a very simple check so it's also easy to debug. The dependencies are che
 missing. The drawback of this is that you have to add the providers in the correct order.
 
 ```php
-use de\codenamephp\platform\di\ContainerBuilder;use de\codenamephp\platform\di\definitionsProvider\collection\ClassNamesInArray;
+use de\codenamephp\platform\di\ContainerBuilder;
+use de\codenamephp\platform\di\definitionsProvider\collection\ClassNamesInArray;
 use de\codenamephp\platform\di\definitionsProvider\dependency\iDependsOn;
-use de\codenamephp\platform\di\definitionsProvider\dependency\iCoversDependencies;
+use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+
+class Dependency implements iDefintionsProvider {}
+class Dependant implements iDependsOn { public function getDependencies() : array{ return [Dependency::class]; } }
 
 $collection = new ClassNamesInArray();
-$collection->add(new class() implements iDependsOn {});
-$collection->add(new class() implements iCoversDependencies {});
+$collection->add(new Dependency());
+$collection->add(new Dependant()); // would fail if those were reversed
 //...
 
 $containerBuilder = new ContainerBuilder();
 foreach($collection->get() as $provider) { $containerBuilder->addDefinitionsByProvider($provider); }
+$container = $containerBuilder->build();
+//...
+```
+
+#### TopoGraph
+
+This collection sorts the provides by their dependencies. The sort and check is performed once you get the providers. This enables you to add the providers
+in any way you see fit. But it also means that there's a slight performance overhead and debugging might be a bit harder.
+
+It also means that you have no way to influence the sequence other than declaring the dependencies so this is not only recommended but alomst
+necessary.
+
+```php
+use de\codenamephp\platform\di\ContainerBuilder;
+use de\codenamephp\platform\di\definitionsProvider\collection\TopoGraph;
+use de\codenamephp\platform\di\definitionsProvider\dependency\iDependsOn;
+use de\codenamephp\platform\di\definitionsProvider\iDefintionsProvider;
+
+class Dependency implements iDefintionsProvider {}
+class Dependant implements iDependsOn { public function getDependencies() : array{ return [Dependency::class]; } }
+
+$collection = new TopoGraph();
+$collection->add(new Dependant()); // the sequence doesn't matter
+$collection->add(new Dependency());
+//...
+
+$containerBuilder = new ContainerBuilder();
+foreach($collection->get() as $provider) { $containerBuilder->addDefinitionsByProvider($provider); } // Dependency will be returned/added first
 $container = $containerBuilder->build();
 //...
 ```
