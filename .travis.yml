@@ -2,6 +2,13 @@ language: php
 php:
  - '7.4'
 
+if: sender != "github-actions[bot]"
+
+branches:
+ only:
+  - master
+  - /^\d+\.\d+(\.\d+)?(-\S*)?$/
+
 cache:
  directories:
   - $HOME/.cache/composer
