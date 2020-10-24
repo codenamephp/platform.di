@@ -1,14 +1,15 @@
-
-name: Update Release Info
+name: Draft Release
 on:
   push:
-    branches:
-      - master
-
+    branches: [ master ]
+    paths:
+      - '!**.md'
 jobs:
-  update_version:
+  draft_release:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
       - name: calculate next version
         id: version
         uses: patrickjahns/version-drafter-action@v1
@@ -22,9 +23,3 @@ jobs:
           name: ${{ format('{0}', steps.version.outputs.next-version) }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/checkout@master
-      - name: update changelog
-        uses: patrickjahns/chlgr@v1
-        with:
-          commit-msg-prefix: '[CHANGELOG]'
-          release-version: ${{ steps.version.outputs.next-version }}
