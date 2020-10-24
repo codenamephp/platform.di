@@ -1,5 +1,7 @@
 # platform.di
 
+![CI](https://github.com/codenamephp/platform.di/workflows/CI/badge.svg)
+
 Simple dependency injection container based on <a href="http://www.php-di.org" target="_blank">www.php-di.org</a>
 
 ## Installation
