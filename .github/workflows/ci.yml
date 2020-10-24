@@ -9,6 +9,7 @@ on:
 jobs:
  test_latest:
   runs-on: ubuntu-latest
+
   steps:
    - name: Checkout
      uses: actions/checkout@v2
@@ -18,15 +19,13 @@ jobs:
 
    - name: Get Composer Cache Directory
      id: composer-cache
-     run: |
-      echo "::set-output name=dir::$(composer config cache-files-dir)"
+     run: echo "::set-output name=dir::$(composer config cache-files-dir)"
    - name: Setup cache
      uses: actions/cache@v2
      with:
       path: ${{ steps.composer-cache.outputs.dir }}
       key: ${{ runner.os }}-composer-latest
-      restore-keys: |
-       ${{ runner.os }}-composer-
+      restore-keys: ${{ runner.os }}-composer-latest
 
    - name: Install dependencies
      if: steps.composer-cache.outputs.cache-hit != 'true'
@@ -34,8 +33,10 @@ jobs:
 
    - name: Run CI tools
      run: composer ci-all
+
  test_lowest:
   runs-on: ubuntu-latest
+
   steps:
    - name: Checkout
      uses: actions/checkout@v2
@@ -45,15 +46,13 @@ jobs:
 
    - name: Get Composer Cache Directory
      id: composer-cache
-     run: |
-      echo "::set-output name=dir::$(composer config cache-files-dir)"
+     run: echo "::set-output name=dir::$(composer config cache-files-dir)"
    - name: Setup cache
      uses: actions/cache@v2
      with:
       path: ${{ steps.composer-cache.outputs.dir }}
-      key: ${{ runner.os }}-composer-latest
-      restore-keys: |
-       ${{ runner.os }}-composer-
+      key: ${{ runner.os }}-composer-lowest
+      restore-keys: ${{ runner.os }}-composer-lowest
 
    - name: Install dependencies
      if: steps.composer-cache.outputs.cache-hit != 'true'
