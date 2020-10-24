@@ -1,8 +1,7 @@
 name: Draft Release
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
   draft_release:
