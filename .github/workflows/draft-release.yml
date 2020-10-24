@@ -1,4 +1,4 @@
-name: Update Release Info
+name: Draft Release
 on:
   push:
     branches:
