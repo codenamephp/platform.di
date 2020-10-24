@@ -8,6 +8,8 @@ jobs:
   draft_release:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
       - name: calculate next version
         id: version
         uses: patrickjahns/version-drafter-action@v1
