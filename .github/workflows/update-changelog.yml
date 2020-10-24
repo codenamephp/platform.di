@@ -12,15 +12,15 @@ jobs:
      uses: actions/checkout@v2
 
    - name: create changelog
-     uses: heinrichreimer/github-changelog-generator-action@v2
+     uses: charmixer/auto-changelog-action@v1
      with:
       token: ${{ secrets.GITHUB_TOKEN }}
+      excludeLabels: "duplicate,question,invalid,wontfix,skip-changelog"
 
    - name: commit updated changelog
      uses: EndBug/add-and-commit@v5
      with:
       message: "[CHANGELOG] Updated changelog"
       add: "CHANGELOG.md"
-      excludeLabels: "duplicate,question,invalid,wontfix,skip-changelog"
      env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
