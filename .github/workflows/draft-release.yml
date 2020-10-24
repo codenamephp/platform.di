@@ -2,11 +2,12 @@ name: Draft Release
 on:
   push:
     branches: [ master ]
-    paths:
-      - '**'
-      - '!**.md'
+    paths-ignore:
+      - '**.md'
+
 jobs:
   draft_release:
+    name: Create draft release
     runs-on: ubuntu-latest
     steps:
       - name: checkout

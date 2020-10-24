@@ -2,12 +2,12 @@ name: Update Changelog
 on:
  push:
   branches: [ master ]
-  paths:
-   - '**'
-   - '!**.md'
+  paths-ignore:
+   - '**.md'
 
 jobs:
  update_changelog:
+  name: Update changelog
   runs-on: ubuntu-latest
   steps:
    - name: Checkout
