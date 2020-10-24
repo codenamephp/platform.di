@@ -3,6 +3,7 @@ on:
   push:
     branches: [ master ]
     paths:
+      - '**'
       - '!**.md'
 jobs:
   draft_release:
