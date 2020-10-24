@@ -15,7 +15,7 @@ jobs:
      uses: charmixer/auto-changelog-action@v1
      with:
       token: ${{ secrets.GITHUB_TOKEN }}
-      excludeLabels: "duplicate,question,invalid,wontfix,skip-changelog"
+      exclude_labels: "duplicate,question,invalid,wontfix,skip-changelog"
 
    - name: commit updated changelog
      uses: EndBug/add-and-commit@v5
