@@ -17,6 +17,9 @@
                   <Item>
                     <option name="path" value=".github/workflows/draft-release.yml" />
                   </Item>
+                  <Item>
+                    <option name="path" value=".github/workflows/ci.yml" />
+                  </Item>
                 </list>
               </option>
             </SchemaInfo>
