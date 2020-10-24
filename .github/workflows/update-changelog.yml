@@ -1,0 +1,22 @@
+name: Update Changelog
+on:
+ push:
+  branches:
+   - master
+
+jobs:
+ update_changelog:
+  runs-on: ubuntu-latest
+  steps:
+   - name: create changelog
+     uses: heinrichreimer/github-changelog-generator-action@v2
+     with:
+      token: ${{ secrets.GITHUB_TOKEN }}
+   - name: commit updated changelog
+     uses: EndBug/add-and-commit@v5
+     with:
+      message: "[CHANGELOG] Updated changelog"
+      add: "CHANGELOG.md"
+      excludeLabels: "duplicate,question,invalid,wontfix,skip-changelog"
+     env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
