@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/codenamephp/platform.di/tree/HEAD)
+
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.0.0...HEAD)
+
+**Merged pull requests:**
+
+- Updated CI tools [\#36](https://github.com/codenamephp/platform.di/pull/36) ([bastianschwarz](https://github.com/bastianschwarz))
+
 ## [5.0.0](https://github.com/codenamephp/platform.di/tree/5.0.0) (2020-08-15)
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/4.1.2...5.0.0)
