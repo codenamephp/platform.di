@@ -29,10 +29,6 @@
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/4.1.1...4.1.2)
 
-**Implemented enhancements:**
-
-- Bring repo back up to standards [\#19](https://github.com/codenamephp/platform.di/issues/19)
-
 **Fixed bugs:**
 
 - ContainerBuilder uses wrong class [\#27](https://github.com/codenamephp/platform.di/issues/27)
@@ -61,6 +57,10 @@
 ## [4.0.0](https://github.com/codenamephp/platform.di/tree/4.0.0) (2020-03-07)
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/3.0.0...4.0.0)
+
+**Implemented enhancements:**
+
+- Bring repo back up to standards [\#19](https://github.com/codenamephp/platform.di/issues/19)
 
 **Merged pull requests:**
 
