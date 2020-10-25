@@ -1,9 +1,10 @@
 name: Release
 on:
  workflow_dispatch:
-  version:
-   description: 'The version for the relase. If not set defaults to auto resolved version'
-   required: false
+  inputs:
+   version:
+    description: 'The version for the relase. If not set defaults to auto resolved version'
+    required: false
 
 jobs:
  test_latest:
