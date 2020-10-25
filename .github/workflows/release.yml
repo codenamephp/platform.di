@@ -80,6 +80,8 @@ jobs:
      uses: patrickjahns/version-drafter-action@v1
      env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   - name: debug
+     run: echo ${{ format('{0}', steps.version.outputs.next-version) }}
 
  update_changelog:
   name: Update the changelog with the current relase version
