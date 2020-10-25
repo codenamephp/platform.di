@@ -67,7 +67,7 @@ jobs:
   name: Find release version
   runs-on: ubuntu-latest
   outputs:
-   version: ${{ steps.version_input.outputs.version || steps.version_drafter.outputs.next-version }}
+   version: ${{ steps.version_input.outputs.version || steps.versiondrafter.outputs.next-version }}
 
   steps:
    - name: Use version from input
@@ -76,12 +76,12 @@ jobs:
      run: echo "::set-output name=version::${{ github.event.inputs.version }}"
    - name: calculate next version
      if: '!github.event.inputs.version'
-     id: version_drafter
-     uses: patrickjahns/version-drafter-action@v1
+     id: versiondrafter
+     uses: patrickjahns/version-drafter-action@v1.1.2
      env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
    - name: debug
-     run: echo ${{ format('{0}', steps.version_drafter.outputs.next-version) }}
+     run: echo ${{ format('{0}', steps.versiondrafter.outputs.next-version) }}
 
  update_changelog:
   name: Update the changelog with the current relase version
