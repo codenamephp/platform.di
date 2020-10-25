@@ -70,15 +70,14 @@ jobs:
    version: ${{ steps.version_input.outputs.version || steps.version_drafter.outputs.next-version }}
 
   steps:
-   - name: checkout
-     uses: actions/checkout@v2
    - name: Use version from input
      id: version_input
      if: github.event.inputs.version
      run: echo "::set-output name=version::${{ github.event.inputs.version }}"
+   - name: checkout
+     uses: actions/checkout@v2
    - name: calculate next version
      id: version_drafter
-     if: '!github.event.inputs.version'
      uses: patrickjahns/version-drafter-action@v1
      env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
