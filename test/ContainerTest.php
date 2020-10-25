@@ -35,3 +35,4 @@ class ContainerTest extends TestCase {
     self::assertInstanceOf(Container::class, $this->sut->get(iContainer::class));
   }
 }
+
