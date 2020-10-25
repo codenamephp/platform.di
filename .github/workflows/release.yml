@@ -67,7 +67,7 @@ jobs:
   name: Find release version
   runs-on: ubuntu-latest
   outputs:
-   version: ${{ steps.version_input.outputs.version || steps.verson_drafter.outputs.next-version }}
+   version: ${{ steps.version_input.outputs.version || steps.version_drafter.outputs.next-version }}
 
   steps:
    - name: Use version from input
