@@ -121,7 +121,7 @@ jobs:
    - update_changelog
 
   steps:
-   - name: draft release
+   - name: Publish release
      uses: release-drafter/release-drafter@v5
      with:
       version: ${{ format('{0}', needs.release_version.outputs.version) }}
