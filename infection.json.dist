@@ -10,7 +10,10 @@
         "customPath": "tools\/phpunit.phar"
     },
     "logs": {
-        "text": ".logs/infection.log"
+        "text": ".logs/infection.log",
+        "badge": {
+            "branch": "master"
+        }
     },
     "mutators": {
         "@default": true
