@@ -24,7 +24,6 @@
 **Merged pull requests:**
 
 - Update dealerdirect/phpcodesniffer-composer-installer requirement from ^0.5 || ^0.6 to ^0.5 || ^0.6 || ^0.7 [\#30](https://github.com/codenamephp/platform.di/pull/30) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
-- PHPCS/Composer: update PHPCompatibility [\#18](https://github.com/codenamephp/platform.di/pull/18) ([jrfnl](https://github.com/jrfnl))
 
 ## [4.1.2](https://github.com/codenamephp/platform.di/tree/4.1.2) (2020-03-08)
 
@@ -37,6 +36,7 @@
 **Merged pull requests:**
 
 - \[RELEASE\] 4.1.2 [\#26](https://github.com/codenamephp/platform.di/pull/26) ([github-actions[bot]](https://github.com/apps/github-actions))
+- Update dealerdirect/phpcodesniffer-composer-installer requirement from ^0.5 to ^0.5 || ^0.6 [\#22](https://github.com/codenamephp/platform.di/pull/22) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [4.1.1](https://github.com/codenamephp/platform.di/tree/4.1.1) (2020-03-08)
 
@@ -45,7 +45,6 @@
 **Merged pull requests:**
 
 - \[RELEASE\] 4.1.1 [\#25](https://github.com/codenamephp/platform.di/pull/25) ([github-actions[bot]](https://github.com/apps/github-actions))
-- Update dealerdirect/phpcodesniffer-composer-installer requirement from ^0.5 to ^0.5 || ^0.6 [\#22](https://github.com/codenamephp/platform.di/pull/22) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [4.1.0](https://github.com/codenamephp/platform.di/tree/4.1.0) (2020-03-07)
 
@@ -62,6 +61,10 @@
 **Implemented enhancements:**
 
 - Bring repo back up to standards [\#19](https://github.com/codenamephp/platform.di/issues/19)
+
+**Merged pull requests:**
+
+- PHPCS/Composer: update PHPCompatibility [\#18](https://github.com/codenamephp/platform.di/pull/18) ([jrfnl](https://github.com/jrfnl))
 
 ## [3.0.0](https://github.com/codenamephp/platform.di/tree/3.0.0) (2018-08-19)
 
