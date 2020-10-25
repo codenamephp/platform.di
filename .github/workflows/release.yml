@@ -66,8 +66,14 @@ jobs:
  release_version:
   name: Find release version
   runs-on: ubuntu-latest
+  outputs:
+   version: ${{ steps.version_input.outputs.version || steps.version_drafter.outputs.next-version }}
 
   steps:
+   - name: Use version from input
+     id: version_input
+     if: github.event.inputs.version
+     run: echo "::set-output name=version::${{ github.event.inputs.version }}"
    - name: checkout
      uses: actions/checkout@v2
    - name: calculate next version
@@ -77,10 +83,11 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
    - name: debug
      run: echo ${{ format('{0}', steps.version_drafter.outputs.next-version) }}
-   - name: Use version from input
-     id: version_input
-     if: github.event.inputs.version
-     run: echo "::set-output name=version::${{ github.event.inputs.version }}"
+   - name: Desperation
+     if: false
+     uses: release-drafter/release-drafter@v5
+     env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
  update_changelog:
   name: Update the changelog with the current relase version
