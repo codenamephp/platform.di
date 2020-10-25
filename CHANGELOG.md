@@ -24,7 +24,6 @@
 **Merged pull requests:**
 
 - Update dealerdirect/phpcodesniffer-composer-installer requirement from ^0.5 || ^0.6 to ^0.5 || ^0.6 || ^0.7 [\#30](https://github.com/codenamephp/platform.di/pull/30) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
-- \[RELEASE\] 4.1.2 [\#26](https://github.com/codenamephp/platform.di/pull/26) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [4.1.2](https://github.com/codenamephp/platform.di/tree/4.1.2) (2020-03-08)
 
@@ -33,6 +32,10 @@
 **Fixed bugs:**
 
 - ContainerBuilder uses wrong class [\#27](https://github.com/codenamephp/platform.di/issues/27)
+
+**Merged pull requests:**
+
+- \[RELEASE\] 4.1.2 [\#26](https://github.com/codenamephp/platform.di/pull/26) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [4.1.1](https://github.com/codenamephp/platform.di/tree/4.1.1) (2020-03-08)
 
@@ -50,10 +53,6 @@
 **Implemented enhancements:**
 
 - Add MetaProvider interface [\#20](https://github.com/codenamephp/platform.di/issues/20)
-
-**Fixed bugs:**
-
-- Add default definitions for interfaces [\#13](https://github.com/codenamephp/platform.di/issues/13)
 
 ## [4.0.0](https://github.com/codenamephp/platform.di/tree/4.0.0) (2020-03-07)
 
@@ -91,6 +90,10 @@
 **Implemented enhancements:**
 
 - Provider dependencies [\#14](https://github.com/codenamephp/platform.di/pull/14) ([bastianschwarz](https://github.com/bastianschwarz))
+
+**Fixed bugs:**
+
+- Add default definitions for interfaces [\#13](https://github.com/codenamephp/platform.di/issues/13)
 
 ## [2.0.1](https://github.com/codenamephp/platform.di/tree/2.0.1) (2016-05-26)
 
