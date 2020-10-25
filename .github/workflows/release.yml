@@ -75,7 +75,7 @@ jobs:
      if: github.event.inputs.home
      run: echo "::set-output name=version::${{ github.event.inputs.home }}!"
    - name: calculate next version
-     if: ! github.event.inputs.home
+     if: '!github.event.inputs.home'
      id: version_drafter
      uses: patrickjahns/version-drafter-action@v1
      env:
