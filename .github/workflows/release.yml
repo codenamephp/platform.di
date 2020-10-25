@@ -84,14 +84,13 @@ jobs:
  update_changelog:
   name: Update the changelog with the current relase version
   runs-on: ubuntu-latest
+  if: needs.release_version.outputs.version
   needs:
    - test_lowest
    - test_latest
    - release_version
 
   steps:
-   - name: debug
-     run: echo ${{ github.event.inputs.version }}
    - name: checkout
      uses: actions/checkout@v2
 
@@ -114,6 +113,7 @@ jobs:
  publish_release:
   name: Update changelog and publish release
   runs-on: ubuntu-latest
+  if: needs.release_version.outputs.version
   needs:
    - test_lowest
    - test_latest
