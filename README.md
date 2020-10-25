@@ -1,7 +1,13 @@
 # platform.di
 
+![Packagist Version](https://img.shields.io/packagist/v/codenamephp/platform.di)
+![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/codenamephp/platform.di)
+![Lines of code](https://img.shields.io/tokei/lines/github/codenamephp/platform.di)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/codenamephp/platform.di)
 ![CI](https://github.com/codenamephp/platform.di/workflows/CI/badge.svg)
-[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fcodenamephp%2Fplatform.di%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/codenamephp/platform.di/master)
+![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fcodenamephp%2Fplatform.di%2Fmaster)
+![Packagist Downloads](https://img.shields.io/packagist/dt/codenamephp/platform.di)
+![GitHub](https://img.shields.io/github/license/codenamephp/platform.di)
 
 Simple dependency injection container based on <a href="http://www.php-di.org" target="_blank">www.php-di.org</a>
 
