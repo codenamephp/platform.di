@@ -37,6 +37,8 @@ jobs:
      run: composer update --prefer-dist --no-ansi --no-interaction --no-progress
 
    - name: Run CI tools
+     env:
+      STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
      run: composer ci-all
 
  test_lowest:
@@ -65,4 +67,6 @@ jobs:
      run: composer update --prefer-dist --no-ansi --no-interaction --no-progress --prefer-lowest
 
    - name: Run CI tools
+     env:
+      STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
      run: composer ci-all
