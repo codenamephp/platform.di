@@ -72,7 +72,7 @@ jobs:
   steps:
    - name: Use version from input
      id: version_input
-     if: github.event.inputs.home
+     if: github.event.inputs.version
      run: echo "::set-output name=version::${{ github.event.inputs.version }}"
    - name: calculate next version
      if: '!github.event.inputs.version'
