@@ -1,9 +1,10 @@
 name: Release
 on:
- push:
-  branches: [ master ]
-  paths-ignore:
-   - '**.md'
+ workflow_dispatch:
+  inputs:
+   version:
+    description: 'The version for the relase. If not set defaults to auto resolved version'
+    required: false
 
 jobs:
  test_latest:
@@ -69,6 +70,8 @@ jobs:
   steps:
    - name: checkout
      uses: actions/checkout@v2
+     with:
+      fetch-depth: 0
    - name: calculate next version
      id: version_drafter
      uses: patrickjahns/version-drafter-action@v1
