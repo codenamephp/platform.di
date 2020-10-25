@@ -1,6 +1,7 @@
 # platform.di
 
 ![CI](https://github.com/codenamephp/platform.di/workflows/CI/badge.svg)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fcodenamephp%2Fplatform.di%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/codenamephp/platform.di/master)
 
 Simple dependency injection container based on <a href="http://www.php-di.org" target="_blank">www.php-di.org</a>
 
