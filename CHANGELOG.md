@@ -4,10 +4,6 @@
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/5.0.0...HEAD)
 
-**Implemented enhancements:**
-
-- Provider dependencies [\#14](https://github.com/codenamephp/platform.di/pull/14) ([bastianschwarz](https://github.com/bastianschwarz))
-
 **Merged pull requests:**
 
 - Updated CI tools [\#36](https://github.com/codenamephp/platform.di/pull/36) ([bastianschwarz](https://github.com/bastianschwarz))
@@ -37,10 +33,6 @@
 
 - ContainerBuilder uses wrong class [\#27](https://github.com/codenamephp/platform.di/issues/27)
 
-**Merged pull requests:**
-
-- \[RELEASE\] 4.1.2 [\#26](https://github.com/codenamephp/platform.di/pull/26) ([github-actions[bot]](https://github.com/apps/github-actions))
-
 ## [4.1.1](https://github.com/codenamephp/platform.di/tree/4.1.1) (2020-03-08)
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/4.1.0...4.1.1)
@@ -54,6 +46,10 @@
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/4.0.0...4.1.0)
 
+**Implemented enhancements:**
+
+- Add MetaProvider interface [\#20](https://github.com/codenamephp/platform.di/issues/20)
+
 ## [4.0.0](https://github.com/codenamephp/platform.di/tree/4.0.0) (2020-03-07)
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/3.0.0...4.0.0)
@@ -64,6 +60,7 @@
 
 **Merged pull requests:**
 
+- \[RELEASE\] 4.1.2 [\#26](https://github.com/codenamephp/platform.di/pull/26) ([github-actions[bot]](https://github.com/apps/github-actions))
 - PHPCS/Composer: update PHPCompatibility [\#18](https://github.com/codenamephp/platform.di/pull/18) ([jrfnl](https://github.com/jrfnl))
 
 ## [3.0.0](https://github.com/codenamephp/platform.di/tree/3.0.0) (2018-08-19)
@@ -72,7 +69,6 @@
 
 **Implemented enhancements:**
 
-- Add MetaProvider interface [\#20](https://github.com/codenamephp/platform.di/issues/20)
 - Add trait [\#17](https://github.com/codenamephp/platform.di/issues/17)
 - Update to PHP-DI 6 [\#15](https://github.com/codenamephp/platform.di/issues/15)
 
@@ -87,6 +83,10 @@
 ## [2.1.0](https://github.com/codenamephp/platform.di/tree/2.1.0) (2016-10-22)
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/2.0.1...2.1.0)
+
+**Implemented enhancements:**
+
+- Provider dependencies [\#14](https://github.com/codenamephp/platform.di/pull/14) ([bastianschwarz](https://github.com/bastianschwarz))
 
 **Fixed bugs:**
 
