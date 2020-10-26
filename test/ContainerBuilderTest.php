@@ -23,7 +23,6 @@ use de\codenamephp\platform\di\definitionsProvider\iFiles;
 use de\codenamephp\platform\di\definitionsProvider\iMetaProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
-use Symfony\Component\Filesystem\Filesystem;
 
 /**
  *
@@ -38,13 +37,6 @@ final class ContainerBuilderTest extends TestCase {
     $containerBuilder = $this->createMock(\DI\ContainerBuilder::class);
 
     $this->sut = new ContainerBuilder($containerBuilder);
-  }
-
-  protected function tearDown() : void {
-    parent::tearDown();
-
-    $fileSystem = new Filesystem();
-    $fileSystem->remove(__DIR__ . '/tmp');
   }
 
   public function test__construct_canCreateDefaultContainer_ifNoContainerIsGiven() : void {
