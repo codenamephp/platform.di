@@ -29,9 +29,8 @@ jobs:
      uses: actions/cache@v2
      with:
       path: ${{ steps.composer-cache.outputs.dir }}
-      key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-      restore-keys: |
-       ${{ runner.os }}-composer-
+      key: ${{ runner.os }}-composer-latest
+      restore-keys: ${{ runner.os }}-composer-
 
    - name: Install dependencies
      if: steps.composer-cache.outputs.cache-hit != 'true'
@@ -60,9 +59,8 @@ jobs:
      uses: actions/cache@v2
      with:
       path: ${{ steps.composer-cache.outputs.dir }}
-      key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-      restore-keys: |
-       ${{ runner.os }}-composer-
+      key: ${{ runner.os }}-composer-lowest
+      restore-keys: ${{ runner.os }}-composer-
 
    - name: Install dependencies
      if: steps.composer-cache.outputs.cache-hit != 'true'
