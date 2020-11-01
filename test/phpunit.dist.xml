@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
+<!--~
   ~ Copyright 2020 Bastian Schwarz <bastian@codename-php.de>.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,18 +15,18 @@
   ~ limitations under the License.
   ~
   -->
-
-<phpunit colors="true" bootstrap="./../vendor/autoload.php">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" colors="true" bootstrap="./../vendor/autoload.php"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage>
+    <include>
+      <directory suffix=".php">./../src</directory>
+    </include>
+  </coverage>
   <testsuites>
     <testsuite name="all">
       <directory>.</directory>
     </testsuite>
   </testsuites>
-  <filter>
-    <whitelist>
-      <directory suffix=".php">./../src</directory>
-    </whitelist>
-  </filter>
   <php>
     <ini name="date.timezone" value="Europe/Berlin"/>
   </php>
