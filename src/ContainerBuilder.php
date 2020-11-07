@@ -23,9 +23,6 @@ use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 use de\codenamephp\platform\di\definitionsProvider\iMetaProvider;
 use InvalidArgumentException;
 
-/**
- * @since 5.0 removed get/setDependencyHandler, addGlobPath
- */
 final class ContainerBuilder implements iContainerBuilder {
 
   /**

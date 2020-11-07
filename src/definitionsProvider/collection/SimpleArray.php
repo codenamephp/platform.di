@@ -22,8 +22,6 @@ use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 
 /**
  * A collection that stores the providers in an array without any kind of checks, sorting etc.
- *
- * @since 5.0
  */
 final class SimpleArray implements iCollection {
 
@@ -38,8 +36,6 @@ final class SimpleArray implements iCollection {
    * Gets the collection of providers which in this case is just a getter
    *
    * @return iDefinitionsProvider[]
-   *
-   * @since 5.0
    */
   public function get() : array {
     return $this->providers;
@@ -50,8 +46,6 @@ final class SimpleArray implements iCollection {
    *
    * @param iDefinitionsProvider $provider The provider to add to the collection
    * @return $this
-   *
-   * @since 5.0
    */
   public function add(iDefinitionsProvider $provider) : iCollection {
     $this->providers[] = $provider;

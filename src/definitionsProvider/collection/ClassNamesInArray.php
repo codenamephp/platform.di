@@ -25,8 +25,6 @@ use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 
 /**
  * Collects and compares the class names in an array. No checks are performed for parent classes or circular dependencies, jsut the information returned from the providers is used.
- *
- * @since 5.0
  */
 final class ClassNamesInArray implements iCollection {
 
@@ -53,8 +51,6 @@ final class ClassNamesInArray implements iCollection {
 
   /**
    * @return iCollection
-   *
-   * @since 5.0
    */
   public function getCollection() : iCollection {
     return $this->collection;
@@ -64,8 +60,6 @@ final class ClassNamesInArray implements iCollection {
    * @param iCollection $collection
    *
    * @return $this
-   *
-   * @since 5.0
    */
   public function setCollection(iCollection $collection) : self {
     $this->collection = $collection;
@@ -74,8 +68,6 @@ final class ClassNamesInArray implements iCollection {
 
   /**
    * @return string[]
-   *
-   * @since 5.0
    */
   public function getCollectedDependencies() : array {
     return $this->collectedDependencies;
@@ -84,8 +76,6 @@ final class ClassNamesInArray implements iCollection {
   /**
    * @param string[] $collectedDependencies
    * @return ClassNamesInArray
-   *
-   * @since 5.0
    */
   public function setCollectedDependencies(array $collectedDependencies) : ClassNamesInArray {
     $this->collectedDependencies = $collectedDependencies;
@@ -98,8 +88,6 @@ final class ClassNamesInArray implements iCollection {
    * @return iDefinitionsProvider[]
    * @throws MissingDependencyException
    * @throws CircularDependencyException
-   *
-   * @since 5.0
    */
   public function get() : array {
     return $this->getCollection()->get();
@@ -117,8 +105,6 @@ final class ClassNamesInArray implements iCollection {
    * @return $this
    * @throws MissingDependencyException if a dependency that the given provider relies on is missing
    * @throws CircularDependencyException
-   *
-   * @since 5.0
    */
   public function add(iDefinitionsProvider $provider) : iCollection {
     if($provider instanceof iDependsOn && count(array_diff($provider->getDependencies(), $this->getCollectedDependencies())) > 0) {
@@ -142,8 +128,6 @@ final class ClassNamesInArray implements iCollection {
    * @param string[] $dependenciesToAdd
    *
    * @return $this
-   *
-   * @since 5.0
    */
   public function addDependencies(array $dependenciesToAdd) : self {
     return $this->setCollectedDependencies(array_values(array_unique(array_merge($this->getCollectedDependencies(), $dependenciesToAdd))));

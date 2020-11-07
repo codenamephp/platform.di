@@ -23,9 +23,6 @@ use Psr\Container\ContainerInterface;
 
 /**
  * Interface that extends the default interop container interface with factory interface from DI
- *
- * @since 3.0 \Interop\Container\ContainerInterface was replaced with \Psr\Container\ContainerInterface
- * @since 5.0 removed set method
  */
 interface iContainer extends ContainerInterface, FactoryInterface {
 }
