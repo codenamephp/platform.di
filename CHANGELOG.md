@@ -4,6 +4,11 @@
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/5.0.0...HEAD)
 
+**Implemented enhancements:**
+
+- Self creating dependencies [\#34](https://github.com/codenamephp/platform.di/issues/34)
+- Auto created dependencies [\#38](https://github.com/codenamephp/platform.di/pull/38) ([bastianschwarz](https://github.com/bastianschwarz))
+
 **Merged pull requests:**
 
 - Remove unused symfony/filesystem package [\#37](https://github.com/codenamephp/platform.di/pull/37) ([bastianschwarz](https://github.com/bastianschwarz))
@@ -33,6 +38,7 @@
 **Fixed bugs:**
 
 - ContainerBuilder uses wrong class [\#27](https://github.com/codenamephp/platform.di/issues/27)
+- Dependency handling only collects class if the interface is given [\#16](https://github.com/codenamephp/platform.di/issues/16)
 
 **Merged pull requests:**
 
@@ -75,10 +81,6 @@
 
 - Add trait [\#17](https://github.com/codenamephp/platform.di/issues/17)
 - Update to PHP-DI 6 [\#15](https://github.com/codenamephp/platform.di/issues/15)
-
-**Fixed bugs:**
-
-- Dependency handling only collects class if the interface is given [\#16](https://github.com/codenamephp/platform.di/issues/16)
 
 ## [2.2.0](https://github.com/codenamephp/platform.di/tree/2.2.0) (2018-08-19)
 
