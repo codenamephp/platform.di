@@ -30,6 +30,7 @@
 **Merged pull requests:**
 
 - Update dealerdirect/phpcodesniffer-composer-installer requirement from ^0.5 || ^0.6 to ^0.5 || ^0.6 || ^0.7 [\#30](https://github.com/codenamephp/platform.di/pull/30) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- \[RELEASE\] 4.1.2 [\#26](https://github.com/codenamephp/platform.di/pull/26) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [4.1.2](https://github.com/codenamephp/platform.di/tree/4.1.2) (2020-03-08)
 
@@ -38,11 +39,6 @@
 **Fixed bugs:**
 
 - ContainerBuilder uses wrong class [\#27](https://github.com/codenamephp/platform.di/issues/27)
-- Dependency handling only collects class if the interface is given [\#16](https://github.com/codenamephp/platform.di/issues/16)
-
-**Merged pull requests:**
-
-- \[RELEASE\] 4.1.2 [\#26](https://github.com/codenamephp/platform.di/pull/26) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [4.1.1](https://github.com/codenamephp/platform.di/tree/4.1.1) (2020-03-08)
 
@@ -81,6 +77,10 @@
 
 - Add trait [\#17](https://github.com/codenamephp/platform.di/issues/17)
 - Update to PHP-DI 6 [\#15](https://github.com/codenamephp/platform.di/issues/15)
+
+**Fixed bugs:**
+
+- Dependency handling only collects class if the interface is given [\#16](https://github.com/codenamephp/platform.di/issues/16)
 
 ## [2.2.0](https://github.com/codenamephp/platform.di/tree/2.2.0) (2018-08-19)
 
