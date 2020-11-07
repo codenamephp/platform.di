@@ -2,6 +2,8 @@ name: Update Changelog
 on:
  push:
   branches: [ master ]
+  tags:
+   - '*'
   paths-ignore:
    - '**.md'
 
