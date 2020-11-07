@@ -120,6 +120,12 @@ Providers can depend on other providers, e.g. to override their definitions. If 
 
 #### Dependency Providers
 
+##### DependencyFactory
+
+Since 5.1 a `\de\codenamephp\platform\di\definitionsProvider\factory\byClassname\iByClassname` interface was added that can be used to create
+dependencies on the fly. There is a very simple `\de\codenamephp\platform\di\definitionsProvider\factory\byClassname\SimpleNew` (hence the name)
+that just takes a class name and "news" it.
+
 ##### iDependsOn
 
 This interface declares that a provider depends on other providers and must implement the getDependencies() method which returns all the class names of 
@@ -205,3 +211,14 @@ foreach($collection->get() as $provider) { $containerBuilder->addDefinitionsByPr
 $container = $containerBuilder->build();
 //...
 ```
+
+#### CreateAndAddDependenciesBeforeProvider
+
+This collection was create for [#34](https://github.com/codenamephp/platform.di/issues/34). When a provider has the 
+`\de\codenamephp\platform\di\definitionsProvider\dependency\iDependsOn` interface all dependencies are created using a
+`\de\codenamephp\platform\di\definitionsProvider\factory\byClassname\iByClassname` 
+(`\de\codenamephp\platform\di\definitionsProvider\factory\byClassname\SimpleNew` by default) and added to an underlying collection
+(`\de\codenamephp\platform\di\definitionsProvider\collection\SimpleArray` by default).
+
+Use this with caution since your provider can't have constructors since the factory cannot guess the arguments. You can of course implement you own
+factory but at that point it's probably easier to just add the dependencies yourself.
