@@ -22,12 +22,6 @@ use de\codenamephp\platform\di\definitionsProvider\dependency\MissingDependencyE
 use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 use InvalidArgumentException;
 
-/**
- * Interface to build a di container.
- *
- * @since 3.0
- * @since 5.0 removed addGlobPath
- */
 interface iContainerBuilder {
 
   /**
@@ -42,8 +36,6 @@ interface iContainerBuilder {
    * @return iContainerBuilder
    * @throws MissingDependencyException if a dependency that the given provider relies on is missing (from dependencyHandler)
    * @throws InvalidArgumentException
-   *
-   * @since 3.0
    */
   public function addDefinitionsByProvider(definitionsProvider\iDefinitionsProvider $provider) : iContainerBuilder;
 }

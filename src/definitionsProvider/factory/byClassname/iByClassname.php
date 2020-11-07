@@ -36,8 +36,6 @@ interface iByClassname {
    * @return iDefinitionsProvider
    * @throws ProviderCouldNotBeCreatedException
    * @throws ProviderDoesNotImplementProviderInterfaceException
-   *
-   * @since 5.2
    */
   public function build(string $classname, ...$arguments) : iDefinitionsProvider;
 }

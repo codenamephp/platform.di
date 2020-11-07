@@ -20,8 +20,6 @@ namespace de\codenamephp\platform\di\definitionsProvider\factory;
 
 /**
  * Exception to throw when the created provider does not implement the iDefinitionsProvider interface
- *
- * @since 5.2
  */
 class ProviderDoesNotImplementProviderInterfaceException extends Exception {
 

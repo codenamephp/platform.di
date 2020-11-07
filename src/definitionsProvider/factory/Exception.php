@@ -20,8 +20,6 @@ namespace de\codenamephp\platform\di\definitionsProvider\factory;
 
 /**
  * Base exception for factory related stuff
- *
- * @since 5.2
  */
 class Exception extends \de\codenamephp\platform\di\Exception {
 

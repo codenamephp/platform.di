@@ -28,10 +28,6 @@ final class Container extends \DI\Container implements iContainer {
    * @param null|MutableDefinitionSource $definitionSource The default definitions source
    * @param null|ProxyFactory $proxyFactory The factory to create the procxies with
    * @param ContainerInterface|null $wrapperContainer if the container is wrapped by another container
-   *
-   * @since 3.0 Type of $definitionSource was changed to \DI\Definition\Source\MutableDefinitionSource and type of $wrapperContainer was changed to
-   *   \Psr\Container\ContainerInterface
-   * @since 3.0 All parameters are now optional
    */
   public function __construct(MutableDefinitionSource $definitionSource = null, ProxyFactory $proxyFactory = null, ContainerInterface $wrapperContainer = null) {
     parent::__construct($definitionSource, $proxyFactory, $wrapperContainer);

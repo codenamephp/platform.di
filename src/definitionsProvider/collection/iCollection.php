@@ -24,8 +24,6 @@ use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 
 /**
  * Interface to collect providers. Implementations can choose to e.g. sort, modify or whatever other steps needed for the collection.
- *
- * @since 5.0
  */
 interface iCollection {
 
@@ -35,8 +33,6 @@ interface iCollection {
    * @return iDefinitionsProvider[]
    * @throws MissingDependencyException if one or more dependencies are missing
    * @throws CircularDependencyException if a circular dependency was detected
-   *
-   * @since 5.0
    */
   public function get() : array;
 
@@ -47,8 +43,6 @@ interface iCollection {
    * @return $this
    * @throws MissingDependencyException if one or more dependencies are missing
    * @throws CircularDependencyException if a circular dependency was detected
-   *
-   * @since 5.0
    */
   public function add(iDefinitionsProvider $provider) : self;
 }

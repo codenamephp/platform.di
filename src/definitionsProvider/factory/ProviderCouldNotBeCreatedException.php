@@ -20,8 +20,6 @@ namespace de\codenamephp\platform\di\definitionsProvider\factory;
 
 /**
  * Exception to throw in a factory when the provider could not be created
- *
- * @since 5.2
  */
 class ProviderCouldNotBeCreatedException extends Exception {
 }

@@ -83,9 +83,6 @@ final class TopoGraph implements iCollection {
    * @return iDefinitionsProvider[]
    * @throws MissingDependencyException if one or more dependencies are missing
    * @throws \de\codenamephp\platform\di\definitionsProvider\dependency\CircularDependencyException if a circular dependency was detected
-   *
-   * @since 5.0
-   *
    */
   public function get() : array {
     try {
@@ -104,8 +101,6 @@ final class TopoGraph implements iCollection {
    *
    * @param iDefinitionsProvider $provider The provider to add to the collection
    * @return $this
-   *
-   * @since 5.0
    */
   public function add(iDefinitionsProvider $provider) : iCollection {
     $this->sort->add(get_class($provider), $provider instanceof iDependsOn ? $provider->getDependencies() : []);

@@ -21,15 +21,12 @@ namespace de\codenamephp\platform\di\definitionsProvider;
 /**
  * Interface for a provider that bundles other providers.
  *
- * @since 4.1
  */
 interface iMetaProvider extends iDefinitionsProvider {
   /**
    * Gets the collection of definitions providers that will be added to the container builder.
    *
    * @return iDefinitionsProvider[]
-   *
-   * @since 4.1
    */
   public function getProviders() : array;
 }
