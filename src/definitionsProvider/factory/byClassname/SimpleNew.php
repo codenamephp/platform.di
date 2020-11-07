@@ -38,7 +38,7 @@ final class SimpleNew implements iByClassname {
    * @throws ProviderCouldNotBeCreatedException
    * @throws ProviderDoesNotImplementProviderInterfaceException
    *
-   * @since 5.2
+   * @psalm-suppress InvalidStringClass since this is whole intent of the class
    */
   public function build(string $classname, ...$arguments) : iDefinitionsProvider {
     try {
