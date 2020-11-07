@@ -29,8 +29,8 @@ use de\codenamephp\platform\di\definitionsProvider\factory\ProviderDoesNotImplem
 use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
 
 /**
- * This collection creates and adds all dependencies of the privder before the provider itself is added. It uses an iByClassname factory to create the
- * provider and keeps an array cache to keep track of added providers and only create providers that havn't been added yet.
+ * This collection creates and adds all dependencies of the provider before the provider itself is added. It uses an iByClassname factory to create the
+ * provider and keeps an array cache to keep track of added providers and only create providers that haven't been added yet.
  *
  * @psalm-suppress PropertyNotSetInConstructor see https://github.com/vimeo/psalm/issues/4393
  */
@@ -77,10 +77,10 @@ final class CreateAndAddDependenciesBeforeProvider implements iCollection {
 
   /**
    * If the given provider implements the iDependsOn interface its dependencies are iterated over. If the classname does not yet exist in the
-   * addedProviderClassnames array the dependency is created using the classname with the provider factory and is passed recursivly to the add method.
+   * addedProviderClassnames array the dependency is created using the classname with the provider factory and is passed recursively to the add method.
    *
    * Finally the provider is added to the collection and the classname is added to the alreadyCreatedClassnames array so if the provider appears again in any
-   * dependency we can skipt the "create and add" part.
+   * dependency we can skip the "create and add" part.
    *
    * @param iDefinitionsProvider $provider
    * @return $this
