@@ -34,6 +34,11 @@ class CreateAndAddDependenciesBeforeProviderTest extends TestCase {
     $this->sut = new CreateAndAddDependenciesBeforeProvider($providerCollection, $byClassnameProviderFactory);
   }
 
+  public function testSetAddedProviderClassnames() : void {
+    $this->sut->setAddedProviderClassnames(['some', 'classes']);
+    self::assertEquals(['some', 'classes'], $this->sut->getAddedProviderClassnames());
+  }
+
   public function test__construct_canUseArgumentsFromConstructor() : void {
     $providerCollection = $this->createMock(iCollection::class);
     $byClassnameProviderFactory = $this->createMock(iByClassname::class);
@@ -77,12 +82,6 @@ class CreateAndAddDependenciesBeforeProviderTest extends TestCase {
     $this->sut->setByClassnameProviderFactory($byClassnameProviderFactory);
 
     $this->sut->add($provider);
-
-    self::assertEquals([
-        get_class($dependency1),
-        get_class($dependency2),
-        get_class($provider),
-    ], $this->sut->getAddedProviderClassnames());
   }
 
   public function testGet() : void {

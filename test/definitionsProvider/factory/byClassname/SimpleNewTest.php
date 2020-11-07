@@ -48,6 +48,8 @@ class SimpleNewTest extends TestCase {
       )
       MESSAGE
     );
+    $this->expectExceptionCode(0);
+
     $this->sut->build(WithError::class);
   }
 
