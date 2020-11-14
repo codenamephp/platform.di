@@ -1,16 +1,19 @@
 # Changelog
 
-## [untagged-76ee6b753174bdfed365](https://github.com/codenamephp/platform.di/tree/untagged-76ee6b753174bdfed365) (2020-11-14)
+## [5.1.1](https://github.com/codenamephp/platform.di/tree/5.1.1) (2020-11-14)
 
-[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.0...untagged-76ee6b753174bdfed365)
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.0...5.1.1)
 
 **Closed issues:**
 
 - Test issue [\#41](https://github.com/codenamephp/platform.di/issues/41)
+- Replace with array\_diff [\#40](https://github.com/codenamephp/platform.di/issues/40)
 - Update release workflow [\#39](https://github.com/codenamephp/platform.di/issues/39)
 
 **Merged pull requests:**
 
+- 5.1.1 [\#44](https://github.com/codenamephp/platform.di/pull/44) ([bastianschwarz](https://github.com/bastianschwarz))
+- Extracted check for added provider for improved readability [\#43](https://github.com/codenamephp/platform.di/pull/43) ([bastianschwarz](https://github.com/bastianschwarz))
 - Updated release workflow [\#42](https://github.com/codenamephp/platform.di/pull/42) ([bastianschwarz](https://github.com/bastianschwarz))
 
 ## [5.1.0](https://github.com/codenamephp/platform.di/tree/5.1.0) (2020-11-07)
@@ -47,10 +50,6 @@
 ## [4.1.2](https://github.com/codenamephp/platform.di/tree/4.1.2) (2020-03-08)
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/4.1.1...4.1.2)
-
-**Implemented enhancements:**
-
-- Glob files are now added directly so they can be overwritten by defin… [\#5](https://github.com/codenamephp/platform.di/pull/5) ([bastianschwarz](https://github.com/bastianschwarz))
 
 **Fixed bugs:**
 
@@ -130,6 +129,7 @@
 
 - Files from glob path should be added directly, not just on build [\#4](https://github.com/codenamephp/platform.di/issues/4)
 - Autoconfiguration for Libraries [\#1](https://github.com/codenamephp/platform.di/issues/1)
+- Glob files are now added directly so they can be overwritten by defin… [\#5](https://github.com/codenamephp/platform.di/pull/5) ([bastianschwarz](https://github.com/bastianschwarz))
 
 ## [1.1.0](https://github.com/codenamephp/platform.di/tree/1.1.0) (2016-03-29)
 
