@@ -1,16 +1,19 @@
 # Changelog
 
-## [Unreleased](https://github.com/codenamephp/platform.di/tree/HEAD)
+## [5.1.1](https://github.com/codenamephp/platform.di/tree/5.1.1) (2020-11-14)
 
-[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.0...HEAD)
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.0...5.1.1)
 
 **Closed issues:**
 
 - Test issue [\#41](https://github.com/codenamephp/platform.di/issues/41)
+- Replace with array\_diff [\#40](https://github.com/codenamephp/platform.di/issues/40)
 - Update release workflow [\#39](https://github.com/codenamephp/platform.di/issues/39)
 
 **Merged pull requests:**
 
+- 5.1.1 [\#44](https://github.com/codenamephp/platform.di/pull/44) ([bastianschwarz](https://github.com/bastianschwarz))
+- Extracted check for added provider for improved readability [\#43](https://github.com/codenamephp/platform.di/pull/43) ([bastianschwarz](https://github.com/bastianschwarz))
 - Updated release workflow [\#42](https://github.com/codenamephp/platform.di/pull/42) ([bastianschwarz](https://github.com/bastianschwarz))
 
 ## [5.1.0](https://github.com/codenamephp/platform.di/tree/5.1.0) (2020-11-07)
