@@ -1,22 +1,21 @@
 template: |
- ## What’s Changed
- $CHANGES
+  ## What’s Changed
+  $CHANGES
 exclude-labels:
- - "skip-changelog"
- - "invalid"
-
+  - "skip-changelog"
+  - "invalid"
 version-resolver:
- major:
-  labels:
-   - 'semver:major'
-   - 'Breaking Change'
- minor:
-  labels:
-   - 'semver:minor'
-   - 'enhancement'
-   - 'Deprecation'
- patch:
-  labels:
-   - 'semver:patch'
-   - 'bug'
- default: patch
+  major:
+    labels:
+      - 'semver:major'
+      - 'Breaking Change'
+  minor:
+    labels:
+      - 'semver:minor'
+      - 'enhancement'
+      - 'Deprecation'
+  patch:
+    labels:
+      - 'semver:patch'
+      - 'bug'
+  default: patch
