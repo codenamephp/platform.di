@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/codenamephp/platform.di/tree/HEAD)
+## [5.1.0](https://github.com/codenamephp/platform.di/tree/5.1.0) (2020-11-07)
 
-[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.0.0...HEAD)
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.0.0...5.1.0)
 
 **Implemented enhancements:**
 
@@ -30,7 +30,6 @@
 **Merged pull requests:**
 
 - Update dealerdirect/phpcodesniffer-composer-installer requirement from ^0.5 || ^0.6 to ^0.5 || ^0.6 || ^0.7 [\#30](https://github.com/codenamephp/platform.di/pull/30) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
-- \[RELEASE\] 4.1.2 [\#26](https://github.com/codenamephp/platform.di/pull/26) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [4.1.2](https://github.com/codenamephp/platform.di/tree/4.1.2) (2020-03-08)
 
@@ -40,6 +39,11 @@
 
 - ContainerBuilder uses wrong class [\#27](https://github.com/codenamephp/platform.di/issues/27)
 
+**Merged pull requests:**
+
+- \[RELEASE\] 4.1.2 [\#26](https://github.com/codenamephp/platform.di/pull/26) ([github-actions[bot]](https://github.com/apps/github-actions))
+- Update dealerdirect/phpcodesniffer-composer-installer requirement from ^0.5 to ^0.5 || ^0.6 [\#22](https://github.com/codenamephp/platform.di/pull/22) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+
 ## [4.1.1](https://github.com/codenamephp/platform.di/tree/4.1.1) (2020-03-08)
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/4.1.0...4.1.1)
@@ -47,7 +51,6 @@
 **Merged pull requests:**
 
 - \[RELEASE\] 4.1.1 [\#25](https://github.com/codenamephp/platform.di/pull/25) ([github-actions[bot]](https://github.com/apps/github-actions))
-- Update dealerdirect/phpcodesniffer-composer-installer requirement from ^0.5 to ^0.5 || ^0.6 [\#22](https://github.com/codenamephp/platform.di/pull/22) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [4.1.0](https://github.com/codenamephp/platform.di/tree/4.1.0) (2020-03-07)
 
