@@ -53,5 +53,6 @@ jobs:
       message: "[CHANGELOG] Updated changelog"
       add: "CHANGELOG.md"
       signoff: true
+      branch: master
      env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
