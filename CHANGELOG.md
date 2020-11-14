@@ -1,12 +1,17 @@
 # Changelog
 
-## [untagged-76ee6b753174bdfed365](https://github.com/codenamephp/platform.di/tree/untagged-76ee6b753174bdfed365) (2020-11-14)
+## [Unreleased](https://github.com/codenamephp/platform.di/tree/HEAD)
 
-[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.0...untagged-76ee6b753174bdfed365)
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.0...HEAD)
 
 **Closed issues:**
 
 - Test issue [\#41](https://github.com/codenamephp/platform.di/issues/41)
+- Update release workflow [\#39](https://github.com/codenamephp/platform.di/issues/39)
+
+**Merged pull requests:**
+
+- Updated release workflow [\#42](https://github.com/codenamephp/platform.di/pull/42) ([bastianschwarz](https://github.com/bastianschwarz))
 
 ## [5.1.0](https://github.com/codenamephp/platform.di/tree/5.1.0) (2020-11-07)
 
