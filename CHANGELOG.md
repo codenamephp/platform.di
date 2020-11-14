@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/codenamephp/platform.di/tree/HEAD)
+
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.0...HEAD)
+
+**Closed issues:**
+
+- Test issue [\#41](https://github.com/codenamephp/platform.di/issues/41)
+
 ## [5.1.0](https://github.com/codenamephp/platform.di/tree/5.1.0) (2020-11-07)
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/5.0.0...5.1.0)
@@ -21,7 +29,6 @@
 **Implemented enhancements:**
 
 - Extend dependency check to topo graph [\#21](https://github.com/codenamephp/platform.di/issues/21)
-- Rework of dependency system and introduction of TopoGraph sort [\#32](https://github.com/codenamephp/platform.di/pull/32) ([bastianschwarz](https://github.com/bastianschwarz))
 
 **Closed issues:**
 
@@ -35,6 +42,10 @@
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/4.1.1...4.1.2)
 
+**Implemented enhancements:**
+
+- Rework of dependency system and introduction of TopoGraph sort [\#32](https://github.com/codenamephp/platform.di/pull/32) ([bastianschwarz](https://github.com/bastianschwarz))
+
 **Fixed bugs:**
 
 - ContainerBuilder uses wrong class [\#27](https://github.com/codenamephp/platform.di/issues/27)
@@ -42,7 +53,6 @@
 **Merged pull requests:**
 
 - \[RELEASE\] 4.1.2 [\#26](https://github.com/codenamephp/platform.di/pull/26) ([github-actions[bot]](https://github.com/apps/github-actions))
-- Update dealerdirect/phpcodesniffer-composer-installer requirement from ^0.5 to ^0.5 || ^0.6 [\#22](https://github.com/codenamephp/platform.di/pull/22) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [4.1.1](https://github.com/codenamephp/platform.di/tree/4.1.1) (2020-03-08)
 
@@ -51,6 +61,7 @@
 **Merged pull requests:**
 
 - \[RELEASE\] 4.1.1 [\#25](https://github.com/codenamephp/platform.di/pull/25) ([github-actions[bot]](https://github.com/apps/github-actions))
+- Update dealerdirect/phpcodesniffer-composer-installer requirement from ^0.5 to ^0.5 || ^0.6 [\#22](https://github.com/codenamephp/platform.di/pull/22) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [4.1.0](https://github.com/codenamephp/platform.di/tree/4.1.0) (2020-03-07)
 
