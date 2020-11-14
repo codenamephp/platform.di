@@ -1,72 +1,76 @@
 name: CI
 
 on:
- push:
-   branches: [ master, release ]
-  paths-ignore:
-   - '**.md'
- pull_request:
-   branches: [ master, release ]
-  paths-ignore:
-   - '**.md'
+  push:
+    branches:
+      - master
+      - release
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches:
+      - master
+      - release
+    paths-ignore:
+      - '**.md'
 
 jobs:
- test_latest:
-  name: Test with latest depndency versions
-  runs-on: ubuntu-latest
+  test_latest:
+    name: Test with latest depndency versions
+    runs-on: ubuntu-latest
 
-  steps:
-   - name: Checkout
-     uses: actions/checkout@v2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-   - name: Validate composer.json
-     run: composer validate
+      - name: Validate composer.json
+        run: composer validate
 
-   - name: Get Composer Cache Directory
-     id: composer-cache
-     run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-   - name: Setup cache
-     uses: actions/cache@v2
-     with:
-      path: ${{ steps.composer-cache.outputs.dir }}
-      key: ${{ runner.os }}-composer-latest
-      restore-keys: ${{ runner.os }}-composer-
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Setup cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-latest
+          restore-keys: ${{ runner.os }}-composer-
 
-   - name: Install dependencies
-     if: steps.composer-cache.outputs.cache-hit != 'true'
-     run: composer update --prefer-dist --no-ansi --no-interaction --no-progress
+      - name: Install dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer update --prefer-dist --no-ansi --no-interaction --no-progress
 
-   - name: Run CI tools
-     env:
-      STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
-     run: composer ci-all
+      - name: Run CI tools
+        env:
+          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+        run: composer ci-all
 
- test_lowest:
-  name: Test with lowest dependency versions
-  runs-on: ubuntu-latest
+  test_lowest:
+    name: Test with lowest dependency versions
+    runs-on: ubuntu-latest
 
-  steps:
-   - name: Checkout
-     uses: actions/checkout@v2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-   - name: Validate composer.json
-     run: composer validate
+      - name: Validate composer.json
+        run: composer validate
 
-   - name: Get Composer Cache Directory
-     id: composer-cache
-     run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-   - name: Setup cache
-     uses: actions/cache@v2
-     with:
-      path: ${{ steps.composer-cache.outputs.dir }}
-      key: ${{ runner.os }}-composer-lowest
-      restore-keys: ${{ runner.os }}-composer-
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Setup cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-lowest
+          restore-keys: ${{ runner.os }}-composer-
 
-   - name: Install dependencies
-     if: steps.composer-cache.outputs.cache-hit != 'true'
-     run: composer update --prefer-dist --no-ansi --no-interaction --no-progress --prefer-lowest
+      - name: Install dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer update --prefer-dist --no-ansi --no-interaction --no-progress --prefer-lowest
 
-   - name: Run CI tools
-     env:
-      STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
-     run: composer ci-all
+      - name: Run CI tools
+        env:
+          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+        run: composer ci-all
