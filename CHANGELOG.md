@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/codenamephp/platform.di/tree/HEAD)
+## [test1](https://github.com/codenamephp/platform.di/tree/test1) (2020-11-14)
 
-[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.0...HEAD)
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.0...test1)
 
 **Closed issues:**
 
