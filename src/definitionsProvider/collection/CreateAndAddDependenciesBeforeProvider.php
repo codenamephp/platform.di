@@ -92,7 +92,7 @@ final class CreateAndAddDependenciesBeforeProvider implements iCollection {
   public function add(iDefinitionsProvider $provider) : iCollection {
     if($provider instanceof iDependsOn) {
       foreach($provider->getDependencies() as $dependencyClassname) {
-        if(!in_array($dependencyClassname, $this->getAddedProviderClassnames(), true)) $this->add($this->getByClassnameProviderFactory()->build($dependencyClassname));
+        if($this->providerWasNotYetAdded($dependencyClassname)) $this->add($this->getByClassnameProviderFactory()->build($dependencyClassname));
       }
     }
 
@@ -102,4 +102,7 @@ final class CreateAndAddDependenciesBeforeProvider implements iCollection {
     return $this;
   }
 
+  private function providerWasNotYetAdded(string $dependencyClassname) : bool {
+    return !in_array($dependencyClassname, $this->getAddedProviderClassnames(), true);
+  }
 }
