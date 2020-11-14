@@ -60,6 +60,10 @@
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/4.1.0...4.1.1)
 
+**Implemented enhancements:**
+
+- Provider dependencies [\#14](https://github.com/codenamephp/platform.di/pull/14) ([bastianschwarz](https://github.com/bastianschwarz))
+
 **Merged pull requests:**
 
 - \[RELEASE\] 4.1.1 [\#25](https://github.com/codenamephp/platform.di/pull/25) ([github-actions[bot]](https://github.com/apps/github-actions))
@@ -105,10 +109,6 @@
 ## [2.1.0](https://github.com/codenamephp/platform.di/tree/2.1.0) (2016-10-22)
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/2.0.1...2.1.0)
-
-**Implemented enhancements:**
-
-- Provider dependencies [\#14](https://github.com/codenamephp/platform.di/pull/14) ([bastianschwarz](https://github.com/bastianschwarz))
 
 **Fixed bugs:**
 
