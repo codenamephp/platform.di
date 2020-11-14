@@ -48,6 +48,10 @@
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/4.1.1...4.1.2)
 
+**Implemented enhancements:**
+
+- Glob files are now added directly so they can be overwritten by defin… [\#5](https://github.com/codenamephp/platform.di/pull/5) ([bastianschwarz](https://github.com/bastianschwarz))
+
 **Fixed bugs:**
 
 - ContainerBuilder uses wrong class [\#27](https://github.com/codenamephp/platform.di/issues/27)
@@ -126,7 +130,6 @@
 
 - Files from glob path should be added directly, not just on build [\#4](https://github.com/codenamephp/platform.di/issues/4)
 - Autoconfiguration for Libraries [\#1](https://github.com/codenamephp/platform.di/issues/1)
-- Glob files are now added directly so they can be overwritten by defin… [\#5](https://github.com/codenamephp/platform.di/pull/5) ([bastianschwarz](https://github.com/bastianschwarz))
 
 ## [1.1.0](https://github.com/codenamephp/platform.di/tree/1.1.0) (2016-03-29)
 
