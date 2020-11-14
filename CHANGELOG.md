@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/codenamephp/platform.di/tree/HEAD)
+## [untagged-76ee6b753174bdfed365](https://github.com/codenamephp/platform.di/tree/untagged-76ee6b753174bdfed365) (2020-11-14)
 
-[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.0...HEAD)
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.0...untagged-76ee6b753174bdfed365)
 
 **Closed issues:**
 
