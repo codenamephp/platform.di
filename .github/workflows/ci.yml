@@ -20,7 +20,7 @@ jobs:
       matrix:
         php-versions: [ '7.4', '8.0' ]
         prefer: [ 'prefer-lowest', 'prefer-stable' ]
-    name: Test with ${{ matrix.prefer }} depndency versions on PHP ${{ matrix.php-versions }}
+    name: Test with ${{ matrix.prefer }} dependency versions on PHP ${{ matrix.php-versions }}
     runs-on: ubuntu-latest
 
     steps:
