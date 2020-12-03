@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/codenamephp/platform.di/tree/HEAD)
+
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.1...HEAD)
+
+**Merged pull requests:**
+
+- Update marcj/topsort requirement from ^1.1 to ^1.1 || ^2.0 [\#45](https://github.com/codenamephp/platform.di/pull/45) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [5.1.1](https://github.com/codenamephp/platform.di/tree/5.1.1) (2020-11-14)
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.0...5.1.1)
