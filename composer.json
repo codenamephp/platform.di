@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "php": "^7.4",
+    "php": "^7.4 || ^8.0",
     "codenamephp/platform.core": "^1",
     "marcj/topsort": "^1.1 || ^2.0",
     "php-di/php-di": "^6",

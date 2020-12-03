@@ -16,12 +16,21 @@ on:
 
 jobs:
   test_latest:
-    name: Test with latest depndency versions
+    strategy:
+      matrix:
+        php-versions: [ '7.4', '8.0' ]
+        prefer: [ 'prefer-lowest', 'prefer-stable' ]
+    name: Test with ${{ matrix.prefer }} depndency versions on PHP ${{ matrix.php-versions }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
 
       - name: Validate composer.json
         run: composer validate
@@ -33,42 +42,12 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-latest
-          restore-keys: ${{ runner.os }}-composer-
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}-${{ matrix.prefer }}-
+          restore-keys: ${{ runner.os }}-composer-${{ matrix.prefer }}-
 
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer update --prefer-dist --no-ansi --no-interaction --no-progress
-
-      - name: Run CI tools
-        env:
-          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
-        run: composer ci-all
-
-  test_lowest:
-    name: Test with lowest dependency versions
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Validate composer.json
-        run: composer validate
-
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - name: Setup cache
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-lowest
-          restore-keys: ${{ runner.os }}-composer-
-
-      - name: Install dependencies
-        if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer update --prefer-dist --no-ansi --no-interaction --no-progress --prefer-lowest
+        run: composer update --prefer-dist --no-ansi --no-interaction --no-progress --${{ matrix.prefer }}
 
       - name: Run CI tools
         env:
