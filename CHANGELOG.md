@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.1...HEAD)
 
+**Implemented enhancements:**
+
+- Add PHP8 support [\#46](https://github.com/codenamephp/platform.di/pull/46) ([bastianschwarz](https://github.com/bastianschwarz))
+
 **Merged pull requests:**
 
 - Update marcj/topsort requirement from ^1.1 to ^1.1 || ^2.0 [\#45](https://github.com/codenamephp/platform.di/pull/45) ([dependabot[bot]](https://github.com/apps/dependabot))
