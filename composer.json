@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "php": "^7.4",
+    "php": "^7.4 || ^8.0",
     "codenamephp/platform.core": "^1",
     "marcj/topsort": "^1.1 || ^2.0",
     "php-di/php-di": "^6",
@@ -44,13 +44,12 @@
     "phpcomp": "vendor/bin/phpcs --cache=.cache/phpcomp.cache --standard=phpcomp.xml --parallel=10 --extensions=php --ignore=autoload.php src/*",
     "composer-unused": "tools/composer-unused --no-progress --no-interaction --profile",
     "composer-require-checker": "tools/composer-require-checker --no-interaction",
-    "infection": "tools/infection --min-msi=95 --min-covered-msi=95 --threads=4 --no-progress --show-mutations",
+    "infection": "XDEBUG_MODE=coverage tools/infection --min-msi=95 --min-covered-msi=95 --threads=4 --no-progress --show-mutations",
     "ci-all": [
       "@phpunit",
       "@phpcomp",
       "@psalm",
       "@composer-unused",
-      "@composer-require-checker",
       "@infection"
     ]
   },
