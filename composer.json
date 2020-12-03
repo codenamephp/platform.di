@@ -12,7 +12,7 @@
   "require": {
     "php": "^7.4",
     "codenamephp/platform.core": "^1",
-    "marcj/topsort": "^1.1",
+    "marcj/topsort": "^1.1 || ^2.0",
     "php-di/php-di": "^6",
     "psr/container": "^1.0"
   },
