@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/codenamephp/platform.di/tree/HEAD)
+## [5.2.0](https://github.com/codenamephp/platform.di/tree/5.2.0) (2020-12-05)
 
-[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.1...HEAD)
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.1...5.2.0)
 
 **Implemented enhancements:**
 
@@ -41,6 +41,7 @@
 
 - Remove unused symfony/filesystem package [\#37](https://github.com/codenamephp/platform.di/pull/37) ([bastianschwarz](https://github.com/bastianschwarz))
 - Updated CI tools [\#36](https://github.com/codenamephp/platform.di/pull/36) ([bastianschwarz](https://github.com/bastianschwarz))
+- PHPCS/Composer: update PHPCompatibility [\#18](https://github.com/codenamephp/platform.di/pull/18) ([jrfnl](https://github.com/jrfnl))
 
 ## [5.0.0](https://github.com/codenamephp/platform.di/tree/5.0.0) (2020-08-15)
 
@@ -67,6 +68,10 @@
 
 - ContainerBuilder uses wrong class [\#27](https://github.com/codenamephp/platform.di/issues/27)
 
+**Merged pull requests:**
+
+- \[RELEASE\] 4.1.2 [\#26](https://github.com/codenamephp/platform.di/pull/26) ([github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [4.1.1](https://github.com/codenamephp/platform.di/tree/4.1.1) (2020-03-08)
 
 [Full Changelog](https://github.com/codenamephp/platform.di/compare/4.1.0...4.1.1)
@@ -91,10 +96,6 @@
 **Implemented enhancements:**
 
 - Bring repo back up to standards [\#19](https://github.com/codenamephp/platform.di/issues/19)
-
-**Merged pull requests:**
-
-- PHPCS/Composer: update PHPCompatibility [\#18](https://github.com/codenamephp/platform.di/pull/18) ([jrfnl](https://github.com/jrfnl))
 
 ## [3.0.0](https://github.com/codenamephp/platform.di/tree/3.0.0) (2018-08-19)
 
@@ -124,10 +125,6 @@
 **Fixed bugs:**
 
 - Add default definitions for interfaces [\#13](https://github.com/codenamephp/platform.di/issues/13)
-
-**Merged pull requests:**
-
-- \[RELEASE\] 4.1.2 [\#26](https://github.com/codenamephp/platform.di/pull/26) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [2.0.1](https://github.com/codenamephp/platform.di/tree/2.0.1) (2016-05-26)
 
