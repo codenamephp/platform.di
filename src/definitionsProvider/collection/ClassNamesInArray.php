@@ -42,9 +42,6 @@ final class ClassNamesInArray implements iCollection {
    */
   private array $collectedDependencies = [];
 
-  /**
-   * @param iCollection $collection
-   */
   public function __construct(iCollection $collection = null) {
     $this->collection = $collection ?? new SimpleArray();
   }
