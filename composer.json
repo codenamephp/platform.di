@@ -40,7 +40,7 @@
   },
   "scripts": {
     "phpunit": "tools/phpunit.phar -c test/phpunit.dist.xml test/",
-    "psalm": "tools/psalm --threads=10 --diff --diff-methods --long-progress",
+    "psalm": "tools/psalm --threads=10 --long-progress",
     "phpcomp": "vendor/bin/phpcs --cache=.cache/phpcomp.cache --standard=phpcomp.xml --parallel=10 --extensions=php --ignore=autoload.php src/*",
     "composer-unused": "tools/composer-unused --no-progress --no-interaction --profile",
     "composer-require-checker": "tools/composer-require-checker --no-interaction",
