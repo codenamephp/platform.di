@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/codenamephp/platform.di/tree/HEAD)
+## [5.2.0](https://github.com/codenamephp/platform.di/tree/5.2.0) (2020-12-05)
 
-[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.1...HEAD)
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.1...5.2.0)
 
 **Implemented enhancements:**
 
@@ -40,7 +40,6 @@
 **Merged pull requests:**
 
 - Remove unused symfony/filesystem package [\#37](https://github.com/codenamephp/platform.di/pull/37) ([bastianschwarz](https://github.com/bastianschwarz))
-- Updated CI tools [\#36](https://github.com/codenamephp/platform.di/pull/36) ([bastianschwarz](https://github.com/bastianschwarz))
 
 ## [5.0.0](https://github.com/codenamephp/platform.di/tree/5.0.0) (2020-08-15)
 
@@ -57,6 +56,7 @@
 
 **Merged pull requests:**
 
+- Updated CI tools [\#36](https://github.com/codenamephp/platform.di/pull/36) ([bastianschwarz](https://github.com/bastianschwarz))
 - Update dealerdirect/phpcodesniffer-composer-installer requirement from ^0.5 || ^0.6 to ^0.5 || ^0.6 || ^0.7 [\#30](https://github.com/codenamephp/platform.di/pull/30) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [4.1.2](https://github.com/codenamephp/platform.di/tree/4.1.2) (2020-03-08)
@@ -66,6 +66,10 @@
 **Fixed bugs:**
 
 - ContainerBuilder uses wrong class [\#27](https://github.com/codenamephp/platform.di/issues/27)
+
+**Merged pull requests:**
+
+- \[RELEASE\] 4.1.2 [\#26](https://github.com/codenamephp/platform.di/pull/26) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [4.1.1](https://github.com/codenamephp/platform.di/tree/4.1.1) (2020-03-08)
 
@@ -124,10 +128,6 @@
 **Fixed bugs:**
 
 - Add default definitions for interfaces [\#13](https://github.com/codenamephp/platform.di/issues/13)
-
-**Merged pull requests:**
-
-- \[RELEASE\] 4.1.2 [\#26](https://github.com/codenamephp/platform.di/pull/26) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [2.0.1](https://github.com/codenamephp/platform.di/tree/2.0.1) (2016-05-26)
 
