@@ -40,6 +40,7 @@
 **Merged pull requests:**
 
 - Remove unused symfony/filesystem package [\#37](https://github.com/codenamephp/platform.di/pull/37) ([bastianschwarz](https://github.com/bastianschwarz))
+- Updated CI tools [\#36](https://github.com/codenamephp/platform.di/pull/36) ([bastianschwarz](https://github.com/bastianschwarz))
 
 ## [5.0.0](https://github.com/codenamephp/platform.di/tree/5.0.0) (2020-08-15)
 
@@ -56,7 +57,6 @@
 
 **Merged pull requests:**
 
-- Updated CI tools [\#36](https://github.com/codenamephp/platform.di/pull/36) ([bastianschwarz](https://github.com/bastianschwarz))
 - Update dealerdirect/phpcodesniffer-composer-installer requirement from ^0.5 || ^0.6 to ^0.5 || ^0.6 || ^0.7 [\#30](https://github.com/codenamephp/platform.di/pull/30) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [4.1.2](https://github.com/codenamephp/platform.di/tree/4.1.2) (2020-03-08)
