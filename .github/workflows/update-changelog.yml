@@ -28,8 +28,6 @@ jobs:
           message: "[CHANGELOG] Updated changelog"
           add: "CHANGELOG.md"
           signoff: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   update_changelog_after_release:
     name: Update changelog in default branch after published release
@@ -54,5 +52,3 @@ jobs:
           add: "CHANGELOG.md"
           signoff: true
           branch: master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
