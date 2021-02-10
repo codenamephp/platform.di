@@ -39,6 +39,7 @@
     "sort-packages": true
   },
   "scripts": {
+    "phive-update": "yes | phive update",
     "phpunit": "tools/phpunit.phar -c test/phpunit.dist.xml test/",
     "psalm": "tools/psalm --threads=10 --long-progress",
     "phpcomp": "vendor/bin/phpcs --cache=.cache/phpcomp.cache --standard=phpcomp.xml --parallel=10 --extensions=php --ignore=autoload.php src/*",
@@ -54,6 +55,7 @@
     ]
   },
   "scripts-descriptions": {
+    "phive-update": "Update phive dependencies",
     "phpunit": "Runs phpunit tests",
     "phpcomp": "Runs php compatibility checks",
     "psalm": "Runs psalm static analysis",
