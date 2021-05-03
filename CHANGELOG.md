@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Bump charmixer/auto-changelog-action from v1.3 to v1.4 [\#52](https://github.com/codenamephp/platform.di/pull/52) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Update marcj/topsort requirement from ^1.1 to ^1.1 || ^2.0 [\#45](https://github.com/codenamephp/platform.di/pull/45) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Extracted check for added provider for improved readability [\#43](https://github.com/codenamephp/platform.di/pull/43) ([bastianschwarz](https://github.com/bastianschwarz))
 - Updated release workflow [\#42](https://github.com/codenamephp/platform.di/pull/42) ([bastianschwarz](https://github.com/bastianschwarz))
