@@ -28,7 +28,7 @@ jobs:
           release_branch: 'release'
 
       - name: commit updated changelog
-        uses: EndBug/add-and-commit@v7
+        uses: EndBug/add-and-commit@v8.0.2
         with:
           message: "[CHANGELOG] Updated changelog"
           add: "CHANGELOG.md"
