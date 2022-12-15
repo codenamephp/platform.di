@@ -37,7 +37,7 @@
     "phive-update": "XDEBUG_MODE=off phive update && git add tools/* phive.xml && git commit -m 'Updated phive dependencies'",
     "phpunit": "XDEBUG_MODE=coverage tools/phpunit.phar -c test/phpunit.dist.xml test/",
     "psalm": "XDEBUG_MODE=off tools/psalm --threads=10 --long-progress --no-diff",
-    "composer-unused": "XDEBUG_MODE=off tools/composer-unused.phar --no-progress --no-interaction",
+    "composer-unused": "XDEBUG_MODE=off tools/composer-unused --no-progress --no-interaction",
     "composer-require-checker": "XDEBUG_MODE=off tools/composer-require-checker --no-interaction",
     "infection": "XDEBUG_MODE=coverage tools/infection --min-msi=100 --min-covered-msi=100 --threads=4 --no-progress --show-mutations",
     "ci-all": [

@@ -2,10 +2,10 @@
 /.logs/*
 /test/.phpunit.result.cache
 !/**/.gitkeep
-/.env
+.env
 
-# Created by https://www.toptal.com/developers/gitignore/api/phpstorm,composer
-# Edit at https://www.toptal.com/developers/gitignore?templates=phpstorm,composer
+# Created by https://www.toptal.com/developers/gitignore/api/composer,phpstorm
+# Edit at https://www.toptal.com/developers/gitignore?templates=composer,phpstorm
 
 ### Composer ###
 composer.phar
@@ -25,9 +25,6 @@ composer.lock
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
-
-# AWS User-specific
-.idea/**/aws.xml
 
 # Generated files
 .idea/**/contentModel.xml
@@ -79,9 +76,6 @@ atlassian-ide-plugin.xml
 # Cursive Clojure plugin
 .idea/replstate.xml
 
-# SonarLint plugin
-.idea/sonarlint/
-
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
 crashlytics.properties
@@ -124,4 +118,4 @@ fabric.properties
 # https://plugins.jetbrains.com/plugin/12206-codestream
 .idea/codestream.xml
 
-# End of https://www.toptal.com/developers/gitignore/api/phpstorm,composer
+# End of https://www.toptal.com/developers/gitignore/api/composer,phpstorm
