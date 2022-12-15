@@ -21,6 +21,7 @@ namespace de\codenamephp\platform\di\definitionsProvider\factory\byClassname;
 use de\codenamephp\platform\di\definitionsProvider\factory\ProviderCouldNotBeCreatedException;
 use de\codenamephp\platform\di\definitionsProvider\factory\ProviderDoesNotImplementProviderInterfaceException;
 use de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 class SimpleNewTest extends TestCase {
@@ -53,6 +54,18 @@ class SimpleNewTest extends TestCase {
     $this->sut->build(WithError::class);
   }
 
+  public function testCanThrowException_WhenExceptionIsThrownOnCreation() : void {
+    $this->expectException(ProviderCouldNotBeCreatedException::class);
+    $this->expectExceptionMessage(<<<'MESSAGE'
+      Could not create provider de\codenamephp\platform\di\definitionsProvider\factory\byClassname\WithException with arguments array (
+      )
+      MESSAGE
+    );
+    $this->expectExceptionCode(0);
+
+    $this->sut->build(WithException::class);
+  }
+
   public function testCanThrowException_WhenProviderDoesNotImplementProviderInterface() : void {
     $this->expectException(ProviderDoesNotImplementProviderInterfaceException::class);
     $this->expectExceptionMessage('Created provider de\codenamephp\platform\di\definitionsProvider\factory\byClassname\WithoutInterface does not implement de\codenamephp\platform\di\definitionsProvider\iDefinitionsProvider');
@@ -62,6 +75,7 @@ class SimpleNewTest extends TestCase {
 }
 
 class WithInterface implements iDefinitionsProvider {
+
   public int $a;
 
   public string $b;
@@ -76,8 +90,16 @@ class WithInterface implements iDefinitionsProvider {
 }
 
 class WithError {
+
   public function __construct() {
     trigger_error('', E_ERROR);
+  }
+}
+
+class WithException {
+
+  public function __construct() {
+    throw new Exception('Yeeeet!');
   }
 }
 
