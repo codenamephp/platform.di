@@ -10,6 +10,11 @@ updates:
     schedule:
       interval: "daily"
 
+  - package-ecosystem: "docker"
+    directory: "/docker/application"
+    schedule:
+      interval: "daily"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
