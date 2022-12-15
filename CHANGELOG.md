@@ -1,8 +1,8 @@
 # Changelog
 
-## [5.2.1](https://github.com/codenamephp/platform.di/tree/5.2.1) (2022-12-15)
+## [Unreleased](https://github.com/codenamephp/platform.di/tree/HEAD)
 
-[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.2.0...5.2.1)
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.2.0...HEAD)
 
 **Implemented enhancements:**
 
