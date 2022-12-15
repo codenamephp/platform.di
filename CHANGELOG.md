@@ -1,8 +1,16 @@
 # Changelog
 
-## [Unreleased](https://github.com/codenamephp/platform.di/tree/HEAD)
+## [5.2.1](https://github.com/codenamephp/platform.di/tree/5.2.1) (2022-12-15)
 
-[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.1...HEAD)
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.2.0...5.2.1)
+
+**Implemented enhancements:**
+
+- Updated build, move to docker, Drop PHP7 [\#66](https://github.com/codenamephp/platform.di/pull/66) ([bastianschwarz](https://github.com/bastianschwarz))
+
+## [5.2.0](https://github.com/codenamephp/platform.di/tree/5.2.0) (2020-12-05)
+
+[Full Changelog](https://github.com/codenamephp/platform.di/compare/5.1.1...5.2.0)
 
 **Implemented enhancements:**
 
@@ -41,7 +49,6 @@
 
 - Remove unused symfony/filesystem package [\#37](https://github.com/codenamephp/platform.di/pull/37) ([bastianschwarz](https://github.com/bastianschwarz))
 - Updated CI tools [\#36](https://github.com/codenamephp/platform.di/pull/36) ([bastianschwarz](https://github.com/bastianschwarz))
-- Update dealerdirect/phpcodesniffer-composer-installer requirement from ^0.5 || ^0.6 to ^0.5 || ^0.6 || ^0.7 [\#30](https://github.com/codenamephp/platform.di/pull/30) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [5.0.0](https://github.com/codenamephp/platform.di/tree/5.0.0) (2020-08-15)
 
@@ -55,6 +62,10 @@
 **Closed issues:**
 
 - Add release drafter [\#31](https://github.com/codenamephp/platform.di/issues/31)
+
+**Merged pull requests:**
+
+- Update dealerdirect/phpcodesniffer-composer-installer requirement from ^0.5 || ^0.6 to ^0.5 || ^0.6 || ^0.7 [\#30](https://github.com/codenamephp/platform.di/pull/30) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
 
 ## [4.1.2](https://github.com/codenamephp/platform.di/tree/4.1.2) (2020-03-08)
 
